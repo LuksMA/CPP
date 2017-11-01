@@ -14,16 +14,20 @@ main(){
     for(int i=0; i<5; ++i){
         v.push_back(i);
     }
-    // v contains 0 1 2 3 4
+    /// v contains 0 1 2 3 4
 
-    // Size of the vector
-    printf("Size of vector q: %d \n",q.size());
-    printf("Size of vector V: %d \n",v.size());
+    /// Size of the vector
+    printf("Size of vector q: %d \n",q.size()); // 3
+    printf("Size of vector V: %d \n",v.size()); // 5
+    printf("\n");
 
-    // Visit element
-    printf("The second element in vector q is %d \n",q[1]);
+    /// Visit element
+    printf("The first element in vector q is %d \n",*q.begin()); // 10
+    printf("The second element in vector q is %d \n",q[1]);      // 11
+    printf("The end element in vector q is %d \n",*q.end());     // 0
+    printf("\n");
 
-    // Loop the vector
+    /// Loop the vector
     printf("vector v: \n");
     vector<int>::const_iterator i;
     for(i=v.begin(); i!=v.end(); ++i){
