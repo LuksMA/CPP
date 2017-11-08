@@ -13,4 +13,5 @@ If we declare any variable as **const**, then that variable can be initialized, 
 * If a function cannot be inherited, it cannot be overridden.
 * Constructors cannot be overridden.
 7. Binding means matching the function call with the correct function definition by the compiler. It takes place either at compile time or at runtime
-8. In early binding, the compiler matches the function call with the correct function definition at compile time. It is also known as **Static Binding** or **Compile-time Binding**.
+* In early binding, the compiler matches the function call with the correct function definition at compile time. It is also known as **Static Binding** or **Compile-time Binding**.
+* **Virtual Function** is a member function of the base class which is overridden in the derived class. The compiler performs **late binding** on this function
