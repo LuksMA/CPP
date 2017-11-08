@@ -11,3 +11,4 @@ If we declare any variable as **const**, then that variable can be initialized, 
 * Functions must have the same argument list and return type.
 * A function declared static cannot be overridden.
 * If a function cannot be inherited, it cannot be overridden.
+* Constructors cannot be overridden.
