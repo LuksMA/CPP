@@ -17,3 +17,4 @@ If we declare any variable as **const**, then that variable can be initialized, 
 * **Virtual Function** is a member function of the base class which is overridden in the derived class. The compiler performs **late binding** on this function
 * If we declare a member function in a base class as a virtual function, then that function automatically becomes virtual in all of its derived classes.
 * We can also call private function of derived class from a base class pointer by declaring that function in the base class as virtual.
+8. Pure virtual function is a virtual function which has no definition. Pure virtual functions are also called **abstract functions**.
