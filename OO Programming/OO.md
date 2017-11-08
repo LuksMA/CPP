@@ -5,3 +5,4 @@
 3. Need for Initialization List :
 If we declare any variable as **const**, then that variable can be initialized, but not assigned.
 4. Any **protected** member of a class ( variable or function ) can be accessed within that class or its subclass. It cannot be accessed outside that.
+5. For **subclass**, while calling the constructor of any class, the compiler first automatically calls the constructor of its parent class. 
