@@ -15,3 +15,5 @@ If we declare any variable as **const**, then that variable can be initialized, 
 7. Binding means matching the function call with the correct function definition by the compiler. It takes place either at compile time or at runtime
 * In early binding, the compiler matches the function call with the correct function definition at compile time. It is also known as **Static Binding** or **Compile-time Binding**.
 * **Virtual Function** is a member function of the base class which is overridden in the derived class. The compiler performs **late binding** on this function
+* If we declare a member function in a base class as a virtual function, then that function automatically becomes virtual in all of its derived classes.
+* We can also call private function of derived class from a base class pointer by declaring that function in the base class as virtual.
