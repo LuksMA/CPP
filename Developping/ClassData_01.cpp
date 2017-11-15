@@ -49,6 +49,7 @@ public:
         vector<int> seeds = creatSeed(sSize);
         vector <string> id = patientID(sSize);
 
+
     }
 
     int getSampleSize(){
@@ -73,7 +74,15 @@ public:
         return getRangeSize(rangesNom);
     }
 
-
+    void genReport(){
+        cout<<"Generate "<<getSampleSize()<<" samples\n"
+            <<"Covariate size: "<<getCovariateSize()
+            <<"\tY size: "<<getYSize()
+            <<"\tAction size: "<<getActionSize()<<'\n'
+            <<"Continuous: "<<getContVarSize()
+            <<"\tOrdinal: "<<getOrdVarSize()
+            <<"\tNormal: "<<getNomVarSize()<<endl;
+    }
 
 
 
@@ -106,7 +115,7 @@ template<class T>
                 T lowBound = vectIn.at(2*i);
                 T upperBound = vectIn.at(2*i+1);
                 if(lowBound < upperBound){
-                    return vectSize;
+                    return vectSize/2;
                 }else{
                     cout<<"Error: Please check if lower bounds are smaller than upper bounds. \n";
                 }
@@ -198,7 +207,9 @@ int main(){
 
     DataGeneration data(varType,rangesY,rangesAction,rangesCont,rangesOrd,rangesNom);
     data.creatSamples(20);
-    cout<<data.getActionSize()<<endl;
+
+    data.genReport();
+
 
 
 }
