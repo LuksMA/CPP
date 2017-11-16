@@ -8,8 +8,8 @@ OrdinalFilter :: ~OrdinalFilter(){}
 
 pair <vector<Patient>,vector<Patient>> OrdinalFilter :: meetCriteria(pair<vector<Patient> , vector<Patient>> groupPatient){
     pair <vector<Patient>,vector<Patient>> pairOut;
-    vector<Patient> vectSelected;
-    vector<Patient> vectUnSelected;
+    vector<Patient> vectSelected;vectSelected.empty();
+    vector<Patient> vectUnSelected;vectUnSelected.empty();
     int varNo = myIndex.at(0);
     int cut = myIndex.at(1);
     int dir = myIndex.at(2);

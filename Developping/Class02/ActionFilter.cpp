@@ -6,12 +6,20 @@ ActionFilter :: ActionFilter(vector<int> index)
 }
 ActionFilter :: ~ActionFilter(){  }
 
-vector<Patient> ActionFilter :: meetCriteria(vector<Patient> patients){
-    vector<Patient> vectOut;
-    for(auto patient : patients){
+pair <vector<Patient>,vector<Patient>> ActionFilter :: meetCriteria(pair <vector<Patient>,vector<Patient>> groupPatient){
+    pair <vector<Patient>,vector<Patient>> pairOut;
+    vector<Patient> vectSelected;vectSelected.empty();
+    vector<Patient> vectUnSelected; vectUnSelected.empty();
+    for(auto patient : groupPatient.first){
         if(patient.getAction() == myAction){
-            vectOut.push_back(patient);
+            vectSelected.push_back(patient);
         }
     }
-    return vectOut;
+    for(auto patient : groupPatient.second){
+        if(patient.getAction() != myAction){
+            vectUnSelected.push_back(patient);
+        }
+    }
+    pairOut = make_pair(vectSelected,vectUnSelected);
+    return pairOut;
 }

@@ -8,8 +8,8 @@ NominalFilter :: ~NominalFilter(){}
 
 pair <vector<Patient>,vector<Patient>> NominalFilter :: meetCriteria(pair<vector<Patient> , vector<Patient>> groupPatient){
     pair <vector<Patient>,vector<Patient>> pairOut;
-    vector<Patient> vectSelected;
-    vector<Patient> vectUnSelected;
+    vector<Patient> vectSelected;vectSelected.empty();
+    vector<Patient> vectUnSelected;vectUnSelected.empty();
 
     int varNo = myIndex.at(0);
     int combNo = myIndex.at(1);

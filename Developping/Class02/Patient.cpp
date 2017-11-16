@@ -108,7 +108,7 @@ void printPatientsX(vector<Patient> patients){
 
 void printPatientsXA(vector<Patient> patients){
     for(auto& patient : patients){
-        cout<<"Patient ID: "<<patient.getPatientID()
+        cout<<patient.getPatientID()
             <<"\tX: ";
         print1DVector(patient.getX());
         cout<<"\tAction: ";
@@ -120,13 +120,13 @@ void printPatientsXA(vector<Patient> patients){
 
 void printPatients(vector<Patient> patients){
     for(auto& patient : patients){
-        cout<<"Patient ID: "<<patient.getPatientID()<<endl;
-        cout<<"Y: ";
-        print1DVector(patient.getY());
+        cout<<patient.getPatientID()
+            <<"\tX: ";
+        print1DVector(patient.getX());
         cout<<"\tAction: ";
         print1DVector(patient.getAction());
-        cout<<"\tX: ";
-        print1DVector(patient.getX());
+        cout<<"\tY: ";
+        print1DVector(patient.getY());
         cout<<endl;
     }
     cout<<endl;
@@ -136,4 +136,13 @@ void printPatients(vector<Patient> patients){
 vector<Patient> combinePatients(vector<Patient> p1, vector<Patient> p2){
     p1.insert( p1.end(), p2.begin(), p2.end() );
     return p1;
+}
+
+
+double expect(vector<Patient> patients, int s){
+    double out = 0;
+    for(auto& patient : patients){
+        out = out + patient.getY(0).at(0);
+    }
+    return out*2/s;
 }

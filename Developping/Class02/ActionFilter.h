@@ -13,7 +13,7 @@ class ActionFilter : public Filter
         //destructor
         ~ActionFilter();
 
-        vector<Patient> meetCriteria(vector<Patient> patients);
+        pair <vector<Patient>,vector<Patient>> meetCriteria(pair<vector<Patient> , vector<Patient>> groupPatient);
 };
 
 #endif // ACTIONFILTER_H
