@@ -13,7 +13,7 @@ class NominalFilter : public Filter
         //destructor
         ~NominalFilter();
 
-        vector<Patient> meetCriteria(vector<Patient> patients);
+        pair <vector<Patient>,vector<Patient>> meetCriteria(pair<vector<Patient> , vector<Patient>> groupPatient);
 };
 
 #endif // NOMINALFILTER_H

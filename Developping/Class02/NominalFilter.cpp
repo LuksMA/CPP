@@ -6,15 +6,21 @@ NominalFilter::NominalFilter(vector<int> index)
 }
 NominalFilter :: ~NominalFilter(){}
 
-vector<Patient> NominalFilter :: meetCriteria(vector<Patient> patients){
-    vector<Patient> vectOut;
+pair <vector<Patient>,vector<Patient>> NominalFilter :: meetCriteria(pair<vector<Patient> , vector<Patient>> groupPatient){
+    pair <vector<Patient>,vector<Patient>> pairOut;
+    vector<Patient> vectSelected;
+    vector<Patient> vectUnSelected;
+
     int varNo = myIndex.at(0);
     int combNo = myIndex.at(1);
     vector<int> subSet(myIndex.begin()+2,myIndex.end());
-    for(auto patient : patients){
+    for(auto patient : groupPatient.first){
         if(find(subSet.begin(), subSet.end(), patient.getX(varNo).at(0)) != subSet.end()){
-            vectOut.push_back(patient);
+            vectSelected.push_back(patient);
+        }else{
+            vectUnSelected.push_back(patient);
         }
     }
-    return vectOut;
+    pairOut = make_pair(vectSelected,combinePatients(groupPatient.second, vectUnSelected));
+    return pairOut;
 }
