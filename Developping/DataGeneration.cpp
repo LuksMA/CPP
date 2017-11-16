@@ -22,7 +22,7 @@ DataGeneration :: DataGeneration(vector<int> vType, vector<double> rY, vector<in
 
 void DataGeneration :: creatSamples(int sSize){
     sampleSize = sSize;
-    vector <string> id = patientID(sSize);
+    id = patientID(sSize);
     vector<vector<int>> seeds = assignSeed(creatSeed(getCovariateSize(),100), varType);
     varCont = sampleGenerator(seeds.at(0),rangesCont);
     varOrd = sampleGenerator(seeds.at(1),rangesOrd);
@@ -61,7 +61,7 @@ vector<vector<int>> DataGeneration :: getVarCont(int i){  return varContInt; }
 vector<vector<int>> DataGeneration :: getVarOrd(){  return varOrd;  }
 vector<vector<int>> DataGeneration :: getVarNom(){    return varNom;  }
 vector<vector<int>> DataGeneration :: getDataSet(){   return dataSet; }
-
+vector<string> DataGeneration :: getID(){    return id;  }
 
 void DataGeneration :: printContVar(){
     cout<<'\n'<<getContVarSize()<<" continuous variables, "<<getSampleSize()<<" samples:"<<endl;
@@ -134,6 +134,7 @@ vector<string> DataGeneration :: patientID(int noSample){
         cout<<"No. of sample much be >0"<<endl;
         return vectOut;
     }
+    return vectOut;
 }
 
 template<class T>

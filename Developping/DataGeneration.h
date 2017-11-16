@@ -60,6 +60,7 @@ class DataGeneration
         vector<vector<int>> getVarOrd();
         vector<vector<int>> getVarNom();
         vector<vector<int>> getDataSet();
+        vector<string> getID();
 
         void printY();
         void printAction();

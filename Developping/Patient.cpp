@@ -65,9 +65,9 @@ int Patient :: getSizeY(){ return valueY.size();   }
 void Patient :: summary(){
         cout<<"Patient ID: "<< patientID<<endl;
         cout<<getSizeAction()<<" Action (A): ";print1DVector(action);
-        cout<<getSizeY()<<" Reward (Y): ";print1DVector(valueY);
-        cout<<getSizeX()<<" Covariate (X); ";print1DVector(valueX);
-        cout<<"Covariate type: ";print1DVector(type);
+        cout<<'\t'<<getSizeY()<<" Reward (Y): ";print1DVector(valueY);
+        cout<<'\n'<<getSizeX()<<" Covariate (X); ";print1DVector(valueX);
+        cout<<"\nCovariate type: ";print1DVector(type);
 //        for(auto t : type){
 //                cout<<getEnumType(dataType(t))<<' ';
 //        }
@@ -109,7 +109,7 @@ void printPatientsX(vector<Patient> patients){
 void printPatientsXA(vector<Patient> patients){
     for(auto& patient : patients){
         cout<<"Patient ID: "<<patient.getPatientID()
-            <<"\tValue of X: ";
+            <<"\tX: ";
         print1DVector(patient.getX());
         cout<<"\tAction: ";
         print1DVector(patient.getAction());
@@ -121,11 +121,11 @@ void printPatientsXA(vector<Patient> patients){
 void printPatients(vector<Patient> patients){
     for(auto& patient : patients){
         cout<<"Patient ID: "<<patient.getPatientID()<<endl;
-        cout<<"Value of Y: ";
+        cout<<"Y: ";
         print1DVector(patient.getY());
         cout<<"\tAction: ";
         print1DVector(patient.getAction());
-        cout<<"\tValue of X: ";
+        cout<<"\tX: ";
         print1DVector(patient.getX());
         cout<<endl;
     }
