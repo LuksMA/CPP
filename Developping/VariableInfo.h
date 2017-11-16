@@ -17,7 +17,7 @@ class VariableInfo
         vector<int> getComb(vector<int> vectIn);
         void getCombPrint(vector<int> vectIn);
         void printVarInfo();
-    private:
+
 
 };
 

@@ -40,7 +40,7 @@ void printNominalMap(map<vector<int>,vector<T>> &mapIn){
         vector<int> First = x.first;
         cout<<'<'<<First[0]<<' '<<First[1]<<"> :: ";
         vector<int> Second = x.second;
-        print1DVector(Second);
+        print1DVector(Second);cout<<'\n';
     }
 }
 
@@ -51,6 +51,6 @@ void printOrdinalMap(map<vector<int>,vector<T>> &mapIn){
 //        cout<<"Ordinal variable "<<First[0]<<", with cut "<<First[1]<<",  (1 for >=, -1 for <) "<<First[2]<<": ";
         cout<<'<'<<First[0]<<' '<<First[1]<<' '<<First[2]<<"> :: ";
         vector<int> Second = x.second;
-        print1DVector(Second);
+        print1DVector(Second);cout<<'\n';
     }
 }

@@ -1,5 +1,5 @@
 #include "VariableInfo.h"
-#include "Support.cpp"
+#include "utility.cpp"
 #include <vector>
 #include <map>
 #include <iostream>
@@ -57,5 +57,12 @@ void VariableInfo::printVarInfo(){
 }
 
 
+vector<VariableInfo> creatVariableInfo(vector<vector<int>> dataSet,vector<int> varType){
+    vector<VariableInfo> variables;
+    for(int i=0;i<varType.size();++i){
+        variables.push_back(VariableInfo(i,varType.at(i),dataSet.at(i)));
+    }
+    return variables;
+}
 
 

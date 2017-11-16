@@ -1,5 +1,4 @@
 #include <iostream>
-#include "Patient.h"
 #include "Patient.cpp"
 #include "VariableInfo.cpp"
 #include "DataGeneration.cpp"
@@ -19,12 +18,15 @@ int main(){
     DataGeneration data(varType,rangesY,rangesAction,rangesCont,rangesOrd,rangesNom);
     data.creatSamples(20);
     data.preprocessing();
-//    data.printInfo(6);
+    data.printInfo(6);
 
+    /// Create patient objects
     vector<Patient> patients = creatPatients(data.getDataSet(),data.getActions(),data.getY(),data.getVarType(),data.getID());
-//    printPatients(patients);
+    printPatients(patients);
 
-
+    /// Create variable information objects
+    vector<VariableInfo> varInfo = creatVariableInfo(data.getDataSet(),data.getVarType());
+    varInfo.at(0).printVarInfo();
 
 
     return 0;
