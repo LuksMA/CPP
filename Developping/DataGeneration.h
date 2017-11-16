@@ -7,8 +7,7 @@
 #include <math.h>
 #include <algorithm>
 #include <iostream>
-//#include "Support.cpp"
-//#include "Print.cpp"
+#include <map>
 
 using namespace std;
 
@@ -61,7 +60,6 @@ class DataGeneration
         vector<vector<int>> getVarOrd();
         vector<vector<int>> getVarNom();
         vector<vector<int>> getDataSet();
-        template<class T> void getInfo(int i);
 
         void printY();
         void printAction();
@@ -87,6 +85,9 @@ class DataGeneration
         map<double, int> percentileMap(vector<double> &vectorIn);
         double percentile(double len,double index);
         int assignPercentile(double p);
+
+        template<class T>   void print1DVector(vector<T> const &vectIn);
+        template<class T>   void print2DVector(vector<vector<T>> const &vectIn);
 };
 
 #endif // DATAGENERATION_H
