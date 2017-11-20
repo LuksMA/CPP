@@ -54,3 +54,9 @@ void printOrdinalMap(map<vector<int>,vector<T>> &mapIn){
         print1DVector(Second);cout<<'\n';
     }
 }
+
+void printPair(pair<vector<int> , vector<int>> pairIn){
+    print1DVector(pairIn.first);cout<<'\t';
+    print1DVector(pairIn.second);cout<<'\t';
+
+}
