@@ -11,6 +11,118 @@
 using namespace std;
 
 
+pair<pair<vector<int>,vector<int>>, double> OneDepthOrdinal(VariableInfo variInfo, pair<vector<Patient>,vector<Patient>> patients, int sampleSize);
+pair<pair<vector<int>,vector<int>>, double> OneDepthNominal(VariableInfo variInfo, pair<vector<Patient>,vector<Patient>> patients, int sampleSize);
+pair<pair<vector<int>,vector<int>>, double> OneDepth(vector<VariableInfo> varInfo, pair<vector<Patient>,vector<Patient>> patients, DataGeneration data);
+pair<pair<vector<vector<int>>,vector<vector<int>>>, double> TwoDepth(vector<VariableInfo> varInfo, pair<vector<Patient>,vector<Patient>> patients, DataGeneration data){
+    pair<pair<vector<vector<int>>,vector<vector<int>>>, double> pairOut;
+    vector<int> bIndexI;
+    vector<int> bIndexJ;
+    vector<int> bRangeI;
+    vector<int> bRangeJ;
+
+    double bValue = 0;
+    vector<int> varType = data.getVarType();
+    int sampleSize = data.getSampleSize();
+
+    Filter *iAction;  ActionFilter cAction({1});    iAction=&cAction;
+
+    for(int i=0; i<data.getCovariateSize(); ++i){
+        for(int j=i+1; j<data.getCovariateSize(); ++j){
+            cout<<"i:"<<i<<' '<<varType.at(i)<<' '<<"j:"<<j<<' '<<varType.at(j)<<endl;
+            VariableInfo  infoI = varInfo.at(i);
+            VariableInfo  infoJ = varInfo.at(j);
+
+            for(auto xi : infoI.getCombs()){
+                vector<int> firstI = xi.first;
+                Filter *iAllFilter;  AllFilter cAllFilter;  iAllFilter = &cAllFilter;
+                if(varType.at(i)==2){
+                    Filter *iNominal1;   NominalFilter  cNominal1(varInfo.at(i).getComb(firstI)); iNominal1 = &cNominal1;
+                    cAllFilter.addFilter(cNominal1);
+                }else{
+                    Filter *iOrdinal1;   OrdinalFilter cOrdinal1(firstI); iOrdinal1 = &cOrdinal1;
+                    cAllFilter.addFilter(cOrdinal1);
+                    cAllFilter.addFilter(cAction);
+                    double temp = expect(cAllFilter.meetCriteria(patients).first,sampleSize)+expect(cAllFilter.meetCriteria(patients).second,sampleSize);
+                    if(temp > bValue){
+                        bValue = temp;
+                        bIndexI = firstI;
+                        bRangeI = xi.second;
+                    }
+                }
+//                for(auto xj :infoJ.getCombs()){
+//                    vector<int> firstJ = xj.first;
+//                    if(varType.at(j)==2){
+//                        Filter *iNominal2;   NominalFilter  cNominal2(varInfo.at(j).getComb(firstJ)); iNominal2 = &cNominal2;
+//                        cAllFilter.addFilter(cNominal2);
+//                    }else{
+//                        Filter *iOrdinal2;   OrdinalFilter cOrdinal2(firstJ); iOrdinal2 = &cOrdinal2;
+//                        cAllFilter.addFilter(cOrdinal2);
+//                    }
+//                    cAllFilter.addFilter(cAction);
+//                    double temp = expect(cAllFilter.meetCriteria(patients).first,sampleSize)+expect(cAllFilter.meetCriteria(patients).second,sampleSize);
+//                    if(temp > bValue){
+//                        bValue = temp;
+//                        bRange.empty();bRange.push_back(firstI);
+////                        bRange.push_back(firstJ);
+//                        bIndex.empty();bIndex.push_back(xi.second);
+////                        bIndex.push_back(xj.second);
+//                    }
+//                }
+            }
+        }
+    }
+    vector<vector<int>> indices; indices.push_back(bIndexI);
+    vector<vector<int>> ranges; ranges.push_back(bRangeI);
+
+    pairOut = make_pair(make_pair(indices, ranges),bValue);
+    return pairOut;
+
+}
+
+
+int main(){
+    /// Test data generation class
+    vector<int> varType= {0,0,0,1,1,1,2,2,2}; /// 0 for cont, 1 for ordinal, 2 for nominal
+    vector<double> rangesCont = {0.0,100.0,10.0,200.0,50.0,300.0};
+    vector<int> rangesOrd = {0,4,0,4,0,4};
+    vector<int> rangesNom = {0,4,0,4,0,4};
+    vector<double> rangesY = {0.0,100.0};
+    vector<int> rangesAction = {0,1};
+
+    DataGeneration data(varType,rangesY,rangesAction,rangesCont,rangesOrd,rangesNom);
+    data.creatSamples(20);
+    data.preprocessing();
+//    data.printInfo(6);
+
+    /// Create patient objects
+    vector<Patient> patientsAll = creatPatients(data.getDataSet(),data.getActions(),data.getY(),data.getVarType(),data.getID());
+    vector<Patient> patientsEmpty;
+    patientsEmpty.empty();
+    pair<vector<Patient> , vector<Patient>> patients = make_pair(patientsAll,patientsEmpty);
+//    printPatients(patients.first);
+
+    /// Create variable information objects
+    vector<VariableInfo> varInfo = creatVariableInfo(data.getDataSet(),data.getVarType());
+//    varInfo.at(0).printVarInfo();
+
+
+    /// Filtering 2 Depth
+    /// Filter Result print
+    pair<pair<vector<vector<int>>,vector<vector<int>>>, double> ResultAll2 = TwoDepth(varInfo, patients, data);
+    cout<<ResultAll2.second<<'\t';
+    cout<<"Index: ";print1DVector(ResultAll2.first.first.at(0));
+    cout<<"\tRange: ";print1DVector(ResultAll2.first.second.at(0));
+    printPair2(ResultAll2.first);
+
+
+
+
+return 0;
+}
+
+
+/*****************************************************************************************************************************************************/
 pair<pair<vector<int>,vector<int>>, double> OneDepthOrdinal(VariableInfo variInfo, pair<vector<Patient>,vector<Patient>> patients, int sampleSize){
     pair<pair<vector<int> , vector<int>>, double> pairOut;
     vector<int> bIndex;
@@ -94,68 +206,3 @@ pair<pair<vector<int>,vector<int>>, double> OneDepth(vector<VariableInfo> varInf
     }
     return pairOut;
 }
-
-
-
-
-int main(){
-    /// Test data generation class
-    vector<int> varType= {0,0,0,1,1,1,2,2,2}; /// 0 for cont, 1 for ordinal, 2 for nominal
-    vector<double> rangesCont = {0.0,100.0,10.0,200.0,50.0,300.0};
-    vector<int> rangesOrd = {0,3,0,5,0,10};
-    vector<int> rangesNom = {0,3,0,5,0,10};
-    vector<double> rangesY = {0.0,100.0};
-    vector<int> rangesAction = {0,1};
-
-    DataGeneration data(varType,rangesY,rangesAction,rangesCont,rangesOrd,rangesNom);
-    data.creatSamples(20);
-    data.preprocessing();
-//    data.printInfo(6);
-
-    /// Create patient objects
-    vector<Patient> patientsAll = creatPatients(data.getDataSet(),data.getActions(),data.getY(),data.getVarType(),data.getID());
-    vector<Patient> patientsEmpty;
-    patientsEmpty.empty();
-    pair<vector<Patient> , vector<Patient>> patients = make_pair(patientsAll,patientsEmpty);
-//    printPatients(patients.first);
-
-    /// Create variable information objects
-    vector<VariableInfo> varInfo = creatVariableInfo(data.getDataSet(),data.getVarType());
-//    varInfo.at(0).printVarInfo();
-
-
-    /// Filtering 1 Depth
-    /// Filter Result print
-    pair<pair<vector<int>,vector<int>>, double> Result0 = OneDepthOrdinal(varInfo.at(0), patients, data.getSampleSize());
-    cout<<Result0.second<<'\t';printPair(Result0.first);cout<<'\n';
-    pair<pair<vector<int>,vector<int>>, double> Result1 = OneDepthOrdinal(varInfo.at(1), patients, data.getSampleSize());
-    cout<<Result1.second<<'\t';printPair(Result1.first);cout<<'\n';
-    pair<pair<vector<int>,vector<int>>, double> Result2 = OneDepthOrdinal(varInfo.at(2), patients, data.getSampleSize());
-    cout<<Result2.second<<'\t';printPair(Result2.first);cout<<'\n';
-    pair<pair<vector<int>,vector<int>>, double> Result3 = OneDepthOrdinal(varInfo.at(3), patients, data.getSampleSize());
-    cout<<Result3.second<<'\t';printPair(Result3.first);cout<<'\n';
-    pair<pair<vector<int>,vector<int>>, double> Result4 = OneDepthOrdinal(varInfo.at(4), patients, data.getSampleSize());
-    cout<<Result4.second<<'\t';printPair(Result4.first);cout<<'\n';
-    pair<pair<vector<int>,vector<int>>, double> Result5 = OneDepthOrdinal(varInfo.at(5), patients, data.getSampleSize());
-    cout<<Result5.second<<'\t';printPair(Result5.first);cout<<'\n';
-
-    pair<pair<vector<int>,vector<int>>, double> Result6 = OneDepthNominal(varInfo.at(6), patients, data.getSampleSize());
-    cout<<Result6.second<<'\t';printPair(Result6.first);cout<<'\n';
-    pair<pair<vector<int>,vector<int>>, double> Result7 = OneDepthNominal(varInfo.at(7), patients, data.getSampleSize());
-    cout<<Result7.second<<'\t';printPair(Result7.first);cout<<'\n';
-    pair<pair<vector<int>,vector<int>>, double> Result8 = OneDepthNominal(varInfo.at(8), patients, data.getSampleSize());
-    cout<<Result8.second<<'\t';printPair(Result8.first);cout<<'\n';
-
-    cout<<"All:"<<endl;
-    pair<pair<vector<int>,vector<int>>, double> ResultAll = OneDepth(varInfo, patients, data);
-    cout<<ResultAll.second<<'\t';printPair(ResultAll.first);cout<<'\n';
-
-
-
-
-return 0;
-}
-
-
-
-
