@@ -14,72 +14,7 @@ using namespace std;
 pair<pair<vector<int>,vector<int>>, double> OneDepthOrdinal(VariableInfo variInfo, pair<vector<Patient>,vector<Patient>> patients, int sampleSize);
 pair<pair<vector<int>,vector<int>>, double> OneDepthNominal(VariableInfo variInfo, pair<vector<Patient>,vector<Patient>> patients, int sampleSize);
 pair<pair<vector<int>,vector<int>>, double> OneDepth(vector<VariableInfo> varInfo, pair<vector<Patient>,vector<Patient>> patients, DataGeneration data);
-pair<pair<vector<vector<int>>,vector<vector<int>>>, double> TwoDepth(vector<VariableInfo> varInfo, pair<vector<Patient>,vector<Patient>> patients, DataGeneration data){
-    pair<pair<vector<vector<int>>,vector<vector<int>>>, double> pairOut;
-    vector<int> bIndexI;
-    vector<int> bIndexJ;
-    vector<int> bRangeI;
-    vector<int> bRangeJ;
-
-    double bValue = 0;
-    vector<int> varType = data.getVarType();
-    int sampleSize = data.getSampleSize();
-    Filter *iAction;  ActionFilter cAction({1});    iAction = &cAction;
-
-    for(int i=0; i<2; ++i){  // loop1
-        VariableInfo  variInfoI = varInfo.at(i);
-//        infoI.printVarInfo();
-        for(int j=i+1; j<2; ++j){   // loop2
-            VariableInfo  variInfoJ = varInfo.at(j);
-//            infoJ.printVarInfo();
-            cout<<"i:"<<i<<' '<<varType.at(i)<<' '<<"j:"<<j<<' '<<varType.at(j)<<endl;
-            for(auto xi : variInfoI.getCombs()){   // loop3
-                vector<int> FirstI = xi.first;
-                vector<int> SecondI = xi.second;
-
-                for(auto xj :variInfoJ.getCombs()){   // loop4
-                    vector<int> FirstJ = xj.first;
-                    vector<int> SecondJ = xj.second;
-
-                    Filter *iAllFilter;  AllFilter cAllFilter;  iAllFilter = &cAllFilter;
-                    Filter *iNominal1;   NominalFilter  cNominal1(variInfoI.getComb(FirstI)); iNominal1 = &cNominal1;
-                    Filter *iOrdinal1;   OrdinalFilter cOrdinal1(FirstI); iOrdinal1 = &cOrdinal1;
-                    Filter *iNominal2;   NominalFilter  cNominal2(variInfoI.getComb(FirstJ)); iNominal2 = &cNominal2;
-                    Filter *iOrdinal2;   OrdinalFilter cOrdinal2(FirstJ); iOrdinal2 = &cOrdinal2;
-
-                    if(FirstI.size()==2){
-                        cAllFilter.addFilter(cNominal1);
-                    }else{
-                        cAllFilter.addFilter(cOrdinal1);
-                    }
-                    if(FirstJ.size()==2){
-                        cAllFilter.addFilter(cNominal2);
-                    }else{
-                        cAllFilter.addFilter(cOrdinal2);
-                    }
-                    cAllFilter.addFilter(cAction);
-
-                    double temp = expect(cAllFilter.meetCriteria(patients).first,sampleSize)+expect(cAllFilter.meetCriteria(patients).second,sampleSize);
-                    if(temp > bValue){
-                        bValue = temp;
-                        bRangeI = SecondI;
-                        bIndexI = FirstI;
-                        bRangeJ = SecondJ;
-                        bIndexJ = FirstJ;
-                    }
-                }
-            }
-        }
-    }
-    vector<vector<int>> indices; indices.push_back(bIndexI);indices.push_back(bIndexJ);
-//    indices.push_back(bIndexJ);
-    vector<vector<int>> ranges; ranges.push_back(bRangeI);ranges.push_back(bRangeJ);
-//    ranges.push_back(bRangeJ);
-
-    pairOut = make_pair(make_pair(indices, ranges),bValue);
-    return pairOut;
-}
-
+pair<pair<vector<vector<int>>,vector<vector<int>>>, double> TwoDepth(vector<VariableInfo> varInfo, pair<vector<Patient>,vector<Patient>> patients, DataGeneration data);
 
 
 
@@ -217,3 +152,70 @@ pair<pair<vector<int>,vector<int>>, double> OneDepth(vector<VariableInfo> varInf
     }
     return pairOut;
 }
+
+
+pair<pair<vector<vector<int>>,vector<vector<int>>>, double> TwoDepth(vector<VariableInfo> varInfo, pair<vector<Patient>,vector<Patient>> patients, DataGeneration data){
+    pair<pair<vector<vector<int>>,vector<vector<int>>>, double> pairOut;
+    vector<int> bIndexI;
+    vector<int> bIndexJ;
+    vector<int> bRangeI;
+    vector<int> bRangeJ;
+
+    double bValue = 0;
+    vector<int> varType = data.getVarType();
+    int sampleSize = data.getSampleSize();
+    Filter *iAction;  ActionFilter cAction({1});    iAction = &cAction;
+
+    for(int i=0; i<2; ++i){  // loop1
+        VariableInfo  variInfoI = varInfo.at(i);
+
+        for(int j=i+1; j<2; ++j){   // loop2
+            VariableInfo  variInfoJ = varInfo.at(j);
+
+            for(auto xi : variInfoI.getCombs()){   // loop3
+                vector<int> FirstI = xi.first;
+                vector<int> SecondI = xi.second;
+
+                for(auto xj :variInfoJ.getCombs()){   // loop4
+                    vector<int> FirstJ = xj.first;
+                    vector<int> SecondJ = xj.second;
+
+                    Filter *iAllFilter;  AllFilter cAllFilter;  iAllFilter = &cAllFilter;
+                    Filter *iNominal1;   NominalFilter  cNominal1(variInfoI.getComb(FirstI)); iNominal1 = &cNominal1;
+                    Filter *iOrdinal1;   OrdinalFilter cOrdinal1(FirstI); iOrdinal1 = &cOrdinal1;
+                    Filter *iNominal2;   NominalFilter  cNominal2(variInfoI.getComb(FirstJ)); iNominal2 = &cNominal2;
+                    Filter *iOrdinal2;   OrdinalFilter cOrdinal2(FirstJ); iOrdinal2 = &cOrdinal2;
+
+                    if(FirstI.size()==2){
+                        cAllFilter.addFilter(cNominal1);
+                    }else{
+                        cAllFilter.addFilter(cOrdinal1);
+                    }
+                    if(FirstJ.size()==2){
+                        cAllFilter.addFilter(cNominal2);
+                    }else{
+                        cAllFilter.addFilter(cOrdinal2);
+                    }
+                    cAllFilter.addFilter(cAction);
+
+                    double temp = expect(cAllFilter.meetCriteria(patients).first,sampleSize)+expect(cAllFilter.meetCriteria(patients).second,sampleSize);
+                    if(temp > bValue){
+                        bValue = temp;
+                        bRangeI = SecondI;
+                        bIndexI = FirstI;
+                        bRangeJ = SecondJ;
+                        bIndexJ = FirstJ;
+                    }
+                }
+            }
+        }
+    }
+    vector<vector<int>> indices; indices.push_back(bIndexI);indices.push_back(bIndexJ);
+//    indices.push_back(bIndexJ);
+    vector<vector<int>> ranges; ranges.push_back(bRangeI);ranges.push_back(bRangeJ);
+//    ranges.push_back(bRangeJ);
+
+    pairOut = make_pair(make_pair(indices, ranges),bValue);
+    return pairOut;
+}
+
