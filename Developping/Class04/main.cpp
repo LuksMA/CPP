@@ -24,42 +24,56 @@ pair<pair<vector<vector<int>>,vector<vector<int>>>, double> TwoDepth(vector<Vari
     double bValue = 0;
     vector<int> varType = data.getVarType();
     int sampleSize = data.getSampleSize();
-
-
+    Filter *iAction;  ActionFilter cAction({1});    iAction = &cAction;
 
     for(int i=0; i<2; ++i){  // loop1
-        VariableInfo  infoI = varInfo.at(i);
+        VariableInfo  variInfoI = varInfo.at(i);
+//        infoI.printVarInfo();
         for(int j=i+1; j<2; ++j){   // loop2
-            VariableInfo  infoJ = varInfo.at(j);
+            VariableInfo  variInfoJ = varInfo.at(j);
+//            infoJ.printVarInfo();
             cout<<"i:"<<i<<' '<<varType.at(i)<<' '<<"j:"<<j<<' '<<varType.at(j)<<endl;
-            for(auto xi : infoI.getCombs()){   // loop3
-                vector<int> firstI = xi.first;
-//                print1DVector(firstI);cout<<endl;
+            for(auto xi : variInfoI.getCombs()){   // loop3
+                vector<int> FirstI = xi.first;
+                vector<int> SecondI = xi.second;
 
-                for(auto xj :infoJ.getCombs()){   // loop4
+                for(auto xj :variInfoJ.getCombs()){   // loop4
+                    vector<int> FirstJ = xj.first;
+                    vector<int> SecondJ = xj.second;
+
                     Filter *iAllFilter;  AllFilter cAllFilter;  iAllFilter = &cAllFilter;
-                    cAllFilter.clearAllFilter();
-                    if(firstI.size()==2){
-                        Filter *iNominal1;   NominalFilter  cNominal1(infoI.getComb(firstI)); iNominal1 = &cNominal1;
+                    Filter *iNominal1;   NominalFilter  cNominal1(variInfoI.getComb(FirstI)); iNominal1 = &cNominal1;
+                    Filter *iOrdinal1;   OrdinalFilter cOrdinal1(FirstI); iOrdinal1 = &cOrdinal1;
+                    Filter *iNominal2;   NominalFilter  cNominal2(variInfoI.getComb(FirstJ)); iNominal2 = &cNominal2;
+                    Filter *iOrdinal2;   OrdinalFilter cOrdinal2(FirstJ); iOrdinal2 = &cOrdinal2;
+
+                    if(FirstI.size()==2){
                         cAllFilter.addFilter(cNominal1);
-                        cout<<"Y"<<endl;
                     }else{
-                        Filter *iOrdinal1;   OrdinalFilter cOrdinal1(firstI); iOrdinal1 = &cOrdinal1;
                         cAllFilter.addFilter(cOrdinal1);
-                        print1DVector(firstI);
-                        cout<<"\tN"<<endl;
                     }
-                    Filter *iAction;  ActionFilter cAction({1});    iAction=&cAction;
+                    if(FirstJ.size()==2){
+                        cAllFilter.addFilter(cNominal2);
+                    }else{
+                        cAllFilter.addFilter(cOrdinal2);
+                    }
                     cAllFilter.addFilter(cAction);
-                    cout<<"Reach here"<<endl;
+
                     double temp = expect(cAllFilter.meetCriteria(patients).first,sampleSize)+expect(cAllFilter.meetCriteria(patients).second,sampleSize);
+                    if(temp > bValue){
+                        bValue = temp;
+                        bRangeI = SecondI;
+                        bIndexI = FirstI;
+                        bRangeJ = SecondJ;
+                        bIndexJ = FirstJ;
+                    }
                 }
             }
         }
     }
-    vector<vector<int>> indices; indices.push_back(bIndexI);
+    vector<vector<int>> indices; indices.push_back(bIndexI);indices.push_back(bIndexJ);
 //    indices.push_back(bIndexJ);
-    vector<vector<int>> ranges; ranges.push_back(bRangeI);
+    vector<vector<int>> ranges; ranges.push_back(bRangeI);ranges.push_back(bRangeJ);
 //    ranges.push_back(bRangeJ);
 
     pairOut = make_pair(make_pair(indices, ranges),bValue);
@@ -100,6 +114,13 @@ int main(){
     /// Filter Result print
     pair<pair<vector<vector<int>>,vector<vector<int>>>, double> ResultAll2 = TwoDepth(varInfo, patients, data);
 
+    cout<<ResultAll2.second<<'\n';
+    cout<<"Index 1: ";print1DVector(ResultAll2.first.first.at(0));
+    cout<<"\tRange 1: ";print1DVector(ResultAll2.first.second.at(0));
+    cout<<"\nIndex 2: ";print1DVector(ResultAll2.first.first.at(1));
+    cout<<"\tRange 2: ";print1DVector(ResultAll2.first.second.at(1));
+
+
 //    Filter *iAllFilter;  AllFilter cAllFilter;  iAllFilter = &cAllFilter;
 //    Filter *iAction;  ActionFilter cAction({1});    iAction=&cAction;
 //    Filter *iOrdinal1;   OrdinalFilter cOrdinal1({0,1,-1}); iOrdinal1 = &cOrdinal1;
@@ -108,7 +129,7 @@ int main(){
 //    double temp = expect(cAllFilter.meetCriteria(patients).first,20)+expect(cAllFilter.meetCriteria(patients).second,20);
 //    cout<<temp;
 
-return 0;
+    return 0;
 }
 
 
