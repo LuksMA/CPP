@@ -15,7 +15,22 @@ pair<pair<vector<int>,vector<int>>, double> OneDepthOrdinal(VariableInfo variInf
 pair<pair<vector<int>,vector<int>>, double> OneDepthNominal(VariableInfo variInfo, pair<vector<Patient>,vector<Patient>> patients, int sampleSize);
 pair<pair<vector<int>,vector<int>>, double> OneDepth(vector<VariableInfo> varInfo, pair<vector<Patient>,vector<Patient>> patients, DataGeneration data);
 pair<pair<vector<vector<int>>,vector<vector<int>>>, double> TwoDepth(vector<VariableInfo> varInfo, pair<vector<Patient>,vector<Patient>> patients, DataGeneration data);
+pair<pair<vector<vector<int>>,vector<vector<int>>>, double> ThreeDepth(vector<VariableInfo> varInfo, pair<vector<Patient>,vector<Patient>> patients, DataGeneration data){
+    pair<pair<vector<vector<int>>,vector<vector<int>>>, double> pairOut;
+    vector<int> bIndexI, bIndexJ, bIndexK;
+    vector<int> bRangeI, bRangeJ, bRangeK;
 
+    double bValue = 0;
+    vector<int> varType = data.getVarType();
+    int sampleSize = data.getSampleSize();
+    Filter *iAction;  ActionFilter cAction({1});    iAction = &cAction;
+
+
+
+
+    return pairOut;
+
+}
 
 
 
@@ -55,17 +70,13 @@ int main(){
     cout<<"\nIndex 2: ";print1DVector(ResultAll2.first.first.at(1));
     cout<<"\tRange 2: ";print1DVector(ResultAll2.first.second.at(1));
 
+//    pair<pair<vector<vector<int>>,vector<vector<int>>>, double> ResultAll3 = ThreeDepth(varInfo, patients, data);
 
-//    Filter *iAllFilter;  AllFilter cAllFilter;  iAllFilter = &cAllFilter;
-//    Filter *iAction;  ActionFilter cAction({1});    iAction=&cAction;
-//    Filter *iOrdinal1;   OrdinalFilter cOrdinal1({0,1,-1}); iOrdinal1 = &cOrdinal1;
-//    cAllFilter.addFilter(cOrdinal1);
-//    cAllFilter.addFilter(cAction);
-//    double temp = expect(cAllFilter.meetCriteria(patients).first,20)+expect(cAllFilter.meetCriteria(patients).second,20);
-//    cout<<temp;
 
     return 0;
 }
+
+
 
 
 /*****************************************************************************************************************************************************/
@@ -166,10 +177,10 @@ pair<pair<vector<vector<int>>,vector<vector<int>>>, double> TwoDepth(vector<Vari
     int sampleSize = data.getSampleSize();
     Filter *iAction;  ActionFilter cAction({1});    iAction = &cAction;
 
-    for(int i=0; i<2; ++i){  // loop1
+    for(int i=0; i<data.getCovariateSize(); ++i){  // loop1
         VariableInfo  variInfoI = varInfo.at(i);
 
-        for(int j=i+1; j<2; ++j){   // loop2
+        for(int j=i+1; j<data.getCovariateSize(); ++j){   // loop2
             VariableInfo  variInfoJ = varInfo.at(j);
 
             for(auto xi : variInfoI.getCombs()){   // loop3
@@ -183,7 +194,7 @@ pair<pair<vector<vector<int>>,vector<vector<int>>>, double> TwoDepth(vector<Vari
                     Filter *iAllFilter;  AllFilter cAllFilter;  iAllFilter = &cAllFilter;
                     Filter *iNominal1;   NominalFilter  cNominal1(variInfoI.getComb(FirstI)); iNominal1 = &cNominal1;
                     Filter *iOrdinal1;   OrdinalFilter cOrdinal1(FirstI); iOrdinal1 = &cOrdinal1;
-                    Filter *iNominal2;   NominalFilter  cNominal2(variInfoI.getComb(FirstJ)); iNominal2 = &cNominal2;
+                    Filter *iNominal2;   NominalFilter  cNominal2(variInfoJ.getComb(FirstJ)); iNominal2 = &cNominal2;
                     Filter *iOrdinal2;   OrdinalFilter cOrdinal2(FirstJ); iOrdinal2 = &cOrdinal2;
 
                     if(FirstI.size()==2){
