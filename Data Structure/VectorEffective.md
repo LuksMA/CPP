@@ -1,4 +1,4 @@
-1. Avoid unnecessary reallocate and copy cycles by reserving the size of vector ahead of time.
+1. Avoid unnecessary reallocate and copy cycles by reserving the size of vector ahead of time.    
 sw.Restart();    
 testVector2.reserve(10000);    
 FillVector(testVector2);     
