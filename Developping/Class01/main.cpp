@@ -6,7 +6,6 @@
 #include "OrdinalFilter.cpp"
 #include "NominalFilter.cpp"
 #include "ActionFilter.cpp"
-#include "ComplementFilter.cpp"
 #include "AllFilter.cpp"
 
 using namespace std;
@@ -15,53 +14,88 @@ int main(){
     /// Test data generation class
     vector<int> varType= {0,0,0,1,1,1,2,2,2}; /// 0 for cont, 1 for ordinal, 2 for nominal
     vector<double> rangesCont = {0.0,100.0,10.0,200.0,50.0,300.0};
-    vector<int> rangesOrd = {0,3,0,5,0,10};
-    vector<int> rangesNom = {0,3,0,5,0,10};
+    vector<int> rangesOrd = {0,4,0,4,0,4};
+    vector<int> rangesNom = {0,4,0,4,0,4};
     vector<double> rangesY = {0.0,100.0};
     vector<int> rangesAction = {0,1};
 
     DataGeneration data(varType,rangesY,rangesAction,rangesCont,rangesOrd,rangesNom);
-    data.creatSamples(20);
+    data.creatSamples(3000);
     data.preprocessing();
-    data.printInfo(6);
+//    data.printInfo(6);
 
     /// Create patient objects
-    vector<Patient> patients = creatPatients(data.getDataSet(),data.getActions(),data.getY(),data.getVarType(),data.getID());
-    printPatients(patients);
+    vector<int> id = data.getID();
+    vector<Patient> patients = creatPatients(data.getDataSet(),data.getActions(),data.getY(),data.getVarType(),id);
+//    printPatients(patients);
 
     /// Create variable information objects
     vector<VariableInfo> varInfo = creatVariableInfo(data.getDataSet(),data.getVarType());
-    varInfo.at(6).printVarInfo();
-//    print1DVector(varInfo.at(6).getComb({6,1}));
+//    varInfo.at(1).printVarInfo();
 
-    /// Filtering
-    Filter *iOrdinal0;   OrdinalFilter cOrdinal0({0,5,-1}); iOrdinal0 = &cOrdinal0; /// var0, <5
-    Filter *iOrdinal1;   OrdinalFilter cOrdinal1({3,2,1}); iOrdinal1 = &cOrdinal1;  /// var3, >=2
-    Filter *iNominal0;   NominalFilter cNominal0(varInfo.at(6).getComb({6,1})); iNominal0 = &cNominal0;    /// var 6, combination 1, {0}
-
-    Filter *iAllFilter0;  AllFilter cAllFilter0;  iAllFilter0 = &cAllFilter0;
-    cAllFilter0.addFilter(cOrdinal0);    cAllFilter0.addFilter(cOrdinal1);
-    Filter *iAllFilter1;  AllFilter cAllFilter1;  iAllFilter1 = &cAllFilter1;
-    cAllFilter1.addFilter(cOrdinal0);    cAllFilter1.addFilter(cOrdinal1);  cAllFilter1.addFilter(cNominal0);
-
-    /// Filter Result print
-    cout<<"\nTest 1:"<<endl;
-    cout<<"Variable(Cont) 0, cut by 5, result for < 5:"<<endl;
-    printPatientsX(cOrdinal0.meetCriteria(patients));
-
-    cout<<"Test 2:"<<endl;
-    cout<<"Variable(Cont) 0, cut by 5, result for < 5:"<<endl;
-    cout<<"Variable(Ordinal) 3, cut by 2, result for >= 3:"<<endl;
-    printPatientsX(cAllFilter1. meetCriteria(patients));
-
-    cout<<"Test 3:"<<endl;
-    cout<<"Variable(Cont) 0, cut by 5, result for < 5:"<<endl;
-    cout<<"Variable(Ordinal) 3, cut by 2, result for >= 3:"<<endl;
-    cout<<"Variable(Nominal) 6, check by combination no 1, {0}:"<<endl;
-    printPatientsX(cAllFilter1.meetCriteria(patients));
+    /// One Depth
 
 
+    vector<int> variType = data.getVarType();
+    int sampleSize = data.getSampleSize();
 
-    return 0;
+    Filter *iActionT1;  ActionFilter cActionT1({1});    iActionT1 = &cActionT1;
+    Filter *iActionT0;  ActionFilter cActionT0({0});    iActionT0 = &cActionT0;
+
+    for(int i=0; i<6; ++i){
+        VariableInfo  variInfo = varInfo.at(i);
+        pair<pair<vector<int>,vector<int>>, double> pairOut;
+        vector<int> bIndex;
+        vector<int> bRange;
+        double bValue = 0.0;
+
+        for(auto xi : variInfo.getCombs()){
+            vector<int> iIndex = xi.first;
+            vector<Patient> copyPatients(patients);
+
+            Filter *iAllFilter;  AllFilter cAllFilter;  iAllFilter = &cAllFilter; cAllFilter.clearAllFilter();
+            Filter *iNominal1;   NominalFilter  cNominal1(variInfo.getComb(iIndex)); iNominal1 = &cNominal1;
+            Filter *iOrdinal1;   OrdinalFilter cOrdinal1(iIndex); iOrdinal1 = &cOrdinal1;
+            if(iIndex.size()==2){
+                cAllFilter.addFilter(cNominal1);
+            }else{
+                cAllFilter.addFilter(cOrdinal1);
+            }
+
+            vector<Patient> f1 = cAllFilter.meetCriteria(copyPatients);
+
+
+            vector<int> f1Index;
+            for(auto p: f1){
+                f1Index.push_back(p.getID());
+            }
+
+            reverse(f1Index.begin(),f1Index.end());
+            for(auto x:f1Index){
+                copyPatients[x] = copyPatients.back();
+                copyPatients.pop_back();
+            }
+            cActionT1.meetCriteria(f1);
+            cActionT0.meetCriteria(copyPatients);
+
+            double currentExp = (cActionT1.getSum()+cActionT0.getSum())*2/sampleSize;
+            if(currentExp > bValue){
+                bValue = currentExp;
+                bIndex = iIndex;
+                bRange = xi.second;
+            }
+
+            cActionT1.resetSum();
+            cActionT0.resetSum();
+        }
+        cout<<bValue<<'\t';print1DVector(bIndex);cout<<" \t";print1DVector(bRange);cout<<"\n";
+
+        pairOut = make_pair(make_pair(bIndex, bRange),bValue);
+    }
+
 }
 
+
+
+
+/*****************************************************************************************************************************************************/

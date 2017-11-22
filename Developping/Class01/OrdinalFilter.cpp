@@ -15,16 +15,16 @@ vector<Patient> OrdinalFilter :: meetCriteria(vector<Patient> patients){
     switch(dir){
         case 1:
             for(auto patient : patients){
-                if(patient.getX(varNo).at(0) >= cut)
+                if(patient.getX(varNo) >= cut)
                     vectOut.push_back(patient);
                 };break;
         case -1:
             for(auto patient : patients){
-                if(patient.getX(varNo).at(0) < cut)
+                if(patient.getX(varNo) < cut)
                     vectOut.push_back(patient);
                 };break;
         default:
-            cout<<"Wrong direction input.";
+            cout<<"Wrong direction input for ordinal filter.";
         }
     return vectOut;
 }

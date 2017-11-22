@@ -19,7 +19,7 @@ VariableInfo::VariableInfo(int no, int type, vector<int> dataSetColumn){
             vector<int> uni = uniqueValues(dataSetColumn);
             mapDict = mapSequence(uni,no);
         }else if(type==0){
-            vector<int> uni = uniqueValues(dataSetColumn);
+            vector<int> uni = {0,1,2,3,4,5,6,7,8,9};
             mapDict = mapSequence(uni,no);
         }else{
             cout<<"\nIn correct input for data type.\n";

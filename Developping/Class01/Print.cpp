@@ -1,15 +1,24 @@
 #include <vector>
 #include <map>
+#include <iostream>
 
 using namespace std;
 
 /********************************************************************************************************/
+template<class T>   void printNum(T x);
 template<class T>   void print1DVector(vector<T> const &vectIn);
 template<class T>   void print2DVector(vector<vector<T>> const &vectIn);
 template<class T>   void printNominalMap(map<vector<int>,vector<T>> &mapIn);
 template<class T>   void printOrdinalMap(map<vector<int>,vector<T>> &mapIn);
-
+void printPair(pair<vector<int> , vector<int>> pairIn);
+void printPair2(pair<vector<vector<int>>,vector<vector<int>>> pairIn);
 /********************************************************************************************************/
+
+
+template<class T>
+void printNum(T x){
+    cout<<x<<endl;
+}
 
 template<class T>
 void print1DVector(vector<T> const &vectIn){
@@ -53,4 +62,14 @@ void printOrdinalMap(map<vector<int>,vector<T>> &mapIn){
         vector<int> Second = x.second;
         print1DVector(Second);cout<<'\n';
     }
+}
+
+void printPair(pair<vector<int> , vector<int>> pairIn){
+    print1DVector(pairIn.first);cout<<'\t';
+    print1DVector(pairIn.second);cout<<'\t';
+}
+
+void printPair2(pair<vector<vector<int>>,vector<vector<int>>> pairIn){
+    print2DVector(pairIn.first);cout<<'\t';
+    print2DVector(pairIn.second);cout<<'\t';
 }

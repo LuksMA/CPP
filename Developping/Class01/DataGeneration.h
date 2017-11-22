@@ -1,14 +1,6 @@
 #ifndef DATAGENERATION_H
 #define DATAGENERATION_H
 
-//#include <vector>
-//#include <string>
-//#include <random>
-//#include <math.h>
-//#include <algorithm>
-//#include <iostream>
-//#include <map>
-
 using namespace std;
 
 class DataGeneration
@@ -26,7 +18,7 @@ class DataGeneration
         vector<int> rangesNom;
 
         /// Generated raw data
-        vector <string> id;
+        vector<int> id;
         vector<vector<double>> varY;
         vector<vector<int>> actions;
         vector<vector<double>> varCont;
@@ -60,7 +52,7 @@ class DataGeneration
         vector<vector<int>> getVarOrd();
         vector<vector<int>> getVarNom();
         vector<vector<int>> getDataSet();
-        vector<string> getID();
+        vector<int> getID();
 
         void printY();
         void printAction();
@@ -73,14 +65,16 @@ class DataGeneration
         void genReport();
 
     private:
-        vector<string> patientID(int noSample);
+        vector<int> patientID(int noSample);
         template<class T> int getRangeSize(vector<T> vectIn);
-        vector<int> creatSeed(int varsize, int start);
+        vector<int> createSeed(int varsize, int start);
+
         vector<vector<int>> assignSeed(vector<int> seed, vector<int> varType);
         double dataGenerator(unsigned seed, double lowerBound, double upperBound);
         int dataGenerator(unsigned seed, int nMin, int nMax);
         vector<vector<double>> sampleGenerator(vector<int> seed, vector<double> ranges);
         vector<vector<int>> sampleGenerator(vector<int> seed, vector<int> ranges);
+
         vector<int> percentileVec(vector<double> &vectIn);
         vector<vector<int>> percentileVec(vector<vector<double>> &vectIn);
         map<double, int> percentileMap(vector<double> &vectorIn);

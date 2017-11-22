@@ -6,6 +6,7 @@
 class ActionFilter : public Filter
 {
     vector<int> myAction;
+    double sum;
 
     public:
         //constructor
@@ -14,6 +15,8 @@ class ActionFilter : public Filter
         ~ActionFilter();
 
         vector<Patient> meetCriteria(vector<Patient> patients);
+        double getSum();
+        void resetSum();
 };
 
 #endif // ACTIONFILTER_H

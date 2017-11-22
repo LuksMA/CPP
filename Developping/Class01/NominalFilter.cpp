@@ -12,7 +12,7 @@ vector<Patient> NominalFilter :: meetCriteria(vector<Patient> patients){
     int combNo = myIndex.at(1);
     vector<int> subSet(myIndex.begin()+2,myIndex.end());
     for(auto patient : patients){
-        if(find(subSet.begin(), subSet.end(), patient.getX(varNo).at(0)) != subSet.end()){
+        if(find(subSet.begin(), subSet.end(), patient.getX(varNo)) != subSet.end()){
             vectOut.push_back(patient);
         }
     }

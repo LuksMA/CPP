@@ -6,7 +6,7 @@
 
 using namespace std;
 
-Patient :: Patient(string ID, vector<int> a, vector<int> X, vector<double> Y, vector<int> t)
+Patient :: Patient(int ID, vector<int> a, vector<int> X, vector<double> Y, vector<int> t)
 {
     patientID = ID;
     action = a;
@@ -15,45 +15,45 @@ Patient :: Patient(string ID, vector<int> a, vector<int> X, vector<double> Y, ve
     type = t;
 }
 
-string Patient :: getPatientID(){  return patientID;   }
+int Patient :: getID(){  return patientID;   }
 vector<int> Patient :: getAction(){  return action;  }
-vector<int> Patient :: getAction(int i)
+int Patient :: getAction(int i)
 {
-        vector<int> rt;
+        int rt;
         try{
-            rt.push_back(action.at(i));
+            rt = action.at(i);
         }catch (const std::out_of_range& oor) {
             cerr << "Out of range error. No return for getAction(). ";
         }
         return rt;
  }
 vector<int> Patient :: getX(){ return valueX;  }
-vector<int> Patient :: getX(int i)
+int Patient :: getX(int i)
 {
-        vector<int> rt;
+        int rt;
         try{
-            rt.push_back(valueX.at(i));
+            rt = valueX.at(i);
         }catch (const std::out_of_range& oor) {
             cerr << "Out of range error. No return for getX(). ";
         }
         return rt;
 }
 vector<double> Patient :: getY(){  return valueY;  }
-vector<double> Patient :: getY(int i)
+double Patient :: getY(int i)
 {
-    vector<double> rt;
+    double rt;
         try{
-            rt.push_back(valueY.at(i));
+            rt = valueY.at(i);
         }catch (const std::out_of_range& oor) {
             cerr << "Out of range error. No return for getY(). ";
         }
         return rt;
     }
 vector<int> Patient :: getDataType(){  return type;    }
-vector<int> Patient :: getDataType(int i){
-        vector<int> rt;
+int Patient :: getDataType(int i){
+        int rt;
         try{
-            rt.push_back(type.at(i));
+            rt = type.at(i);
         }catch (const std::out_of_range& oor) {
             cerr << "Out of range error. No return for getDataType(). ";
         }
@@ -75,7 +75,7 @@ void Patient :: summary(){
     }
 
 
-vector<Patient> creatPatients(vector<vector<int>> dataSet,vector<vector<int>> actions, vector<vector<double>> Y,vector<int> varType, vector<string> patientID){
+vector<Patient> creatPatients(vector<vector<int>> dataSet,vector<vector<int>> actions, vector<vector<double>> Y,vector<int> varType, vector<int> patientID){
     vector<Patient> patients;
     for(unsigned int j=0;j<dataSet.at(0).size();++j){
         vector<int> valueX;
@@ -98,7 +98,7 @@ vector<Patient> creatPatients(vector<vector<int>> dataSet,vector<vector<int>> ac
 
 void printPatientsX(vector<Patient> patients){
     for(auto& patient : patients){
-        cout<<"Patient ID: "<<patient.getPatientID()
+        cout<<"Patient ID: "<<patient.getID()
             <<" \tValue of X: ";
         print1DVector(patient.getX());
         cout<<endl;
@@ -108,7 +108,7 @@ void printPatientsX(vector<Patient> patients){
 
 void printPatientsXA(vector<Patient> patients){
     for(auto& patient : patients){
-        cout<<"Patient ID: "<<patient.getPatientID()
+        cout<<patient.getID()
             <<"\tX: ";
         print1DVector(patient.getX());
         cout<<"\tAction: ";
@@ -120,15 +120,29 @@ void printPatientsXA(vector<Patient> patients){
 
 void printPatients(vector<Patient> patients){
     for(auto& patient : patients){
-        cout<<"Patient ID: "<<patient.getPatientID()<<endl;
-        cout<<"Y: ";
-        print1DVector(patient.getY());
+        cout<<patient.getID()
+            <<"\tX: ";
+        print1DVector(patient.getX());
         cout<<"\tAction: ";
         print1DVector(patient.getAction());
-        cout<<"\tX: ";
-        print1DVector(patient.getX());
+        cout<<"\tY: ";
+        print1DVector(patient.getY());
         cout<<endl;
     }
     cout<<endl;
 }
 
+
+vector<Patient> combinePatients(vector<Patient> p1, vector<Patient> p2){
+    p1.insert( p1.end(), p2.begin(), p2.end() );
+    return p1;
+}
+
+
+double expect(vector<Patient> patients, int s){
+    double out = 0;
+    for(auto patient : patients){
+        out = out + patient.getY(0);
+    }
+    return out*2/s;
+}

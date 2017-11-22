@@ -2,36 +2,33 @@
 #define PATIENT_H
 
 #include <vector>
-#include <string>
 using namespace std;
 
 class Patient
 {
     private:
-        string patientID;
+        int patientID;
         vector<int> action;
         vector<int> valueX;
         vector<double> valueY;
         vector<int> type;
 
     public:
-        Patient(string ID, vector<int> a, vector<int> X, vector<double> Y, vector<int> t);
+        Patient(int ID, vector<int> a, vector<int> X, vector<double> Y, vector<int> t);
 
-        string getPatientID();
+        int getID();
         vector<int> getAction();
-        vector<int> getAction(int i);
+        int getAction(int i);
         vector<int> getX();
-        vector<int> getX(int i);
+        int getX(int i);
         vector<double> getY();
-        vector<double> getY(int i);
+        double getY(int i);
         vector<int> getDataType();
-        vector<int> getDataType(int i);
+        int getDataType(int i);
         int getSizeAction();
         int getSizeX();
         int getSizeY();
         void summary();
-
-
 };
 
 #endif // PATIENT_H

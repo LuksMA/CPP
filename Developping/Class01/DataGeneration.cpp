@@ -23,12 +23,12 @@ DataGeneration :: DataGeneration(vector<int> vType, vector<double> rY, vector<in
 void DataGeneration :: creatSamples(int sSize){
     sampleSize = sSize;
     id = patientID(sSize);
-    vector<vector<int>> seeds = assignSeed(creatSeed(getCovariateSize(),100), varType);
+    vector<vector<int>> seeds = assignSeed(createSeed(getCovariateSize(),100), varType);
     varCont = sampleGenerator(seeds.at(0),rangesCont);
     varOrd = sampleGenerator(seeds.at(1),rangesOrd);
     varNom = sampleGenerator(seeds.at(2),rangesNom);
-    varY = sampleGenerator(creatSeed(getYSize(),10),rangesY);
-    actions = sampleGenerator(creatSeed(getActionSize(),50),rangesActions);
+    varY = sampleGenerator(createSeed(getYSize(),10),rangesY);
+    actions = sampleGenerator(createSeed(getActionSize(),50),rangesActions);
 }
 
 
@@ -61,7 +61,7 @@ vector<vector<int>> DataGeneration :: getVarCont(int i){  return varContInt; }
 vector<vector<int>> DataGeneration :: getVarOrd(){  return varOrd;  }
 vector<vector<int>> DataGeneration :: getVarNom(){    return varNom;  }
 vector<vector<int>> DataGeneration :: getDataSet(){   return dataSet; }
-vector<string> DataGeneration :: getID(){    return id;  }
+vector<int> DataGeneration :: getID(){    return id;  }
 
 void DataGeneration :: printContVar(){
     cout<<'\n'<<getContVarSize()<<" continuous variables, "<<getSampleSize()<<" samples:"<<endl;
@@ -124,11 +124,11 @@ void DataGeneration :: genReport(){
     }
 
 
-vector<string> DataGeneration :: patientID(int noSample){
-    vector <string> vectOut;
+vector<int> DataGeneration :: patientID(int noSample){
+    vector<int> vectOut;
     if(noSample>0){
         for(int i=0;i<noSample;++i){
-            vectOut.push_back("Patient"+to_string(i));
+            vectOut.push_back(i);
         }
     }else{
         cout<<"No. of sample much be >0"<<endl;
@@ -155,7 +155,7 @@ int DataGeneration :: getRangeSize(vector<T> vectIn){
             }
         }
 
-vector<int> DataGeneration :: creatSeed(int varsize, int start){
+vector<int> DataGeneration :: createSeed(int varsize, int start){
     vector<int> seed;
     for(unsigned int i=0 ; i<varsize; ++i){
         seed.push_back(start+5*i);
