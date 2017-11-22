@@ -20,7 +20,7 @@ int main(){
     vector<int> rangesAction = {0,1};
 
     DataGeneration data(varType,rangesY,rangesAction,rangesCont,rangesOrd,rangesNom);
-    data.creatSamples(3000);
+    data.creatSamples(1000);
     data.preprocessing();
 //    data.printInfo(6);
 
@@ -34,13 +34,12 @@ int main(){
 //    varInfo.at(1).printVarInfo();
 
     /// One Depth
-
-
     vector<int> variType = data.getVarType();
     int sampleSize = data.getSampleSize();
 
     Filter *iActionT1;  ActionFilter cActionT1({1});    iActionT1 = &cActionT1;
     Filter *iActionT0;  ActionFilter cActionT0({0});    iActionT0 = &cActionT0;
+    Filter *iAllFilter;  AllFilter cAllFilter;  iAllFilter = &cAllFilter;
 
     for(int i=0; i<6; ++i){
         VariableInfo  variInfo = varInfo.at(i);
@@ -53,9 +52,10 @@ int main(){
             vector<int> iIndex = xi.first;
             vector<Patient> copyPatients(patients);
 
-            Filter *iAllFilter;  AllFilter cAllFilter;  iAllFilter = &cAllFilter; cAllFilter.clearAllFilter();
+            cAllFilter.clearAllFilter();
             Filter *iNominal1;   NominalFilter  cNominal1(variInfo.getComb(iIndex)); iNominal1 = &cNominal1;
             Filter *iOrdinal1;   OrdinalFilter cOrdinal1(iIndex); iOrdinal1 = &cOrdinal1;
+
             if(iIndex.size()==2){
                 cAllFilter.addFilter(cNominal1);
             }else{
@@ -63,8 +63,6 @@ int main(){
             }
 
             vector<Patient> f1 = cAllFilter.meetCriteria(copyPatients);
-
-
             vector<int> f1Index;
             for(auto p: f1){
                 f1Index.push_back(p.getID());
@@ -89,9 +87,9 @@ int main(){
             cActionT0.resetSum();
         }
         cout<<bValue<<'\t';print1DVector(bIndex);cout<<" \t";print1DVector(bRange);cout<<"\n";
-
         pairOut = make_pair(make_pair(bIndex, bRange),bValue);
     }
+
 
 }
 
