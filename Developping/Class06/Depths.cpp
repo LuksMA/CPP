@@ -3,7 +3,88 @@ pair<pair<vector<int>,vector<int>>, double> OneDepth(DataGeneration data, vector
 void OneDepthPrint(DataGeneration data, vector<VariableInfo> varInfo, vector<Patient *> patients);
 pair<pair<vector<vector<int>>,vector<vector<int>>>, double> TwoDepth(DataGeneration data, vector<VariableInfo> varInfo, vector<Patient *> patients);
 void TwoDepthPrint(DataGeneration data, vector<VariableInfo> varInfo, vector<Patient *> patients);
+void ThreeDepthPrint(DataGeneration data, vector<VariableInfo> varInfo, vector<Patient *> patients){
+    int num = 0;
+    pair<pair<vector<vector<int>>,vector<vector<int>>>, double> pairOut;
 
+    vector<int> bIndexI, bIndexJ, bIndexK;
+    vector<int> bRangeI, bRangeJ, bRangeK;
+    double bValue = 0;
+
+    Filter *iActionT1;  ActionFilter cActionT1({1});    iActionT1 = &cActionT1;
+    Filter *iAllFilter;  AllFilter cAllFilter;  iAllFilter = &cAllFilter;
+
+    for(int i=0; i<varInfo.size(); ++i){  // loop1
+        VariableInfo  variInfoI = varInfo.at(i);
+
+        for(int j=i+1; j<varInfo.size(); ++j){   // loop2
+            VariableInfo  variInfoJ = varInfo.at(j);
+
+            for(int k=j+1; k<varInfo.size(); ++k){   // loop3
+                VariableInfo  variInfoK = varInfo.at(k);
+
+                vector<int> bIndexIVar, bIndexJVar, bIndexKVar;
+                vector<int> bRangeIVar, bRangeJVar, bRangeKVar;
+                double bValueVar = 0;
+
+
+                for(auto xi : variInfoI.getCombs()){   // loop4
+                    vector<int> FirstI = xi.first;
+                    vector<int> SecondI = xi.second;
+
+                    for(auto xj :variInfoJ.getCombs()){   // loop5
+                        vector<int> FirstJ = xj.first;
+                        vector<int> SecondJ = xj.second;
+
+                        for(auto xk :variInfoK.getCombs()){   // loop6
+                            vector<int> FirstK = xk.first;
+                            vector<int> SecondK = xk.second;
+
+                            cAllFilter.clearAllFilter();
+
+                            if(FirstI.size()==2){
+                                cAllFilter.addFilter(*new NominalFilter(variInfoI.getComb(FirstI)));
+                            }else{
+                                cAllFilter.addFilter(*new OrdinalFilter(FirstI));
+                            }
+                            if(FirstJ.size()==2){
+                                cAllFilter.addFilter(*new NominalFilter(variInfoJ.getComb(FirstJ)));
+                            }else{
+                                cAllFilter.addFilter(*new OrdinalFilter(FirstJ));
+                            }
+                            if(FirstK.size()==2){
+                                cAllFilter.addFilter(*new NominalFilter(variInfoK.getComb(FirstK)));
+                            }else{
+                                cAllFilter.addFilter(*new OrdinalFilter(FirstK));
+                            }
+                            cActionT1.meetCriteria(cAllFilter.meetCriteria(patients));
+                            double currentExp = (cActionT1.getSumT1()+(data.getSum()-cActionT1.getSumT0()))*2/data.getSampleSize();
+                            if(currentExp > bValueVar){
+                                bValueVar = currentExp;
+                                bRangeIVar = SecondI;   bRangeJVar = SecondJ;   bRangeKVar = SecondK;
+                                bIndexIVar = FirstI;    bIndexJVar = FirstJ;    bIndexKVar = FirstK;
+                            }
+                            if(currentExp > bValue){
+                                bValue = currentExp;
+                                vector<vector<int>> indices; indices.push_back(FirstI);indices.push_back(FirstJ);indices.push_back(FirstK);
+                                vector<vector<int>> ranges; ranges.push_back(SecondI);ranges.push_back(SecondJ);ranges.push_back(SecondK);
+                                pairOut = make_pair(make_pair(indices, ranges),bValue);
+                            }
+                            cActionT1.resetSum();
+                        }  // loop6
+                    }  // loop5
+                }  // loop4
+                cout<<num++<<": "<<bValueVar<<'\t';print1DVector(bIndexIVar);print1DVector(bIndexJVar);print1DVector(bIndexKVar);
+//                cout<<" \t";print1DVector(bRangeIVar);print1DVector(bRangeJVar);
+                cout<<"\n";
+            }  // loop3
+        }  // loop2
+    }  // loop1
+    cout<<"Best:\n"<<pairOut.second;
+    cout<<"\tIndex: ";print1DVector(pairOut.first.first[0]);print1DVector(pairOut.first.first[1]);print1DVector(pairOut.first.first[2]);
+    cout<<"\nRange: ";print1DVector(pairOut.first.second[0]);print1DVector(pairOut.first.second[1]);print1DVector(pairOut.first.second[2]);
+    cout<<endl;
+}
 
 
 
