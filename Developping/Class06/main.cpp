@@ -23,7 +23,7 @@ int main(){
     vector<int> rangesAction = {0,1};
 
     DataGeneration data(varType,rangesY,rangesAction,rangesCont,rangesOrd,rangesNom);
-    data.creatSamples(3000);
+    data.creatSamples(300);
     data.preprocessing();
 //    data.printInfo(6);
 
@@ -37,8 +37,12 @@ int main(){
 //    varInfo.at(1).printVarInfo();
 
     /// One Depth
-    OneDepthPrint(data, varInfo, patients);
+//    OneDepthPrint(data, varInfo, patients);
 
+    /// Two Depth
+//    TwoDepthPrint(data, varInfo, patients);
+
+    /// Three Depth
 
 
 
