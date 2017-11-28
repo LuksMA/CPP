@@ -10,3 +10,4 @@
 11/28/2017 11:19 am 3000 sample, 3cont, 3ord, 3 nom :: 2Depth 32.329s      
 11/28/2017 12:33 pm 300 sample, 3cont, 3ord, 3 nom :: 3Depth 137.791s      
 11/28/2017 12:33 pm 30 sample, 3cont, 3ord, 3 nom :: 3Depth 30.765s  
+11/28/2017 13:47 pm 30 sample, 3cont, 3ord, 3 nom :: 3Depth 26.288s  
