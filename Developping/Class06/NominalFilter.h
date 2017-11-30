@@ -6,10 +6,11 @@
 class NominalFilter : public Filter
 {
     vector<int> myIndex;
+    int varNo;
 
     public:
         //constructor
-        NominalFilter(vector<int> index);
+        NominalFilter(vector<int> index, int varNo);
         //destructor
         ~NominalFilter();
 

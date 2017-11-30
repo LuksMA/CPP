@@ -1,19 +1,18 @@
 #include "NominalFilter.h"
+#include <unordered_set>
 
-NominalFilter::NominalFilter(vector<int> index)
+NominalFilter::NominalFilter(vector<int> index, int no)
 {
     myIndex = index;
+    varNo = no;
 }
 NominalFilter :: ~NominalFilter(){}
 
 vector<Patient *> NominalFilter :: meetCriteria(vector<Patient *> patients){
     vector<Patient *> vectOut;
     vectOut.reserve(3000);
-    int varNo = myIndex.at(0);
-    int combNo = myIndex.at(1);
-    vector<int> subSet(myIndex.begin()+2,myIndex.end());
     for(auto p : patients){
-        if(find(subSet.begin(), subSet.end(), getPatientX(p,varNo)) != subSet.end()){
+        if(find(myIndex.begin(), myIndex.end(), getPatientX(p,varNo)) != myIndex.end()){
             vectOut.push_back(p);
         }
     }

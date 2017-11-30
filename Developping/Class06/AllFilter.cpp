@@ -12,6 +12,7 @@ void AllFilter :: clearAllFilter(){
 vector<Patient *> AllFilter :: meetCriteria(vector<Patient *> patients){
         vector<Patient *> before(patients);
         vector<Patient *> after;
+        after.reserve(3000);
         for(auto cr: criterias){
             vector<Patient *> after = cr -> meetCriteria(before);
             before = after;

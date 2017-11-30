@@ -5,11 +5,13 @@
 
 class OrdinalFilter : public Filter
 {
-    vector<int> myIndex;
+//    unordered_map<int,int>  myIndex;
+    int varNo;
+    int cut;
 
     public:
         //constructor
-        OrdinalFilter(vector<int> index);
+        OrdinalFilter(int c, int no);
         //destructor
         ~OrdinalFilter();
 
