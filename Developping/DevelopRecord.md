@@ -16,5 +16,5 @@
 11/28/2017 15:42 pm 3000 sample, 3cont, 3ord, 3 nom :: 3Depth 1150.671s      
 11/29/2017 13:35 pm 300 sample, 3cont, 3ord :: 3Depth 6.302s     
 11/29/2017 13:42 pm 300 sample, 3cont, 3ord :: 3Depth 0.885s    
-11/29/2017 15:07 pm 300 sample, 3cont, 3ord, 3 nom :: 3Depth 49.991s  (release)
+11/29/2017 15:07 pm 300 sample, 3cont, 3ord, 3 nom :: 3Depth 49.991s  (release)     
 11/30/2017 13:40 pm 3000 sample, 3cont, 3ord :: 3Depth 9.309s 
