@@ -33,6 +33,7 @@ int Patient :: getX(int i)
     return valueX[i];
 }
 
+
 vector<double> Patient :: getY()
 {
     return valueY;
@@ -63,6 +64,31 @@ int Patient :: getSizeY()
 {
     return valueY.size();
 }
+
+bool Patient :: criteria(int varNo, int cutNo, VariableInfo *v)
+{
+    if(type[varNo] != 2)
+    {
+        if(valueX[varNo] < cutNo)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }else{
+        vector<int> subSet(v->getNominalCut(cutNo));
+        if(find(subSet.begin(),subSet.end(),valueX[varNo]) != subSet.end()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+}
+
+
 void Patient :: summary()
 {
     cout<<"Patient ID: "<< patientID<<endl;

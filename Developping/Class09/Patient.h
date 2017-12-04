@@ -1,6 +1,8 @@
 #ifndef PATIENT_H
 #define PATIENT_H
 
+#include "VariableInfo.h"
+
 #include <vector>
 #include <map>
 #include <stdio.h>
@@ -39,6 +41,7 @@ class Patient
         int getSizeX();
         int getSizeY();
         void summary();
+        bool criteria(int varNo, int cutNo, VariableInfo *v);
 
     private:
         template<class T> void print1DVector(vector<T> const &vectIn);

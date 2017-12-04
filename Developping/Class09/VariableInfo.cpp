@@ -3,24 +3,24 @@
 VariableInfo :: VariableInfo(int no, int type, vector<int> &dataSetColumn){
     varNo = no;
     varType = type;
-    map<vector<int>, vector<int>> mapDict;
 
     if(type==2){
         vector<int> uni = uniqueValues(dataSetColumn);
-        mapDict = mapSubsets(uni,no);
-        cuts = {0};
+        searchSets = mapSubsets(uni,no);
+        cutMap = mapCuts(uni);
+        cuts = nominalCuts(cutMap);
+
     }else if(type==1){
         vector<int> uni = uniqueValues(dataSetColumn);
-        mapDict = mapSequence(uni,no);
+        searchSets = mapSequence(uni,no);
         cuts = {1,2,3,4,5};
     }else if(type==0){
         vector<int> uni = {0,1,2,3,4,5,6,7,8,9};
-        mapDict = mapSequence(uni,no);
+        searchSets = mapSequence(uni,no);
         cuts = {1,2,3,4,5,6,7,8,9,10};
     }else{
         cout<<"\nIn correct input for data type.\n";
     }
-    searchSets = mapDict;
 }
 
 VariableInfo :: ~VariableInfo()
@@ -44,7 +44,12 @@ vector<int> VariableInfo :: getComb(vector<int> vectIn) {
 }
 map<vector<int>, vector<int>> VariableInfo :: getCombs(){ return searchSets; }
 vector<int> VariableInfo :: getCuts(){ return cuts; }
+map<int, vector<int>> VariableInfo :: getCutMap(){return cutMap;}
 
+
+vector<int> VariableInfo :: getNominalCut(int no){
+    return cutMap[no];
+}
 
 void VariableInfo :: printVarInfo(){
     cout<<"Variable number: "<<getVarNo()<<"\tType: "<<getEnumType(dataType(getVarType()))<<endl;
@@ -172,11 +177,47 @@ void VariableInfo :: print1DVector(vector<T> const &vectIn){
 }
 
 template<class T>
-void printNominalCuts(map<int,vector<T>> &mapIn){
+void VariableInfo :: printNominalCuts(map<int,vector<T>> &mapIn){
     for( const auto& x : mapIn ){
         cout<<'<'<<x.first<<"> :: ";
         print1DVector(x.second);cout<<'\n';
     }
+}
+
+
+template<class T>
+vector<int> VariableInfo :: nominalCuts(map<int,vector<T>> &mapIn){
+    vector<int> vectOut;
+    for( const auto& x : mapIn ){
+        vectOut.push_back(x.first);
+    }
+    return vectOut;
+}
+
+
+template<class T>
+map<int,vector<T>> VariableInfo :: mapCuts(vector<T> &setIn){
+    map <int,vector<T>> mapOfCategorical;
+
+	int max = 1 << setIn.size();
+	for(int i = 0; i < max; i++) {
+        int First;
+		vector<T> Second;
+
+		int j = i;
+		int index = 0;
+		while (j > 0) {
+			if((j & 1) > 0)
+				Second.push_back(setIn[index]);
+                j >>= 1;
+                index++;
+		}
+		if(Second.size()<=setIn.size()/2){
+		    First = i;
+            mapOfCategorical.insert(make_pair(First,Second));
+		}
+	}
+	return mapOfCategorical;
 }
 
 

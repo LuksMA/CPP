@@ -16,6 +16,7 @@ class VariableInfo
         int varNo;
         int varType;
         map<vector<int>, vector<int>> searchSets;
+        map<int, vector<int>> cutMap;
         enum dataType { cont,    ord,    nomi   };
         vector<int> cuts;
 
@@ -29,6 +30,8 @@ class VariableInfo
         vector<int> getComb(vector<int> vectIn);
         map<vector<int>, vector<int>> getCombs();
         vector<int> getCuts();
+        map<int,vector<int>> getCutMap();
+        vector<int> getNominalCut(int no);
 
         void printVarInfo();
         void printComb(vector<int> &vectIn);
@@ -39,6 +42,8 @@ class VariableInfo
         template<class T> map<vector<int>,vector<T>> mapSubsets(vector<T> &set, int varN);
         map<vector<int>, vector<int>> mapSequence(vector<int> &vectIn, int varNum);
         int flip(int i);
+        template<class T>   map<int,vector<T>> mapCuts(vector<T> &setIn);
+        template<class T>   vector<int> nominalCuts(map<int,vector<T>> &mapIn);
         template<class T>   void printNominalMap(map<vector<int>,vector<T>> &mapIn);
         template<class T>   void printOrdinalMap(map<vector<int>,vector<T>> &mapIn);
         template<class T>   void printNominalCuts(map<int,vector<T>> &mapIn);

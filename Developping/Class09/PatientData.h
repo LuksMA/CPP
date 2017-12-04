@@ -28,13 +28,13 @@ class PatientData
         void printPatientAction( Patient * p );
         void printPatientY( Patient * p );
 
-        void printPatientsX(vector<Patient *> const &patients);
-        void printPatientsXA(vector<Patient *> const &patients);
-        void printPatients(vector<Patient *> const &patients);
+//        void printPatientsX(vector<Patient *> const &patients);
+//        void printPatientsXA(vector<Patient *> const &patients);
+//        void printPatients(vector<Patient *> const &patients);
 
     private:
-        vector<Patient *> createPatients(vector<vector<int>> const &dataSet,vector<vector<int>> const &actions, vector<vector<double>> const &Y,vector<int> const &varType, vector<int> const &patientID);
-        template<class T> void print1DVector(vector<T> const &vectIn);
+        vector<Patient *> createPatients(vector<vector<int>> dataSet,vector<vector<int>> actions, vector<vector<double>> Y,vector<int> varType, vector<int> patientID);
+        template<class T> void print1DVector(vector<T> vectIn);
 };
 
 #endif // PATIENTDATA_H

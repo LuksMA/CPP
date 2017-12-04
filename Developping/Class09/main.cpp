@@ -1,4 +1,4 @@
-#include <iostream>
+//#include <iostream>
 
 #include "DataGeneration.h"
 #include "Patient.h"
@@ -6,59 +6,36 @@
 #include "VariableInfo.h"
 
 
-using namespace std;
+//using namespace std;
 
 
 vector<VariableInfo *> creatVariableInfo(vector<vector<int>> dataSet,vector<int> varType);
 template<class T> void print1DVector(vector<T> const &vectIn);
 vector<int> binary(int num);
-bool criteria(Patient * p, VariableInfo * v, int cutNo)
-{
-    if(v->getVarType() == 2)
-    {
-        return false;
-    }
-    else
-    {
-        if(p->getX(v->getVarNo()) < cutNo)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
 
-
-}
 
 
 void threeDepthPrint(DataGeneration &data, vector<VariableInfo *> varInfo, vector<Patient *> patients)
 {
     double T0 = data.getSumT0();
-    for(int i=0; i<5; ++i)   // loop1
+    int sampleSize = data.getCovariateSize();
+//int sampleSize = 5;
+    for(int i=0; i<sampleSize; ++i)   // loop1
     {
-        VariableInfo  *variInfoI = varInfo[i];
-
-//        for(int j=i+1; j<varInfo.size(); ++j){   // loop2
-        for(int j=i+1; j<5; ++j)    // loop2
+        for(int j=i+1; j<sampleSize; ++j)    // loop2
         {
-            VariableInfo  *variInfoJ = varInfo[j];
-
-//            for(int k=j+1; k<varInfo.size(); ++k){   // loop3
-            for(int k=j+1; k<5; ++k)    // loop3
+            for(int k=j+1; k<sampleSize; ++k)    // loop3
             {
-                VariableInfo  *variInfoK = varInfo[k];
+
                 double bestLocal = 0.0;
                 int bestIndexLocal = 0;
                 int indexi = 0, indexj = 0, indexk = 0;
                 int cuti = 0, cutj = 0, cutk = 0;
-                for(auto xi : variInfoI->getCuts())            // loop4
+                for(auto xi : varInfo[i]->getCuts())            // loop4
                 {
-                    for(auto xj : variInfoJ->getCuts())    // loop5
+                    for(auto xj : varInfo[j]->getCuts())    // loop5
                     {
-                        for(auto xk : variInfoK->getCuts())    // loop6
+                        for(auto xk : varInfo[k]->getCuts())    // loop6
                         {
                             double v0000 = 0.0, v0001 = 0.0, v0010 = 0.0, v0011 = 0.0;
                             double v0100 = 0.0, v0101 = 0.0, v0110 = 0.0, v0111 = 0.0;
@@ -67,12 +44,11 @@ void threeDepthPrint(DataGeneration &data, vector<VariableInfo *> varInfo, vecto
 
                             for(auto p : patients)
                             {
-//                                if(p->getX(i) < xi)
-                                if(criteria(p,varInfo[i],xi))
+                                if(p->criteria(i,xi,varInfo[i]))
                                 {
-                                    if(criteria(p,varInfo[j],xj))
+                                    if(p->criteria(j,xj,varInfo[j]))
                                     {
-                                        if(criteria(p,varInfo[k],xk))
+                                        if(p->criteria(k,xk,varInfo[k]))
                                         {
                                             if(p->getAction()[0] == 1)
                                             {
@@ -97,7 +73,7 @@ void threeDepthPrint(DataGeneration &data, vector<VariableInfo *> varInfo, vecto
                                     }
                                     else
                                     {
-                                        if(criteria(p,varInfo[k],xk))
+                                        if(p->criteria(k,xk,varInfo[k]))
                                         {
                                             if(p->getAction()[0] == 1)
                                             {
@@ -123,9 +99,9 @@ void threeDepthPrint(DataGeneration &data, vector<VariableInfo *> varInfo, vecto
                                 }
                                 else
                                 {
-                                    if(criteria(p,varInfo[j],xj))
+                                    if(p->criteria(j,xj,varInfo[j]))
                                     {
-                                        if(criteria(p,varInfo[k],xk))
+                                        if(p->criteria(k,xk,varInfo[k]))
                                         {
                                             if(p->getAction()[0]==1)
                                             {
@@ -150,7 +126,7 @@ void threeDepthPrint(DataGeneration &data, vector<VariableInfo *> varInfo, vecto
                                     }
                                     else
                                     {
-                                        if(criteria(p,varInfo[k],xk))
+                                        if(p->criteria(k,xk,varInfo[k]))
                                         {
                                             if(p->getAction()[0]==1)
                                             {
@@ -191,11 +167,11 @@ void threeDepthPrint(DataGeneration &data, vector<VariableInfo *> varInfo, vecto
 
                             const auto ptr = max_element(sum,sum+8);
                             double temp = *ptr;
-                            int index = distance(sum, ptr);
+
                             if(temp > bestLocal)
                             {
                                 bestLocal = temp;
-                                bestIndexLocal = index;
+                                bestIndexLocal = distance(sum, ptr);
                                 indexi = i;
                                 indexj = j;
                                 indexk = k;
@@ -203,10 +179,8 @@ void threeDepthPrint(DataGeneration &data, vector<VariableInfo *> varInfo, vecto
                                 cutj = xj;
                                 cutk = xk;
                             }
-
                         }
                     }
-
                 }
                 vector<int> bIndex = binary(bestIndexLocal);
                 vector<int> filter1 = {indexi, cuti, bIndex[0]};
@@ -222,47 +196,12 @@ void threeDepthPrint(DataGeneration &data, vector<VariableInfo *> varInfo, vecto
     }
 }
 
-template<class T>
-void printNominalCuts(map<int,vector<T>> &mapIn){
-    for( const auto& x : mapIn ){
-        cout<<'<'<<x.first<<"> :: ";
-        vector<int> Second = x.second;
-        print1DVector(Second);cout<<'\n';
-    }
-}
 
 
 
 
-template<class T>
-map<int,vector<T>> mapCuts(vector<T> &setIn){
-    map <int,vector<T>> mapOfCategorical;
-
-	int max = 1 << setIn.size();
-	for(int i = 0; i < max; i++) {
-        int First;
-		vector<T> Second;
-
-		int j = i;
-		int index = 0;
-		while (j > 0) {
-			if((j & 1) > 0)
-				Second.push_back(setIn[index]);
-                j >>= 1;
-                index++;
-		}
-		if(Second.size()<=setIn.size()/2){
-		    First = i;
-            mapOfCategorical.insert(make_pair(First,Second));
-		}
-	}
-	return mapOfCategorical;
-}
 
 
-vector<int> nominalCuts(map<int,vector<T>> &mapIn){
-
-}
 
 int main()
 {
@@ -275,7 +214,7 @@ int main()
     vector<int> rangesAction = {0,1};
 
     DataGeneration data(varType,rangesY,rangesAction,rangesCont,rangesOrd,rangesNom);
-    data.creatSamples(300);
+    data.creatSamples(30);
     data.preprocessing();
 //    data.printInfo(6);
 
@@ -287,13 +226,13 @@ int main()
     /// Create variable information objects
     vector<VariableInfo *> varInfo = creatVariableInfo(data.getDataSet(),data.getVarType());
 //    varInfo.at(6)->printVarInfo();
-//    print1DVector(varInfo[0]->getCuts());
+//    print1DVector(varInfo[6]->getCuts());cout<<endl;
+//    print1DVector(varInfo[6]->getNominalCut(24));
 
     /// Three Depth
 //    threeDepthPrint(data,varInfo,patients);
-    vector<int> xv = {0,1,2,3,4};
-    map <int,vector<int>> xm = mapCuts(xv);
-    printNominalCuts(xm);
+
+
 
 
 

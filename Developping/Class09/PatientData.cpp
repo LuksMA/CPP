@@ -14,7 +14,7 @@ PatientData :: PatientData(vector<Patient *> &dataSet){
 PatientData :: ~PatientData(){  }
 
 
-vector<Patient *> PatientData :: createPatients(vector<vector<int>> const &dataSet,vector<vector<int>> const &actions, vector<vector<double>> const &Y,vector<int> const &varType, vector<int> const &patientID){
+vector<Patient *> PatientData :: createPatients(vector<vector<int>> dataSet,vector<vector<int>> actions, vector<vector<double>> Y,vector<int> varType, vector<int> patientID){
     vector<Patient *> patients;
     for(unsigned int j=0;j<dataSet.at(0).size();++j){
         vector<int> valueX;
@@ -74,50 +74,50 @@ void PatientData :: printPatientY( Patient * p ){
 
 
 /// Print Patients
-void PatientData :: printPatientsX(vector<Patient *> const &patients){
-    for(auto p : patients){
-        cout<<"ID: ";
-        printPatientID(p);
-        cout<<" \tX: ";
-        printPatientX(p);
-        cout<<endl;
-    }
-    cout<<endl;
-}
-
-void PatientData :: printPatientsXA(vector<Patient *> const &patients){
-    for(auto p : patients){
-        cout<<"ID: ";
-        printPatientID(p);
-        cout<<" \tX: ";
-        printPatientX(p);
-        cout<<"\tAction: ";
-        printPatientAction(p);
-        cout<<endl;
-    }
-    cout<<endl;
-}
-
-
-void PatientData :: printPatients(vector<Patient *> const &patients){
-    for(auto p : patients){
-        cout<<"ID: ";
-        printPatientID(p);
-        cout<<" \tX: ";
-        printPatientX(p);
-        cout<<"\tAction: ";
-        printPatientAction(p);
-        cout<<"\tY: ";
-        printPatientY(p);
-        cout<<endl;
-    }
-    cout<<endl;
-}
+//void PatientData :: printPatientsX(vector<Patient *> const &patients){
+//    for(auto p : patients){
+//        cout<<"ID: ";
+//        printPatientID(p);
+//        cout<<" \tX: ";
+//        printPatientX(p);
+//        cout<<endl;
+//    }
+//    cout<<endl;
+//}
+//
+//void PatientData :: printPatientsXA(vector<Patient *> const &patients){
+//    for(auto p : patients){
+//        cout<<"ID: ";
+//        printPatientID(p);
+//        cout<<" \tX: ";
+//        printPatientX(p);
+//        cout<<"\tAction: ";
+//        printPatientAction(p);
+//        cout<<endl;
+//    }
+//    cout<<endl;
+//}
+//
+//
+//void PatientData :: printPatients(vector<Patient *> const &patients){
+//    for(auto p : patients){
+//        cout<<"ID: ";
+//        printPatientID(p);
+//        cout<<" \tX: ";
+//        printPatientX(p);
+//        cout<<"\tAction: ";
+//        printPatientAction(p);
+//        cout<<"\tY: ";
+//        printPatientY(p);
+//        cout<<endl;
+//    }
+//    cout<<endl;
+//}
 
 
 
 template<class T>
-void PatientData :: print1DVector(vector<T> const &vectIn){
+void PatientData :: print1DVector(vector<T> vectIn){
     cout<<"[ ";
     for(const auto &row : vectIn){
         cout<<row<<' ';
