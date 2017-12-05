@@ -1,4 +1,4 @@
-//#include <iostream>
+#include <iostream>
 
 #include "DataGeneration.h"
 #include "Patient.h"
@@ -6,7 +6,7 @@
 #include "VariableInfo.h"
 
 
-//using namespace std;
+using namespace std;
 
 
 vector<VariableInfo *> creatVariableInfo(vector<vector<int>> dataSet,vector<int> varType);
@@ -31,11 +31,11 @@ void threeDepthPrint(DataGeneration &data, vector<VariableInfo *> varInfo, vecto
                 int bestIndexLocal = 0;
                 int indexi = 0, indexj = 0, indexk = 0;
                 int cuti = 0, cutj = 0, cutk = 0;
-                for(auto xi : varInfo[i]->getCuts())            // loop4
+                for(auto & xi : varInfo[i]->getCuts())            // loop4
                 {
-                    for(auto xj : varInfo[j]->getCuts())    // loop5
+                    for(auto & xj : varInfo[j]->getCuts())    // loop5
                     {
-                        for(auto xk : varInfo[k]->getCuts())    // loop6
+                        for(auto & xk : varInfo[k]->getCuts())    // loop6
                         {
                             double v0000 = 0.0, v0001 = 0.0, v0010 = 0.0, v0011 = 0.0;
                             double v0100 = 0.0, v0101 = 0.0, v0110 = 0.0, v0111 = 0.0;
@@ -152,21 +152,19 @@ void threeDepthPrint(DataGeneration &data, vector<VariableInfo *> varInfo, vecto
                                 }
                             }
 
-
-                            double sum1 = v0000 + (T0 - v0001);
-                            double sum2 = v0010 + (T0 - v0011);
-                            double sum3 = v0100 + (T0 - v0101);
-                            double sum4 = v0110 + (T0 - v0111);
-
-                            double sum5 = v1000 + (T0 - v1001);
-                            double sum6 = v1010 + (T0 - v1011);
-                            double sum7 = v1100 + (T0 - v1101);
-                            double sum8 = v1110 + (T0 - v1111);
+                            double sum1 = v0000 - v0001;
+                            double sum2 = v0010 - v0011;
+                            double sum3 = v0100 - v0101;
+                            double sum4 = v0110 - v0111;
+                            double sum5 = v1000 - v1001;
+                            double sum6 = v1010 - v1011;
+                            double sum7 = v1100 - v1101;
+                            double sum8 = v1110 - v1111;
 
                             double sum[] = {sum1,sum2,sum3,sum4,sum5,sum6,sum7,sum8};
 
                             const auto ptr = max_element(sum,sum+8);
-                            double temp = *ptr;
+                            double temp = *ptr + T0;
 
                             if(temp > bestLocal)
                             {
@@ -214,7 +212,7 @@ int main()
     vector<int> rangesAction = {0,1};
 
     DataGeneration data(varType,rangesY,rangesAction,rangesCont,rangesOrd,rangesNom);
-    data.creatSamples(30);
+    data.creatSamples(300);
     data.preprocessing();
 //    data.printInfo(6);
 
@@ -230,7 +228,7 @@ int main()
 //    print1DVector(varInfo[6]->getNominalCut(24));
 
     /// Three Depth
-//    threeDepthPrint(data,varInfo,patients);
+    threeDepthPrint(data,varInfo,patients);
 
 
 
