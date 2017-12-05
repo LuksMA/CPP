@@ -61,15 +61,9 @@ void VariableInfo :: printVarInfo(){
     }
 }
 
-
-
-
-
 void VariableInfo :: printComb(vector<int> &vectIn){
     print1DVector(getComb(vectIn));
 }
-
-
 
 /// Return vector of unique values of a int vector
 vector<int> VariableInfo :: uniqueValues(vector<int> &vectorIn){
