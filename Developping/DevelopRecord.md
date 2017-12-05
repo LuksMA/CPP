@@ -34,3 +34,4 @@
 12/05/2017 14:11 pm 30 sample, 10 cont :: 3Depth 5.503s (Debug)     
 12/05/2017 16:15 pm 30 sample, 10 cont :: 3Depth 3.154s (Debug)       
 12/05/2017 16:22 pm 30 sample, 10 cont :: 3Depth 0.524s (Debug) 
+12/05/2017 16:32 pm 3000 sample, 35 cont :: 3Depth 341.475s (release)   
