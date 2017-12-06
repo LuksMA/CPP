@@ -1,5 +1,6 @@
 #include <iostream>
 
+
 #include "DataGeneration.h"
 #include "Patient.h"
 #include "PatientData.h"
@@ -42,13 +43,14 @@ void threeDepthPrint(DataGeneration &data, vector<Patient *> patients)
 
                             for(auto p : patients)
                             {
-                                if(p->criteria(i,xi))
+                                bitset<4> flag = p->criteria(i,xi,j,xi,k,xk);
+                                if(flag[0])
                                 {
-                                    if(p->criteria(j,xj))
+                                    if(flag[1])
                                     {
-                                        if(p->criteria(k,xk))
+                                        if(flag[2])
                                         {
-                                            if(p->criteriaAction())
+                                            if(flag[3])
                                             {
                                                 v0000 += p->getY(0);
                                             }
@@ -59,7 +61,7 @@ void threeDepthPrint(DataGeneration &data, vector<Patient *> patients)
                                         }
                                         else
                                         {
-                                            if(p->criteriaAction())
+                                            if(flag[3])
                                             {
                                                 v0010 += p->getY(0);
                                             }
@@ -71,9 +73,9 @@ void threeDepthPrint(DataGeneration &data, vector<Patient *> patients)
                                     }
                                     else
                                     {
-                                        if(p->criteria(k,xk))
+                                        if(flag[2])
                                         {
-                                            if(p->criteriaAction())
+                                            if(flag[3])
                                             {
                                                 v0100 += p->getY(0);
                                             }
@@ -84,7 +86,7 @@ void threeDepthPrint(DataGeneration &data, vector<Patient *> patients)
                                         }
                                         else
                                         {
-                                            if(p->criteriaAction())
+                                            if(flag[3])
                                             {
                                                 v0110 += p->getY(0);
                                             }
@@ -97,11 +99,11 @@ void threeDepthPrint(DataGeneration &data, vector<Patient *> patients)
                                 }
                                 else
                                 {
-                                    if(p->criteria(j,xj))
+                                    if(flag[1])
                                     {
-                                        if(p->criteria(k,xk))
+                                        if(flag[2])
                                         {
-                                            if(p->criteriaAction())
+                                            if(flag[3])
                                             {
                                                 v1000 += p->getY(0);
                                             }
@@ -112,7 +114,7 @@ void threeDepthPrint(DataGeneration &data, vector<Patient *> patients)
                                         }
                                         else
                                         {
-                                            if(p->criteriaAction())
+                                            if(flag[3])
                                             {
                                                 v1010 += p->getY(0);
                                             }
@@ -124,9 +126,9 @@ void threeDepthPrint(DataGeneration &data, vector<Patient *> patients)
                                     }
                                     else
                                     {
-                                        if(p->criteria(k,xk))
+                                        if(flag[2])
                                         {
-                                            if(p->criteriaAction())
+                                            if(flag[3])
                                             {
                                                 v1100 += p->getY(0);
                                             }
@@ -137,7 +139,7 @@ void threeDepthPrint(DataGeneration &data, vector<Patient *> patients)
                                         }
                                         else
                                         {
-                                            if(p->criteriaAction())
+                                            if(flag[3])
                                             {
                                                 v1110 += p->getY(0);
                                             }
@@ -207,7 +209,7 @@ int main()
     vector<int> rangesAction = {0,1};
 
     DataGeneration data(varType,rangesY,rangesAction,rangesCont,rangesOrd,rangesNom);
-    data.creatSamples(30);
+    data.creatSamples(3000);
     data.preprocessing();
 //    data.printInfo(6);
 
@@ -225,7 +227,6 @@ int main()
     /// Three Depth
 //    threeDepthPrint(data,varInfo,patients);
 threeDepthPrint(data,patients);
-
 
 
 
