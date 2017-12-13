@@ -1,3 +1,13 @@
+/// char            1 byte      -127 to 128
+/// unsigned char   1 byte      0 to 255
+/// short int       2 bytes     -32768 to 32767
+/// int             4 bytes
+/// float           4 bytes
+/// double          8 bytes
+/// int64_t         8 bytes
+/// int32_t         4 bytes
+/// int16_t         2 bytes
+
 #include<cstdint>
 #include<iostream>
 
