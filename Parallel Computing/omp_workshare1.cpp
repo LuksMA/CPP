@@ -17,11 +17,11 @@ int main (int argc, char *argv[])
     #pragma omp parallel shared(a,b,c,nthreads,chunk) private(i,tid)
     {
         tid = omp_get_thread_num();
-//        if (tid == 0)
-//        {
-//            nthreads = omp_get_num_threads();
-//            printf("Number of threads = %d\n", nthreads);
-//        }
+        if (tid == 0)
+        {
+            nthreads = omp_get_num_threads();
+            printf("Number of threads = %d\n", nthreads);
+        }
         printf("Thread %d starting...\n",tid);
 
         #pragma omp for schedule(dynamic,chunk)
