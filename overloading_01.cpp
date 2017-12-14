@@ -33,3 +33,10 @@ int main()
     cout << "c2=" << c2.get_count()<<endl;
     return 0;
 }
+
+
+//c1=0
+//c2=0
+//After ++:
+//c1=1
+//c2=2
