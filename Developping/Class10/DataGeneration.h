@@ -80,7 +80,7 @@ class DataGeneration
         vector<short> createSeed(short varsize, short start);
 
         vector<vector<short>> assignSeed(vector<short> const &seed, vector<short> const &varType);
-        float dataGenerator(short seed, float lowerBound, float upperBound);
+        vector<float> dataGenerator(short seed, float lowerBound, float upperBound, short sampleSize);
         short dataGenerator(short seed, short nMin, short nMax);
         vector<vector<float>> sampleGenerator(vector<short> const &seed, vector<float> const &ranges);
         vector<vector<short>> sampleGenerator(vector<short> const &seed, vector<short> const &ranges);

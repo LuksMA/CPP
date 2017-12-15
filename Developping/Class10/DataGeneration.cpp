@@ -295,13 +295,15 @@ vector<vector<short>> DataGeneration :: assignSeed(vector<short> const &seed, ve
     return vectOut;
 }
 
-
-float DataGeneration :: dataGenerator(short seed, float lowerBound, float upperBound)
-{
+vector<float> DataGeneration :: dataGenerator(short seed, float lowerBound, float upperBound, short sampleSize){
     default_random_engine rvEngine{seed};
     mt19937 gen(rvEngine());
     uniform_real_distribution<> dis(lowerBound, upperBound);
-    return dis(gen);
+    vector<float> vectOut;
+    for(short i=0;i<sampleSize;++i){
+        vectOut.push_back(dis(gen));
+    }
+    return vectOut;
 }
 
 short DataGeneration :: dataGenerator(short seed, short nMin, short nMax)
@@ -317,13 +319,14 @@ vector<vector<float>> DataGeneration :: sampleGenerator(vector<short> const &see
     size_t  noSample = getSampleSize();
     for(size_t  i=0 ; i < noVariable; ++i)
     {
-        vector<float> vectTemp;
+//        vector<float> vectTemp;
         float lowBound = ranges.at(2*i);
         float upperBound = ranges.at(2*i+1);
-        for(size_t  j=0; j< noSample; ++j)
-        {
-            vectTemp.push_back(dataGenerator(seed.at(i)+j,lowBound,upperBound));
-        }
+//        for(size_t  j=0; j< noSample; ++j)
+//        {
+//            vectTemp.push_back(dataGenerator(seed.at(i)+j,lowBound,upperBound));
+          vector<float>   vectTemp = dataGenerator(seed[i],lowBound,upperBound,sampleSize);
+//        }
         vectOut.push_back(vectTemp);
     }
     return vectOut;
@@ -377,7 +380,7 @@ map<float, short> DataGeneration :: percentileMap(vector<float> const &vectorIn)
     sort(vectorSort.begin(),vectorSort.end());
     short len = vectorSort.size();
     for(short i=0; i<len ; ++i)
-        mapOut.insert(make_pair(vectorSort.at(i),assignPercentile(percentile(len,i+1))));
+        mapOut.insert(make_pair(vectorSort[i],assignPercentile(percentile(len,i+1))));
     return mapOut;
 }
 
