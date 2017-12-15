@@ -39,5 +39,5 @@
 12/07/2017 16:02 pm 3000 sample, 35 cont :: 3Depth 168.508s (release)      
 12/07/2017 16:27 pm 3000 sample, 35 cont :: 3Depth 159.952s (release)     
 12/08/2017 09:05 am 3000 sample, 35 cont :: 3Depth 145.290s (release)     
-12/15/2017 14:36 pm 3000 sample, 35 cont :: 3Depth 145.290s (release, store)    
+12/15/2017 14:36 pm 3000 sample, 35 cont :: 3Depth 148.531s (release, store)    
 
