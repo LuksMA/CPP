@@ -80,11 +80,9 @@ class DataGeneration
         vector<short> createSeed(short varsize, short start);
 
         vector<vector<short>> assignSeed(vector<short> const &seed, vector<short> const &varType);
-        template<class T> vector<T> dataGenerator(short seed, T lowerBound, T upperBound, short sampleSize);
         vector<float> dataGenerator(short seed, float lowerBound, float upperBound);
         vector<short> dataGenerator(short seed, short lowerBound, short upperBound);
-        vector<vector<float>> sampleGenerator(vector<short> const &seed, vector<float> const &ranges);
-        vector<vector<short>> sampleGenerator(vector<short> const &seed, vector<short> const &ranges);
+        template<class T> vector<vector<T>> sampleGenerator(vector<short> const &seed, vector<T> const &ranges);
 
         vector<short> percentileVec(vector<float> const &vectIn);
         vector<vector<short>> percentileVec(vector<vector<float>> const &vectIn);

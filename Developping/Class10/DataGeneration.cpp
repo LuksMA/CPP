@@ -318,33 +318,19 @@ vector<short> DataGeneration :: dataGenerator(short seed, short lowerBound, shor
 }
 
 
-
-
-vector<vector<float>> DataGeneration :: sampleGenerator(vector<short> const &seed, vector<float> const &ranges)
-{
-    vector<vector<float>> vectOut;
+template<class T>
+vector<vector<T>> DataGeneration :: sampleGenerator(vector<short> const &seed, vector<T> const &ranges){
+    vector<vector<T>> vectOut;
     for(int  i=0 ; i < getRangeSize(ranges); ++i)
     {
-        float lowBound = ranges.at(2*i);
-        float upperBound = ranges.at(2*i+1);
-        vector<float>   vectTemp = dataGenerator(seed[i],lowBound,upperBound);
+        T lowBound = ranges.at(2*i);
+        T upperBound = ranges.at(2*i+1);
+        vector<T>   vectTemp = dataGenerator(seed[i],lowBound,upperBound);
         vectOut.push_back(vectTemp);
     }
     return vectOut;
 }
 
-
-vector<vector<short>> DataGeneration :: sampleGenerator(vector<short> const &seed, vector<short> const &ranges){
-    vector<vector<short>> vectOut;
-    for(int  i=0 ; i < getRangeSize(ranges); ++i)
-    {
-        short lowBound = ranges.at(2*i);
-        short upperBound = ranges.at(2*i+1);
-        vector<short>   vectTemp = dataGenerator(seed[i],lowBound,upperBound);
-        vectOut.push_back(vectTemp);
-    }
-    return vectOut;
-}
 
 
 
