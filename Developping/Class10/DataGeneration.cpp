@@ -306,51 +306,47 @@ vector<float> DataGeneration :: dataGenerator(short seed, float lowerBound, floa
     return vectOut;
 }
 
-short DataGeneration :: dataGenerator(short seed, short nMin, short nMax)
-{
-    srand(seed);
-    return nMin + (rand() % static_cast<short>(nMax - nMin + 1));
+vector<short> DataGeneration :: dataGenerator(short seed, short lowerBound, short upperBound, short sampleSize){
+    default_random_engine rvEngine{seed};
+    mt19937 gen(rvEngine());
+    uniform_int_distribution<> dis(lowerBound, upperBound);
+    vector<short> vectOut;
+    for(short i=0;i<sampleSize;++i){
+        vectOut.push_back(dis(gen));
+    }
+    return vectOut;
 }
+
+
+
 
 vector<vector<float>> DataGeneration :: sampleGenerator(vector<short> const &seed, vector<float> const &ranges)
 {
     vector<vector<float>> vectOut;
-    size_t  noVariable = getRangeSize(ranges);
-    size_t  noSample = getSampleSize();
-    for(size_t  i=0 ; i < noVariable; ++i)
+    for(int  i=0 ; i < getRangeSize(ranges); ++i)
     {
-//        vector<float> vectTemp;
         float lowBound = ranges.at(2*i);
         float upperBound = ranges.at(2*i+1);
-//        for(size_t  j=0; j< noSample; ++j)
-//        {
-//            vectTemp.push_back(dataGenerator(seed.at(i)+j,lowBound,upperBound));
-          vector<float>   vectTemp = dataGenerator(seed[i],lowBound,upperBound,sampleSize);
-//        }
+        vector<float>   vectTemp = dataGenerator(seed[i],lowBound,upperBound,sampleSize);
         vectOut.push_back(vectTemp);
     }
     return vectOut;
 }
 
 
-vector<vector<short>> DataGeneration :: sampleGenerator(vector<short> const &seed, vector<short> const &ranges)
-{
+vector<vector<short>> DataGeneration :: sampleGenerator(vector<short> const &seed, vector<short> const &ranges){
     vector<vector<short>> vectOut;
-    size_t noVariable = getRangeSize(ranges);
-    size_t noSample = getSampleSize();
-    for(size_t i=0 ; i < noVariable; ++i)
+    for(int  i=0 ; i < getRangeSize(ranges); ++i)
     {
-        vector<short> vectTemp;
         short lowBound = ranges.at(2*i);
         short upperBound = ranges.at(2*i+1);
-        for(size_t j=0; j<noSample; ++j)
-        {
-            vectTemp.push_back(dataGenerator(seed.at(i)+j,lowBound,upperBound));
-        }
+        vector<short>   vectTemp = dataGenerator(seed[i],lowBound,upperBound,sampleSize);
         vectOut.push_back(vectTemp);
     }
     return vectOut;
 }
+
+
 
 vector<short> DataGeneration :: percentileVec(vector<float> const &vectIn)
 {
