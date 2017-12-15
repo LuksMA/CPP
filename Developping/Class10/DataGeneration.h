@@ -67,6 +67,7 @@ class DataGeneration
         void printAction();
         void printContVar();
         void printContVar(short i);
+        void printContVar5();
         void printOrdVar();
         void printNomVar();
         void printDataSet();
