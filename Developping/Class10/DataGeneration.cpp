@@ -295,7 +295,7 @@ vector<vector<short>> DataGeneration :: assignSeed(vector<short> const &seed, ve
     return vectOut;
 }
 
-vector<float> DataGeneration :: dataGenerator(short seed, float lowerBound, float upperBound, short sampleSize){
+vector<float> DataGeneration :: dataGenerator(short seed, float lowerBound, float upperBound){
     default_random_engine rvEngine{seed};
     mt19937 gen(rvEngine());
     uniform_real_distribution<> dis(lowerBound, upperBound);
@@ -306,7 +306,7 @@ vector<float> DataGeneration :: dataGenerator(short seed, float lowerBound, floa
     return vectOut;
 }
 
-vector<short> DataGeneration :: dataGenerator(short seed, short lowerBound, short upperBound, short sampleSize){
+vector<short> DataGeneration :: dataGenerator(short seed, short lowerBound, short upperBound){
     default_random_engine rvEngine{seed};
     mt19937 gen(rvEngine());
     uniform_int_distribution<> dis(lowerBound, upperBound);
@@ -327,7 +327,7 @@ vector<vector<float>> DataGeneration :: sampleGenerator(vector<short> const &see
     {
         float lowBound = ranges.at(2*i);
         float upperBound = ranges.at(2*i+1);
-        vector<float>   vectTemp = dataGenerator(seed[i],lowBound,upperBound,sampleSize);
+        vector<float>   vectTemp = dataGenerator(seed[i],lowBound,upperBound);
         vectOut.push_back(vectTemp);
     }
     return vectOut;
@@ -340,7 +340,7 @@ vector<vector<short>> DataGeneration :: sampleGenerator(vector<short> const &see
     {
         short lowBound = ranges.at(2*i);
         short upperBound = ranges.at(2*i+1);
-        vector<short>   vectTemp = dataGenerator(seed[i],lowBound,upperBound,sampleSize);
+        vector<short>   vectTemp = dataGenerator(seed[i],lowBound,upperBound);
         vectOut.push_back(vectTemp);
     }
     return vectOut;
