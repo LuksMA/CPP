@@ -2,7 +2,7 @@
 #include <omp.h>
 
 #include "DataGeneration.h"
-////#include "Patient.h"
+#include "Patient.h"
 ////#include "PatientData.h"
 
 
@@ -363,6 +363,7 @@ using namespace std;
 
 
 
+
 int main()
 {
     /// Test data generation class
@@ -376,7 +377,8 @@ int main()
     DataGeneration data(varType,rangesY,rangesAction,rangesCont,rangesOrd,rangesNom);
     data.creatSamples(10);
     data.preprocessing();
-    data.printInfo(6);
+//    data.printContVar5();
+//    data.printInfo(6);
 
     /// Create patient objects
 //    PatientData pData(data);
@@ -387,8 +389,11 @@ int main()
 //    threeDepthPrint(data,patients);
 //    threeDepth(data,patients);
 
-
-
+//    default_random_engine rvEngine{3};
+//    mt19937 gen(rvEngine());
+//    uniform_real_distribution<> dis(1.0, 2.0);
+//    cout<<dis(gen)<<endl;
+//    cout<<dis(gen);
 
 
 
