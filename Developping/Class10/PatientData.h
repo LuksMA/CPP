@@ -24,7 +24,7 @@ class PatientData
         void printPatientsXA();
 
     private:
-        vector<Patient *> createPatients(vector<vector<short>> dataSet,vector<vector<short>> actions, vector<vector<float>> Y,vector<short> varType, vector<short> patientID);
+        vector<Patient *> createPatients(vector<vector<int>> dataSet,vector<vector<int>> actions, vector<vector<double>> Y,vector<int> varType, vector<int> patientID);
 
 };
 

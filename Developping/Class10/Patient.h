@@ -19,39 +19,39 @@ using namespace std;
 class Patient
 {
     private:
-        short patientID;
-        vector<short> action;
-        vector<short> valueX;
-        vector<float> valueY;
-        vector<short> type;
-        short actionBool;
-        short *xArray;
-        float *yArray;
+        int patientID;
+        vector<int> action;
+        vector<int> valueX;
+        vector<double> valueY;
+        vector<int> type;
+        int actionBool;
+        int *xArray;
+        double *yArray;
 
     public:
-        Patient(short ID, vector<short> const &a, vector<short> &X, vector<float> &Y, vector<short> const &t);
+        Patient(int ID, vector<int> const &a, vector<int> &X, vector<double> &Y, vector<int> const &t);
         ~Patient();
 
 
-        short getID();
-        vector<short> getAction();
-        short getAction(short i);
-        vector<short> getX();
-        short getX(short i);
-        vector<float> getY();
-        float getY(short i);
-        float *getYPtr();
+        int getID();
+        vector<int> getAction();
+        int getAction(int i);
+        vector<int> getX();
+        int getX(int i);
+        vector<double> getY();
+        double getY(int i);
+        double *getYPtr();
 
-        vector<short> getDataType();
-        short getDataType(short i);
-        short getSizeAction();
-        short getSizeX();
-        short getSizeY();
+        vector<int> getDataType();
+        int getDataType(int i);
+        int getSizeAction();
+        int getSizeX();
+        int getSizeY();
         void summary();
 
         bool criteriaAction();
-        short criteriaActionInt();
-        bitset<4> criteria(short var1, short cut1, short var2, short cut2, short var3, short cut3);
+        int criteriaActionInt();
+        bitset<4> criteria(int var1, int cut1, int var2, int cut2, int var3, int cut3);
 
         void printPatientID();
         void printPatientX();
@@ -61,11 +61,10 @@ class Patient
         void printPatientsX();
         void printPatientsXA();
 
-
     private:
         template<class T> void print1DVector(vector<T> const &vectIn);
-        bool criteria(short varNo, short cutNo);
-        short criteriaInt(short varNo, short cutNo);
+        bool criteria(int varNo, int cutNo);
+        int criteriaInt(int varNo, int cutNo);
 
 };
 

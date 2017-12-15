@@ -2,7 +2,7 @@
 
 
 
-Patient :: Patient(short ID, vector<short> const &a, vector<short> &X, vector<float> &Y, vector<short> const &t)
+Patient :: Patient(int ID, vector<int> const &a, vector<int> &X, vector<double> &Y, vector<int> const &t)
 {
     patientID = ID;
     action = a;
@@ -16,66 +16,66 @@ Patient :: Patient(short ID, vector<short> const &a, vector<short> &X, vector<fl
 
 Patient :: ~Patient(){}
 
-short Patient :: getID()
+int Patient :: getID()
 {
     return patientID;
 }
-vector<short> Patient :: getAction()
+vector<int> Patient :: getAction()
 {
     return action;
 }
-short Patient :: getAction(short i)
+int Patient :: getAction(int i)
 {
     return action[i];
 }
 
-vector<short> Patient :: getX()
+vector<int> Patient :: getX()
 {
     return valueX;
 }
-short Patient :: getX(short i)
+int Patient :: getX(int i)
 {
     return valueX[i];
 }
 
 
-vector<float> Patient :: getY()
+vector<double> Patient :: getY()
 {
     return valueY;
 }
-float Patient :: getY(short i)
+double Patient :: getY(int i)
 {
     return valueY[i];
 }
 
 
-vector<short> Patient :: getDataType()
+vector<int> Patient :: getDataType()
 {
     return type;
 }
-short Patient :: getDataType(short i)
+int Patient :: getDataType(int i)
 {
     return type[i];
 }
-short Patient :: getSizeAction()
+int Patient :: getSizeAction()
 {
     return action.size();
 }
-short Patient :: getSizeX()
+int Patient :: getSizeX()
 {
     return valueX.size();
 }
-short Patient :: getSizeY()
+int Patient :: getSizeY()
 {
     return valueY.size();
 }
 
 
-float * Patient :: getYPtr(){
+double * Patient :: getYPtr(){
     return yArray;
 }
 
-bool Patient :: criteria(short varNo, short cutNo)
+bool Patient :: criteria(int varNo, int cutNo)
 {
     if(valueX[varNo] < cutNo)
     {
@@ -87,7 +87,7 @@ bool Patient :: criteria(short varNo, short cutNo)
     }
 }
 
-short Patient :: criteriaInt(short varNo, short cutNo)
+int Patient :: criteriaInt(int varNo, int cutNo)
 {
     if(xArray[varNo] < cutNo)
     {
@@ -111,7 +111,7 @@ bool Patient :: criteriaAction()
     }
 }
 
-short Patient :: criteriaActionInt()
+int Patient :: criteriaActionInt()
 {
     if(action[0] == 1)
     {
@@ -123,7 +123,7 @@ short Patient :: criteriaActionInt()
     }
 }
 
-bitset<4> Patient :: criteria(short var1, short cut1, short var2, short cut2, short var3, short cut3){
+bitset<4> Patient :: criteria(int var1, int cut1, int var2, int cut2, int var3, int cut3){
     bitset<4> bitOut;
     bitOut[0] = criteriaInt(var1,cut1);
     bitOut[1] = criteriaInt(var2,cut2);
