@@ -2,7 +2,7 @@
 
 
 
-DataGeneration :: DataGeneration(vector<short> const &vType, vector<float> const &rY, vector<short> const &rActions, vector<float> const &rCont, vector<short> const &rOrd, vector<short> const &rNom)
+DataGeneration :: DataGeneration(vector<int> const &vType, vector<double> const &rY, vector<int> const &rActions, vector<double> const &rCont, vector<int> const &rOrd, vector<int> const &rNom)
 {
     sampleSize = 0;
 
@@ -19,15 +19,14 @@ DataGeneration  :: ~DataGeneration()    {   }
 
 
 
-void DataGeneration :: creatSamples(short sSize)
+void DataGeneration :: creatSamples(int sSize)
 {
-    sampleSize = sSize; // Initial sample size
-
+    sampleSize = sSize;
     id = patientID(sSize);
-    vector<vector<short>> seeds = assignSeed(createSeed(getCovariateSize(),100), varType);
-    varCont = sampleGenerator(seeds[0],rangesCont);
-    varOrd = sampleGenerator(seeds[1],rangesOrd);
-    varNom = sampleGenerator(seeds[2],rangesNom);
+    vector<vector<int>> seeds = assignSeed(createSeed(getCovariateSize(),100), varType);
+    varCont = sampleGenerator(seeds.at(0),rangesCont);
+    varOrd = sampleGenerator(seeds.at(1),rangesOrd);
+    varNom = sampleGenerator(seeds.at(2),rangesNom);
     varY = sampleGenerator(createSeed(getYSize(),10),rangesY);
     actions = sampleGenerator(createSeed(getActionSize(),50),rangesActions);
 }
@@ -40,12 +39,12 @@ void DataGeneration :: preprocessing()
     sumTreatmentCal();
 }
 
-vector<vector<short>> DataGeneration :: combineData(vector<vector<short>> const &varCont, vector<vector<short>> const &varOrd, vector<vector<short>> const &varNom)
+vector<vector<int>> DataGeneration :: combineData(vector<vector<int>> const &varCont, vector<vector<int>> const &varOrd, vector<vector<int>> const &varNom)
 {
-    vector<vector<short>> dataSet;
-    for(short  i=0; i<getContVarSize() ; ++i) dataSet.push_back(varCont.at(i));
-    for(short  i=0; i<getOrdVarSize() ; ++i) dataSet.push_back(varOrd.at(i));
-    for(short  i=0; i<getNomVarSize() ; ++i) dataSet.push_back(varNom.at(i));
+    vector<vector<int>> dataSet;
+    for(int i=0; i<getContVarSize() ; ++i) dataSet.push_back(varCont.at(i));
+    for(int i=0; i<getOrdVarSize() ; ++i) dataSet.push_back(varOrd.at(i));
+    for(int i=0; i<getNomVarSize() ; ++i) dataSet.push_back(varNom.at(i));
     return dataSet;
 }
 
@@ -78,39 +77,39 @@ int DataGeneration :: getNomVarSize()
     return getRangeSize(rangesNom);
 }
 
-vector<short> DataGeneration :: getVarType()
+vector<int> DataGeneration :: getVarType()
 {
     return varType;
 }
-vector<vector<float>> DataGeneration :: getY()
+vector<vector<double>> DataGeneration :: getY()
 {
     return varY;
 }
-vector<vector<short>> DataGeneration :: getActions()
+vector<vector<int>> DataGeneration :: getActions()
 {
     return actions;
 }
-vector<vector<float>> DataGeneration :: getVarCont()
+vector<vector<double>> DataGeneration :: getVarCont()
 {
     return varCont;
 }
-vector<vector<short>> DataGeneration :: getVarCont(short i)
+vector<vector<int>> DataGeneration :: getVarCont(int i)
 {
     return varContInt;
 }
-vector<vector<short>> DataGeneration :: getVarOrd()
+vector<vector<int>> DataGeneration :: getVarOrd()
 {
     return varOrd;
 }
-vector<vector<short>> DataGeneration :: getVarNom()
+vector<vector<int>> DataGeneration :: getVarNom()
 {
     return varNom;
 }
-vector<vector<short>> DataGeneration :: getDataSet()
+vector<vector<int>> DataGeneration :: getDataSet()
 {
     return dataSet;
 }
-vector<short> DataGeneration :: getID()
+vector<int> DataGeneration :: getID()
 {
     return id;
 }
@@ -120,19 +119,7 @@ void DataGeneration :: printContVar()
     cout<<'\n'<<getContVarSize()<<" continuous variables, "<<getSampleSize()<<" samples:"<<endl;
     print2DVector(varCont);
 }
-void DataGeneration :: printContVar5()
-{
-    cout<<"First 5 continuous variables samples:"<<endl;
-    for(short j=0; j<sampleSize;++j){
-      for(short i=0;i<5;++i){
-            cout<<varCont[i][j]<<'\t';
-        }
-        cout<<endl;
-    }
-}
-
-
-void DataGeneration :: printContVar(short i)
+void DataGeneration :: printContVar(int i)
 {
     cout<<'\n'<<getContVarSize()<<" percentile continuous variables, "<<getSampleSize()<<" samples:"<<endl;
     print2DVector(varContInt);
@@ -163,7 +150,7 @@ void DataGeneration :: printDataSet()
     print2DVector(dataSet);
 }
 
-void DataGeneration :: printInfo(short i)
+void DataGeneration :: printInfo(int i)
 {
     switch(i)
     {
@@ -205,12 +192,12 @@ void DataGeneration :: genReport()
 }
 
 
-vector<short> DataGeneration :: patientID(short noSample)
+vector<int> DataGeneration :: patientID(int noSample)
 {
-    vector<short> vectOut;
+    vector<int> vectOut;
     if(noSample>0)
     {
-        for(short i=0; i<noSample; ++i)
+        for(int i=0; i<noSample; ++i)
         {
             vectOut.push_back(i);
         }
@@ -250,10 +237,10 @@ int DataGeneration :: getRangeSize(vector<T> const &vectIn)
     return 0;
 }
 
-vector<short> DataGeneration :: createSeed(short varsize, short start)
+vector<int> DataGeneration :: createSeed(int varsize, int start)
 {
-    vector<short> seed;
-    for(short i=0 ; i<varsize; ++i)
+    vector<int> seed;
+    for(int i=0 ; i<varsize; ++i)
     {
         seed.push_back(start+5*i);
     }
@@ -263,26 +250,26 @@ vector<short> DataGeneration :: createSeed(short varsize, short start)
 
 
 
-vector<vector<short>> DataGeneration :: assignSeed(vector<short> const &seed, vector<short> const &varType)
+vector<vector<int>> DataGeneration :: assignSeed(vector<int> const &seed, vector<int> const &varType)
 {
-    vector<vector<short>> vectOut;
-    vector<short> seedCont;
-    vector<short> SeedOrd;
-    vector<short> seedNom;
-    for(int i=0; i< covariateSize; ++i)
+    vector<vector<int>> vectOut;
+    vector<int> seedCont;
+    vector<int> SeedOrd;
+    vector<int> seedNom;
+    for(int i=0; i<getCovariateSize(); ++i)
     {
-        short type = varType[i];
+        int type = varType.at(i);
         if(type == 0)
         {
-            seedCont.push_back(seed[i]);
+            seedCont.push_back(seed.at(i));
         }
         else if(type == 1)
         {
-            SeedOrd.push_back(seed[i]);
+            SeedOrd.push_back(seed.at(i));
         }
         else if(type == 2)
         {
-            seedNom.push_back(seed[i]);
+            seedNom.push_back(seed.at(i));
         }
         else
         {
@@ -295,36 +282,35 @@ vector<vector<short>> DataGeneration :: assignSeed(vector<short> const &seed, ve
     return vectOut;
 }
 
-vector<float> DataGeneration :: dataGenerator(short seed, float lowerBound, float upperBound){
+vector<double> DataGeneration :: dataGenerator(int seed, double lowerBound, double upperBound){
     default_random_engine rvEngine{seed};
     mt19937 gen(rvEngine());
     uniform_real_distribution<> dis(lowerBound, upperBound);
-    vector<float> vectOut;
-    for(short i=0;i<sampleSize;++i){
+    vector<double> vectOut;
+    for(int i=0;i<sampleSize;++i){
         vectOut.push_back(dis(gen));
     }
     return vectOut;
 }
 
-vector<short> DataGeneration :: dataGenerator(short seed, short lowerBound, short upperBound){
+vector<int> DataGeneration :: dataGenerator(int seed, int lowerBound, int upperBound){
     default_random_engine rvEngine{seed};
     mt19937 gen(rvEngine());
     uniform_int_distribution<> dis(lowerBound, upperBound);
-    vector<short> vectOut;
-    for(short i=0;i<sampleSize;++i){
+    vector<int> vectOut;
+    for(int i=0;i<sampleSize;++i){
         vectOut.push_back(dis(gen));
     }
     return vectOut;
 }
 
-
 template<class T>
-vector<vector<T>> DataGeneration :: sampleGenerator(vector<short> const &seed, vector<T> const &ranges){
+vector<vector<T>> DataGeneration :: sampleGenerator(vector<int> const &seed, vector<T> const &ranges){
     vector<vector<T>> vectOut;
     for(int  i=0 ; i < getRangeSize(ranges); ++i)
     {
-        T lowBound = ranges.at(2*i);
-        T upperBound = ranges.at(2*i+1);
+        T lowBound = ranges[2*i];
+        T upperBound = ranges[2*i+1];
         vector<T>   vectTemp = dataGenerator(seed[i],lowBound,upperBound);
         vectOut.push_back(vectTemp);
     }
@@ -332,12 +318,10 @@ vector<vector<T>> DataGeneration :: sampleGenerator(vector<short> const &seed, v
 }
 
 
-
-
-vector<short> DataGeneration :: percentileVec(vector<float> const &vectIn)
+vector<int> DataGeneration :: percentileVec(vector<double> const &vectIn)
 {
-    vector<short> vectOut;
-    map<float, short> mapTemp = percentileMap(vectIn);
+    vector<int> vectOut;
+    map<double, int> mapTemp = percentileMap(vectIn);
     for(const auto &row : vectIn)
     {
         vectOut.push_back(mapTemp[row]);
@@ -345,9 +329,9 @@ vector<short> DataGeneration :: percentileVec(vector<float> const &vectIn)
     return vectOut;
 }
 
-vector<vector<short>> DataGeneration :: percentileVec(vector<vector<float>> const &vectIn)
+vector<vector<int>> DataGeneration :: percentileVec(vector<vector<double>> const &vectIn)
 {
-    vector<vector<short>> vectOut;
+    vector<vector<int>> vectOut;
     for(auto x : vectIn)
     {
         vectOut.push_back(percentileVec(x));
@@ -355,18 +339,18 @@ vector<vector<short>> DataGeneration :: percentileVec(vector<vector<float>> cons
     return vectOut;
 }
 
-map<float, short> DataGeneration :: percentileMap(vector<float> const &vectorIn)
+map<double, int> DataGeneration :: percentileMap(vector<double> const &vectorIn)
 {
-    map<float, short> mapOut;
-    vector<float> vectorSort = vectorIn;
+    map<double, int> mapOut;
+    vector<double> vectorSort = vectorIn;
     sort(vectorSort.begin(),vectorSort.end());
-    short len = vectorSort.size();
-    for(short i=0; i<len ; ++i)
-        mapOut.insert(make_pair(vectorSort[i],assignPercentile(percentile(len,i+1))));
+    int len = vectorSort.size();
+    for(int i=0; i<len ; ++i)
+        mapOut.insert(make_pair(vectorSort.at(i),assignPercentile(percentile(len,i+1))));
     return mapOut;
 }
 
-float DataGeneration :: percentile(float len,float index)
+double DataGeneration :: percentile(double len,double index)
 {
     if(index>=0)
     {
@@ -380,7 +364,7 @@ float DataGeneration :: percentile(float len,float index)
 
 }
 
-short DataGeneration :: assignPercentile(float p)
+int DataGeneration :: assignPercentile(double p)
 {
     if (p < 0)
     {
@@ -433,8 +417,8 @@ short DataGeneration :: assignPercentile(float p)
 
 void DataGeneration :: sumTreatmentCal()
 {
-    float sum0 = 0.0;
-    for(short i=0; i<sampleSize; ++i)
+    double sum0 = 0.0;
+    for(int i=0; i<sampleSize; ++i)
     {
         if(actions[0][i] != 1)
         {
@@ -445,7 +429,7 @@ void DataGeneration :: sumTreatmentCal()
 }
 
 
-float DataGeneration :: getSumT0()
+double DataGeneration :: getSumT0()
 {
     return sumTreatment0;
 }

@@ -14,35 +14,35 @@ class DataGeneration
 {
     private:
         /// Settings for generate data
-        short sampleSize;
-        short covariateSize;
+        int sampleSize;
+        int covariateSize;
 
-        vector<short> varType; // 0 for cont, 1 for ordinal, 2 for nominal
-        vector<float> rangesY;
-        vector<short> rangesActions;
-        vector<float> rangesCont;
-        vector<short> rangesOrd;
-        vector<short> rangesNom;
+        vector<int> varType; // 0 for cont, 1 for ordinal, 2 for nominal
+        vector<double> rangesY;
+        vector<int> rangesActions;
+        vector<double> rangesCont;
+        vector<int> rangesOrd;
+        vector<int> rangesNom;
 
         /// Generated raw data
-        vector<short> id;
-        vector<vector<float>> varY;
-        vector<vector<short>> actions;
-        vector<vector<float>> varCont;
-        vector<vector<short>> varOrd;
-        vector<vector<short>> varNom;
+        vector<int> id;
+        vector< vector<double> > varY;
+        vector< vector<int> > actions;
+        vector< vector<double> > varCont;
+        vector< vector<int> > varOrd;
+        vector< vector<int> > varNom;
 
          /// Processed data
-        vector<vector<short>> varContInt;
-        vector<vector<short>> dataSet;
-        float sumTreatment0;
+        vector<vector<int> > varContInt;
+        vector<vector<int> > dataSet;
+        double sumTreatment0;
 
     public:
-        DataGeneration(vector<short> const &vType, vector<float> const &rY, vector<short> const &rActions, vector<float> const &rCont, vector<short> const &rOrd, vector<short> const &rNom);
+        DataGeneration(vector<int> const &vType, vector<double> const &rY, vector<int> const &rActions, vector<double> const &rCont, vector<int> const &rOrd, vector<int> const &rNom);
         ~DataGeneration();
-        void creatSamples(short sSize);
+        void creatSamples(int sSize);
         void preprocessing();
-        vector<vector<short>> combineData(vector<vector<short>> const &varCont, vector<vector<short>> const &varOrd, vector<vector<short>> const &varNom);
+        vector<vector<int>> combineData(vector<vector<int>> const &varCont, vector<vector<int>> const &varOrd, vector<vector<int>> const &varNom);
 
         int getSampleSize();
         int getCovariateSize();
@@ -52,43 +52,43 @@ class DataGeneration
         int getOrdVarSize();
         int getNomVarSize();
 
-        vector<short> getVarType();
-        vector<vector<float>> getY();
-        vector<vector<short>> getActions();
-        vector<vector<float>> getVarCont();
-        vector<vector<short>> getVarCont(short i);
-        vector<vector<short>> getVarOrd();
-        vector<vector<short>> getVarNom();
-        vector<vector<short>> getDataSet();
-        vector<short> getID();
-        float getSumT0();
+        vector<int> getVarType();
+        vector<vector<double>> getY();
+        vector<vector<int>> getActions();
+        vector<vector<double>> getVarCont();
+        vector<vector<int>> getVarCont(int i);
+        vector<vector<int>> getVarOrd();
+        vector<vector<int>> getVarNom();
+        vector<vector<int>> getDataSet();
+        vector<int> getID();
+        double getSumT0();
 
         void printY();
         void printAction();
         void printContVar();
-        void printContVar(short i);
-        void printContVar5();
+        void printContVar(int i);
         void printOrdVar();
         void printNomVar();
         void printDataSet();
-        void printInfo(short i);
+        void printInfo(int i);
         void genReport();
 
     private:
-        vector<short> patientID(short noSample);
+        vector<int> patientID(int noSample);
         template<class T> int getRangeSize(vector<T> const &vectIn);
-        vector<short> createSeed(short varsize, short start);
+        vector<int> createSeed(int varsize, int start);
 
-        vector<vector<short>> assignSeed(vector<short> const &seed, vector<short> const &varType);
-        vector<float> dataGenerator(short seed, float lowerBound, float upperBound);
-        vector<short> dataGenerator(short seed, short lowerBound, short upperBound);
-        template<class T> vector<vector<T>> sampleGenerator(vector<short> const &seed, vector<T> const &ranges);
+        vector<vector<int>> assignSeed(vector<int> const &seed, vector<int> const &varType);
 
-        vector<short> percentileVec(vector<float> const &vectIn);
-        vector<vector<short>> percentileVec(vector<vector<float>> const &vectIn);
-        map<float, short> percentileMap(vector<float> const &vectorIn);
-        float percentile(float len,float index);
-        short assignPercentile(float p);
+        vector<double> dataGenerator(int seed, double lowerBound, double upperBound);
+        vector<int> dataGenerator(int seed, int lowerBound, int upperBound);
+        template<class T> vector<vector<T>> sampleGenerator(vector<int> const &seed, vector<T> const &ranges);
+
+        vector<int> percentileVec(vector<double> const &vectIn);
+        vector<vector<int>> percentileVec(vector<vector<double>> const &vectIn);
+        map<double, int> percentileMap(vector<double> const &vectorIn);
+        double percentile(double len,double index);
+        int assignPercentile(double p);
 
         void sumTreatmentCal();
 
