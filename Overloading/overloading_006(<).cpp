@@ -1,4 +1,4 @@
-// overloaded ‘<’ operator compares two Distances
+// overloaded â€˜<â€™ operator compares two Distances
 #include <iostream>
 using namespace std;
 ////////////////////////////////////////////////////////////////
@@ -44,7 +44,7 @@ int main()
     dist1.showdist();
     cout << "\ndist2 = ";
     dist2.showdist();
-    if( dist1 < dist2 ) //overloaded ‘<’ operator
+    if( dist1 < dist2 ) //overloaded â€˜<â€™ operator
         cout << "\ndist1 is less than dist2";
     else
         cout << "\ndist1 is greater than (or equal to) dist2";
