@@ -1,3 +1,4 @@
+//overloaded â€˜==â€™ operator compares strings
 #include <iostream>
 using namespace std;
 #include <string.h> //for strcmp()
@@ -37,9 +38,9 @@ int main()
     String s3;
     cout << "\nEnter 'yes' or 'no': ";
     s3.getstr(); //get String from user
-    if(s3==s1) //compare with “yes”
+    if(s3==s1) //compare with â€œyesâ€
         cout << "You typed yes\n";
-    else if(s3==s2) //compare with “no”
+    else if(s3==s2) //compare with â€œnoâ€
         cout << "You typed no\n";
     else
         cout << "You didn't follow instructions\n";
