@@ -5,7 +5,7 @@ using namespace std;
 ////////////////////////////////////////////////////////////////
 class Stack
 {
-protected: //NOTE: can’t be private
+protected: //NOTE: canâ€™t be private
     enum { MAX = 3 }; //size of stack array
     int st[MAX]; //stack: array of integers
     int top; //index to top of stack
