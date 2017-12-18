@@ -1,4 +1,4 @@
-// overloaded ‘+’ operator adds two Distances
+// overloaded â€˜+â€™ operator adds two Distances
 #include <iostream>
 using namespace std;
 ////////////////////////////////////////////////////////////////
@@ -45,8 +45,8 @@ int main()
     Distance dist3, dist4; //define distances
     Distance dist1(10,6.5);
     Distance dist2(11, 6.25); //define, initialize dist2
-    dist3 = dist1 + dist2; //single ‘+’ operator
-    dist4 = dist1 + dist2 + dist3; //multiple ‘+’ operators
+    dist3 = dist1 + dist2; //single â€˜+â€™ operator
+    dist4 = dist1 + dist2 + dist3; //multiple â€˜+â€™ operators
 //display all lengths
     cout << "dist1 = ";
     dist1.showdist();
