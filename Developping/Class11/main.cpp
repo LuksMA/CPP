@@ -9,10 +9,6 @@
 using namespace std;
 
 
-
-
-
-
 void threeDepthPrint(DataGeneration &data, vector<Patient *> patients)
 {
     double T0 = data.getSumT0();
@@ -80,6 +76,7 @@ void threeDepthPrint(DataGeneration &data, vector<Patient *> patients)
     }
 }
 
+
 class Result
 {
 private:
@@ -113,20 +110,11 @@ vector<Result *> threeDepth(DataGeneration &data, vector<Patient *> patients)
         {
             for(unsigned short k=j+1; k<sampleSize; ++k)    // loop3
             {
-                for(auto xi :
-                        {
-                            1,2,3,4,5,6,7,8,9,10
-                        })            // loop4
+                for(auto xi :{1,2,3,4,5,6,7,8,9,10})            // loop4
                 {
-                    for(auto xj :
-                            {
-                                1,2,3,4,5,6,7,8,9,10
-                            })    // loop5
+                    for(auto xj :{1,2,3,4,5,6,7,8,9,10})    // loop5
                     {
-                        for(auto xk :
-                                {
-                                    1,2,3,4,5,6,7,8,9,10
-                                })    // loop6
+                        for(auto xk :{1,2,3,4,5,6,7,8,9,10})    // loop6
                         {
 
                             std::fill_n(v16,16,0.0);

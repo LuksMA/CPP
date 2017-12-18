@@ -49,8 +49,6 @@ class Patient
         int getSizeY();
         void summary();
 
-        bool criteriaAction();
-        int criteriaActionInt();
         int criteria(int var1, int cut1, int var2, int cut2, int var3, int cut3);
 
         void printPatientID();
@@ -63,8 +61,8 @@ class Patient
 
     private:
         template<class T> void print1DVector(vector<T> const &vectIn);
-        bool criteria(int varNo, int cutNo);
         int criteriaInt(int varNo, int cutNo);
+        int criteriaActionInt();
 
 };
 

@@ -1,7 +1,5 @@
 #include "Patient.h"
 
-
-
 Patient :: Patient(int ID, vector<int> const &a, vector<int> &X, vector<double> &Y, vector<int> const &t)
 {
     patientID = ID;
@@ -71,22 +69,6 @@ int Patient :: getSizeY()
 }
 
 
-//double * Patient :: getYPtr(){
-//    return yArray;
-//}
-
-bool Patient :: criteria(int varNo, int cutNo)
-{
-    if(valueX[varNo] < cutNo)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
-
 int Patient :: criteriaInt(int varNo, int cutNo)
 {
     if(xArray[varNo] < cutNo)
@@ -99,17 +81,6 @@ int Patient :: criteriaInt(int varNo, int cutNo)
     }
 }
 
-bool Patient :: criteriaAction()
-{
-    if(action[0] == 1)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
 
 int Patient :: criteriaActionInt()
 {
@@ -125,10 +96,6 @@ int Patient :: criteriaActionInt()
 
 int Patient :: criteria(int var1, int cut1, int var2, int cut2, int var3, int cut3){
     return 8*criteriaInt(var1,cut1) + 4*criteriaInt(var2,cut2) + 2*criteriaInt(var3,cut3) + actionBool;
-//    bitOut[0] = ;
-//    bitOut[1] = ;
-//    bitOut[2] = ;
-//    bitOut[3] = ;
 }
 
 
