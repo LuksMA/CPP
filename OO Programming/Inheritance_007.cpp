@@ -24,7 +24,7 @@ public:
         cout << " Enter name of school or university: ";
         cin >> school;
         cout << " Enter highest degree earned \n";
-        cout << " (Highschool, Bachelor’s, Master’s, PhD): ";
+        cout << " (Highschool, Bachelorâ€™s, Masterâ€™s, PhD): ";
         cin >> degree;
     }
     void putedu() const
