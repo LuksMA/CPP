@@ -5,7 +5,7 @@ enum posneg { pos, neg }; //for sign in DistSign
 ////////////////////////////////////////////////////////////////
 class Distance //English Distance class
 {
-protected: //NOTE: can’t be private
+protected: //NOTE: canâ€™t be private
     int feet;
     float inches;
 public: //no-arg constructor
