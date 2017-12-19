@@ -9,3 +9,9 @@ int main()
         cout << *(intarray+j) << endl; //print value
     return 0;
 }
+
+//31
+//54
+//77
+//52
+//93

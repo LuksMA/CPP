@@ -15,3 +15,7 @@ void centimize(double& v)
 {
     v *= 2.54; //v is the same as var
 }
+
+
+//var = 10 inches
+//var = 25.4 centimeters

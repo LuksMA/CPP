@@ -18,3 +18,9 @@ void centimize(double* ptrd)
     for(int j=0; j<MAX; j++)
         *ptrd++ *= 2.54; //ptrd points to elements of varray
 }
+
+//varray[0]=25.4 centimeters
+//varray[1]=109.474 centimeters
+//varray[2]=243.586 centimeters
+//varray[3]=151.638 centimeters
+//varray[4]=221.742 centimeters

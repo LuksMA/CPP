@@ -15,3 +15,6 @@ void centimize(double* ptrd)
 {
     *ptrd *= 2.54; //*ptrd is the same as var
 }
+
+//var = 10 inches
+//var = 25.4 centimeters
