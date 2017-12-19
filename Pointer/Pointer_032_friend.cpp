@@ -39,3 +39,6 @@ int main()
     cout << "\nSquare = " << sqft << " square feet\n";
     return 0;
 }
+
+//Distance = 3'-6"
+//Square = 12.25 square feet

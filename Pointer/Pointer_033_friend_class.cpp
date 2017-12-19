@@ -34,3 +34,6 @@ int main()
     cout << endl;
     return 0;
 }
+
+//data1=99
+//data1=99
