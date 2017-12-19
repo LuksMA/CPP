@@ -13,3 +13,11 @@ int main()
         cout << arrptrs[j] << endl;
     return 0;
 }
+
+//Sunday
+//Monday
+//Tuesday
+//Wednesday
+//Thursday
+//Friday
+//Saturday

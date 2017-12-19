@@ -15,3 +15,5 @@ int main()
     delete[] ptr; //release ptr’s memory
     return 0;
 }
+
+//ptr=Idle hands are the devil's workshop.

@@ -33,3 +33,8 @@ int main()
     s1.display();
     return 0;
 }
+
+
+//s1=
+//Who knows nothing doubts nothing.
+//Deleting str.
