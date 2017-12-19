@@ -24,3 +24,8 @@ void order(int* numb1, int* numb2) //orders two numbers
         *numb2 = temp;
     }
 }
+
+//n1=11
+//n2=99
+//n3=22
+//n4=88

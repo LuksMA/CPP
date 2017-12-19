@@ -12,3 +12,7 @@ int main()
     cout << str2 << endl; // now str2 starts “efined...”
     return 0;
 }
+
+//Defined as an array
+//Defined as a pointer
+//efined as a pointer

@@ -32,3 +32,5 @@ void order(int* numb1, int* numb2) //orders two numbers
         *numb2 = temp;
     }
 }
+
+//11 19 28 37 49 57 62 65 84 91

@@ -15,3 +15,5 @@ void dispstr(char* ps)
         cout << *ps++; //print characters
     cout << endl;
 }
+
+//Idle people have the least leisure.

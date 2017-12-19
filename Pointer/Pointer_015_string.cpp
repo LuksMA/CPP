@@ -17,3 +17,5 @@ void copystr(char* dest, const char* src)
         *dest++ = *src++; //copy chars from src to dest
     *dest = '\0'; //terminate dest
 }
+
+//Self-conquest is the greatest victory.
