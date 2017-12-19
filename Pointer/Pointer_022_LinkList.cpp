@@ -49,3 +49,9 @@ int main()
     li.display(); //display entire list
     return 0;
 }
+
+
+//64
+//49
+//36
+//25
