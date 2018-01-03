@@ -22,3 +22,9 @@ int main ()
 
     return 0;
 }
+
+
+//mymap has Burger
+//mymap has no Pizza
+//mymap has no Salad
+//mymap has Soda
