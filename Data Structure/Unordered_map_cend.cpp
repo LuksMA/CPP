@@ -25,3 +25,17 @@ int main ()
 
     return 0;
 }
+
+
+
+//mymap contains:
+// France:Paris
+// U.S.:Washington
+// Australia:Canberra
+//
+//mymap's buckets contain:
+//bucket #0 contains: Australia:Canberra
+//bucket #1 contains: U.S.:Washington
+//bucket #2 contains:
+//bucket #3 contains: France:Paris
+//bucket #4 contains:
