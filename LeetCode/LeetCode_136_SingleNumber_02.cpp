@@ -1,6 +1,9 @@
 #include <vector>
 #include <iostream>
 
+// x^x = x
+// x^0 = 0
+
 using namespace std;
 
 class Solution {
@@ -16,10 +19,11 @@ public:
 
 int main()
 {
-    vector<int> X = {2,2,1,3,3,5,5,7,7};
+    vector<int> X = {2,2,10,3,3,5,5,7,7};
     Solution s;
     cout<<s.singleNumber(X);
 
+
 }
 
-// 1
+// 10
