@@ -43,4 +43,5 @@
 12/18/2017 14:02 pm 3000 sample, 35 cont :: 3Depth 121.940s (release, store)    
 01/02/2018 09:33 am 3000 sample, 35 cont :: 3Depth 132.543s (release, print)   
 01/03/2018 09:33 am 3000 sample, 25 cont, 5 ord, 5 nom :: 3Depth 188.226s (release, print)     
-01/08/2018 16:308 pm 3000 sample, 35 cont :: 3Depth 121.328s (release, print)      
+01/08/2018 16:30 pm 3000 sample, 35 cont :: 3Depth 121.328s (release, print)     
+01/08/2018 21:20 pm 3000 sample, 35 cont :: 3Depth 112.778s (release, store)    
