@@ -4,6 +4,7 @@
 #include "DataGeneration.h"
 #include "ITR.h"
 
+
 using namespace std;
 
 int main()
@@ -17,35 +18,21 @@ int main()
     vector<int> rangesAction = {0,1};
 
     DataGeneration data(varType,rangesY,rangesAction,rangesCont,rangesOrd,rangesNom);
-    data.creatSamples(5);
+    data.creatSamples(3000);
     data.preprocessing();
 //    data.printDataSet();
 //    data.printAction();
 
 
     ITR ITR_CS(data);
-    cout<<"Sample size: "<<ITR_CS.getSampleSize()<<endl;
-    cout<<"Variable size: "<<ITR_CS.getVarSize()<<endl;
-    cout<<"Action size: "<<ITR_CS.getActionSize()<<endl;
-    cout<<"Y size: "<<ITR_CS.getYSize()<<endl;
+//    ITR_CS.threeDepthPrint();
 
-    cout<<"\nX:\n"; ITR_CS.print_X();
-    cout<<"\nAction:\n"; ITR_CS.print_Action();
-    cout<<"\nY:\n"; ITR_CS.print_Y();
-//    ITR_CS.print_All();
-
-    cout<<"\nTest X[0][1]: ";
-    cout<<ITR_CS.get_X()[0][1]<<endl;
-    cout<<"Test Action[2][0]: ";
-    cout<<ITR_CS.get_Action()[2][0]<<endl;
-    cout<<"Test Y[2][0]: ";
-    cout<<ITR_CS.get_Y()[2][0]<<endl;
+    ITR_CS.threeDepth();
 
 
-    ITR_CS.clean_X();
-    ITR_CS.clean_Action();
-    ITR_CS.clean_Y();
-    ITR_CS.cleanAll();
+
+
+
 
 
 }

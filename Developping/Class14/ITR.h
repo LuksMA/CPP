@@ -2,7 +2,7 @@
 #define ITR_H
 
 #include "DataGeneration.h"
-#include "Dyn2array.h"
+#include "Result.h"
 #include <iostream>
 
 using namespace std;
@@ -18,6 +18,8 @@ private:
     int var_Size;      // column
     int action_Size;
     int y_Size;
+
+    double T0;
 
 public:
     ITR(DataGeneration &data);
@@ -36,15 +38,17 @@ public:
     void print_Action();
     void print_Y();
     void print_All();
-    void clean_X();
-    void clean_Action();
-    void clean_Y();
-    void cleanAll();
+
+    void threeDepthPrint();
+    vector<Result *> threeDepth();
+    int cut(int* index, int var1, int cut1, int var2, int cut2, int var3, int cut3);
+
 
 private:
     void loadX(vector<vector<int>> x);
     void loadAction(vector<vector<int>> a);
     void loadY(vector<vector<double>> y);
+    void cleanAll();
 
 };
 
