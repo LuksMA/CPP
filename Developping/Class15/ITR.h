@@ -44,11 +44,7 @@ public:
     void print_All();
 
     void threeDepthPrint();
-    void threeDepthPrint2();
     vector<Result *> threeDepth();
-    vector<Result *> threeDepth2();
-    int cut(int* index, int var1, int cut1, int var2, int cut2, int var3, int cut3);
-
 
 private:
     void table_X_gen(vector<vector<int>> x);

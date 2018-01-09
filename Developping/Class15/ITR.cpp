@@ -30,13 +30,12 @@ ITR::ITR(DataGeneration &data)
             }
         }
     }
-//    table_X[var_Size][10][sample_Size] = {0};
 
     loadX(data.getDataSet());
     loadAction(data.getActions());
     loadY(data.getY());
     table_X_gen(data.getDataSet());
-//    cleanAll();
+
 }
 
 ITR::~ITR()
@@ -196,13 +195,8 @@ void ITR :: cleanAll()
 
 }
 
-int ITR :: cut(int* index, int var1, int cut1, int var2, int cut2, int var3, int cut3)
-{
-    return 8*((*(index+var1)?1:0)<cut1)+4*((*(index+var2)?1:0)<cut2)+2*((*(index+var3)?1:0)<cut3);
-}
 
-
-void ITR :: threeDepthPrint2(){
+void ITR :: threeDepthPrint(){
     double v[16];
     double sum[8];
 
@@ -294,155 +288,8 @@ void ITR :: threeDepthPrint2(){
 
 
 
-void ITR :: threeDepthPrint()
-{
-    double v[16];
-    double sum[8];
 
-    int* row_X;
-    int* row_A;
-    double* row_Y;
-
-    double bestLocal;
-    int bestIndexLocal;
-    int indexi, indexj, indexk;
-    int cuti, cutj, cutk;
-
-    for(int i=0; i<var_Size; ++i)   // loop1
-    {
-        for(int j=i+1; j<var_Size; ++j)    // loop2
-        {
-            for(int k=j+1; k<var_Size; ++k)    // loop3
-            {
-                bestLocal = 0.0;
-                bestIndexLocal = 0;
-                indexi = 0, indexj = 0, indexk = 0;
-                cuti = 0, cutj = 0, cutk = 0;
-
-                for(auto xi :
-                        {
-                            1,2,3,4,5,6,7,8,9,10
-                        })            // loop4
-                {
-                    for(auto xj :
-                            {
-                                1,2,3,4,5,6,7,8,9,10
-                            })        // loop5
-                    {
-                        for(auto xk :
-                                {
-                                    1,2,3,4,5,6,7,8,9,10
-                                })    // loop6
-                        {
-                            std::fill_n(v,16,0.0);
-                            for(int k=0; k<sample_Size; ++k)
-                            {
-                                row_X = var_X[k];
-                                row_Y = var_Y[k];
-                                row_A = var_A[k];
-                                v[cut(row_X,i,xi,j,xj,k,xk) + *row_A] += *row_Y;
-                            }
-
-                            sum[0] = v[0]-v[1];
-                            sum[1] = v[2]-v[3];
-                            sum[2] = v[4]-v[5];
-                            sum[3] = v[6]-v[7];
-                            sum[4] = v[8]-v[9];
-                            sum[5] = v[10]-v[11];
-                            sum[6] = v[12]-v[13];
-                            sum[7] = v[14]-v[15];
-
-                            const auto ptr = max_element(sum,sum+8);
-                            double temp = *ptr + T0;
-
-                            if(temp > bestLocal)
-                            {
-                                bestLocal = temp;
-                                bestIndexLocal = distance(sum, ptr);
-                                indexi = i;
-                                indexj = j;
-                                indexk = k;
-                                cuti = xi;
-                                cutj = xj;
-                                cutk = xk;
-                            }
-                        } // end loop 6
-                    } // end loop 5
-                } // end loop 4
-                cout<<bestLocal*2/sample_Size<<" Index: "
-                    <<"["<<indexi<<" "<<cuti<<" "
-                    <<"] ["<<indexj<<" "<<cutj<<" "
-                    <<"] ["<<indexk<<" "<<cutk<<" "
-                    <<"]"<<bestIndexLocal<<endl;
-            } // end loop 3
-        } // end loop 2
-    } // end loop 1
-}
-
-
-
-
-vector<Result *> ITR :: threeDepth()
-{
-    vector<Result *> solutions;
-    solutions.reserve(20000000);
-
-    double v[16];
-
-    int* row_X;
-    int* row_A;
-    double* row_Y;
-
-    for(int i=0; i<var_Size; ++i)   // loop1
-    {
-        for(int j=i+1; j<var_Size; ++j)    // loop2
-        {
-            for(int k=j+1; k<var_Size; ++k)    // loop3
-            {
-                for(auto xi :
-                        {
-                            1,2,3,4,5,6,7,8,9,10
-                        })            // loop4
-                {
-                    for(auto xj :
-                            {
-                                1,2,3,4,5,6,7,8,9,10
-                            })        // loop5
-                    {
-                        for(auto xk :
-                                {
-                                    1,2,3,4,5,6,7,8,9,10
-                                })    // loop6
-                        {
-                            std::fill_n(v,16,0.0);
-                            for(int k=0; k<sample_Size; ++k)
-                            {
-                                row_X = var_X[k];
-                                row_Y = var_Y[k];
-                                row_A = var_A[k];
-                                v[cut(row_X,i,xi,j,xj,k,xk) + *row_A] += *row_Y;
-                            }
-                            solutions.push_back(new Result(v[0]-v[1],i,xi,0,j,xj,0,k,xk,0));
-                            solutions.push_back(new Result(v[2]-v[3],i,xi,0,j,xj,0,k,xk,1));
-                            solutions.push_back(new Result(v[4]-v[5],i,xi,0,j,xj,1,k,xk,0));
-                            solutions.push_back(new Result(v[6]-v[7],i,xi,0,j,xj,1,k,xk,1));
-                            solutions.push_back(new Result(v[8]-v[9],i,xi,1,j,xj,0,k,xk,0));
-                            solutions.push_back(new Result(v[10]-v[11],i,xi,1,j,xj,0,k,xk,1));
-                            solutions.push_back(new Result(v[12]-v[13],i,xi,1,j,xj,1,k,xk,0));
-                            solutions.push_back(new Result(v[14]-v[15],i,xi,1,j,xj,1,k,xk,1));
-                        } // end loop 6
-                    } // end loop 5
-                } // end loop 4
-
-            } // end loop 3
-        } // end loop 2
-    } // end loop 1
-    return solutions;
-}
-
-
-
-vector<Result *> ITR :: threeDepth2(){
+vector<Result *> ITR :: threeDepth(){
     vector<Result *> solutions;
     solutions.reserve(20000000);
     double v[16];
