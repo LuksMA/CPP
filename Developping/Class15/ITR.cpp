@@ -200,12 +200,12 @@ void ITR :: threeDepthPrint(){
     double v[16];
     double sum[8];
 
-    int** index_X1;
-    int** index_X2;
-    int** index_X3;
-    int*  index_X1_c;
-    int*  index_X2_c;
-    int*  index_X3_c;
+    int** x1;
+    int** x2;
+    int** x3;
+    int*  x1c;
+    int*  x2c;
+    int*  x3c;
 
     int* row_A;
     double* row_Y;
@@ -226,28 +226,26 @@ void ITR :: threeDepthPrint(){
                 indexi = 0, indexj = 0, indexk = 0;
                 cuti = 0, cutj = 0, cutk = 0;
 
-                index_X1 = table_X[i];
-                index_X2 = table_X[j];
-                index_X3 = table_X[k];
+                x1 = table_X[i];
+                x2 = table_X[j];
+                x3 = table_X[k];
 
                 for(auto xi : {0,1,2,3,4,5,6,7,8,9})            // loop4
                 {
-                    index_X1_c = index_X1[xi];
+                    x1c = x1[xi];
                     for(auto xj : {0,1,2,3,4,5,6,7,8,9})        // loop5
                     {
-                        index_X2_c = index_X2[xj];
+                        x2c = x2[xj];
                         for(auto xk : {0,1,2,3,4,5,6,7,8,9})    // loop6
                         {
-                            index_X3_c = index_X3[xk];
+                            x3c = x3[xk];
 
                             std::fill_n(v,16,0.0);
                             for(int k=0; k<sample_Size; ++k)
                             {
-
                                 row_Y = var_Y[k];
                                 row_A = var_A[k];
-//                                v[cut(row_X,i,xi,j,xj,k,xk) + *row_A] += *row_Y;
-                                v[index_X1_c[k]*8+index_X2_c[k]*4+index_X3_c[k]*2 + *row_A] =  *row_Y;
+                                v[x1c[k]*8+x2c[k]*4+x3c[k]*2 + *row_A] =  *row_Y;
                             }
 
                             sum[0] = v[0]-v[1];
@@ -284,7 +282,7 @@ void ITR :: threeDepthPrint(){
             } // end loop 3
         } // end loop 2
     } // end loop 1
-}
+} // end threeDepthPrint()
 
 
 
@@ -328,20 +326,19 @@ vector<Result *> ITR :: threeDepth(){
                             std::fill_n(v,16,0.0);
                             for(int k=0; k<sample_Size; ++k)
                             {
-
                                 row_Y = var_Y[k];
                                 row_A = var_A[k];
                                 v[index_X1_c[k]*8+index_X2_c[k]*4+index_X3_c[k]*2 + *row_A] =  *row_Y;
                             }
 
-                            solutions.push_back(new Result(v[0]-v[1],i,xi,0,j,xj,0,k,xk,0));
-                            solutions.push_back(new Result(v[2]-v[3],i,xi,0,j,xj,0,k,xk,1));
-                            solutions.push_back(new Result(v[4]-v[5],i,xi,0,j,xj,1,k,xk,0));
-                            solutions.push_back(new Result(v[6]-v[7],i,xi,0,j,xj,1,k,xk,1));
-                            solutions.push_back(new Result(v[8]-v[9],i,xi,1,j,xj,0,k,xk,0));
-                            solutions.push_back(new Result(v[10]-v[11],i,xi,1,j,xj,0,k,xk,1));
-                            solutions.push_back(new Result(v[12]-v[13],i,xi,1,j,xj,1,k,xk,0));
-                            solutions.push_back(new Result(v[14]-v[15],i,xi,1,j,xj,1,k,xk,1));
+                            solutions.push_back(new Result(T0+v[0]-v[1],i,xi,0,j,xj,0,k,xk,0));
+                            solutions.push_back(new Result(T0+v[2]-v[3],i,xi,0,j,xj,0,k,xk,1));
+                            solutions.push_back(new Result(T0+v[4]-v[5],i,xi,0,j,xj,1,k,xk,0));
+                            solutions.push_back(new Result(T0+v[6]-v[7],i,xi,0,j,xj,1,k,xk,1));
+                            solutions.push_back(new Result(T0+v[8]-v[9],i,xi,1,j,xj,0,k,xk,0));
+                            solutions.push_back(new Result(T0+v[10]-v[11],i,xi,1,j,xj,0,k,xk,1));
+                            solutions.push_back(new Result(T0+v[12]-v[13],i,xi,1,j,xj,1,k,xk,0));
+                            solutions.push_back(new Result(T0+v[14]-v[15],i,xi,1,j,xj,1,k,xk,1));
                         } // end loop 6
                     } // end loop 5
                 } // end loop 4
