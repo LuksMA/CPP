@@ -216,19 +216,15 @@ void ITR :: threeDepthPrint(){
     int cuti, cutj, cutk;
 
     for(int i=0; i<var_Size; ++i)   // loop1
-    {
+    {   x1 = table_X[i];
         for(int j=i+1; j<var_Size; ++j)    // loop2
-        {
+        {   x2 = table_X[j];
             for(int k=j+1; k<var_Size; ++k)    // loop3
-            {
+            {   x3 = table_X[k];
                 bestLocal = 0.0;
                 bestIndexLocal = 0;
                 indexi = 0, indexj = 0, indexk = 0;
                 cuti = 0, cutj = 0, cutk = 0;
-
-                x1 = table_X[i];
-                x2 = table_X[j];
-                x3 = table_X[k];
 
                 for(auto xi : {0,1,2,3,4,5,6,7,8,9})            // loop4
                 {
