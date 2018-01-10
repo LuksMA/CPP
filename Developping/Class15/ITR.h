@@ -13,7 +13,7 @@ private:
     int** var_X;
     int** var_A;
     double** var_Y;
-    int*** table_X;
+    bool*** table_X;
 
     int range[10] = {1,2,3,4,5,6,7,8,9,10};
 
@@ -36,7 +36,7 @@ public:
     int** get_X(){ return var_X;};
     int** get_Action(){ return var_A;};
     double** get_Y(){ return var_Y;};
-    int*** get_X_Table(){ return table_X; };
+    bool*** get_X_Table(){ return table_X; };
 
     void print_X();
     void print_Action();
@@ -44,7 +44,7 @@ public:
     void print_All();
 
     void threeDepthPrint();
-    vector<Result *> threeDepth();
+//    vector<Result *> threeDepth();
 
 private:
     void table_X_gen(vector<vector<int>> x);
