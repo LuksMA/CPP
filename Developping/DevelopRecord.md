@@ -48,3 +48,4 @@
 01/08/2018 11:25 am 3000 sample, 35 cout :: 3Depth 57.219 (release, print)   
 01/08/2018 11:53 am 3000 sample, 35 cout :: 3Depth 49.626 (release, store)   
 01/08/2018 12:44 pm 3000 sample, 35 cout :: 3Depth 54.403 (release, print)  
+01/09/2018 16:11 pm 3000 sample, 35 cout :: 3Depth 47.129 (release, store)   
