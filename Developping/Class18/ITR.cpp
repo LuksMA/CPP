@@ -20,7 +20,7 @@ ITR::ITR(DataGeneration &data)
     {
         info[i].load_DataInfo(i,var_Type[i],data.getDataSet()[i]);
     }
-    load_Range();
+    load_CutSize();
 
     for(int i=0; i<sample_Size; ++i)
     {
@@ -49,6 +49,11 @@ ITR::~ITR()
     //dtor
     cleanAll();
 }
+
+void ITR::init(){
+
+}
+
 
 /// Get
 int ITR::getSampleSize()
@@ -199,7 +204,7 @@ void ITR :: print_VarInfo()
 
 
 /// Load
-void ITR :: load_Range()
+void ITR :: load_CutSize()
 {
     for(int i=0; i<var_Size; ++i)
     {
