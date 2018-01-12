@@ -51,13 +51,19 @@ int main()
 //    ITR_CS.print_All();
 //    ITR_CS.print_Range();cout<<endl;
 //    ITR_CS.print_CutTable();
+//    ITR_CS.print_VarInfo();
 
 
-    ITR_CS.threeDepthPrint();
-//    ITR_CS.threeDepth();
+//    ITR_CS.threeDepthPrint();
+    ITR_CS.threeDepth();
 
-
-
+//   int myints[] = {50,40,30,20,10};
+//   std::set<int> myset (myints,myints+10);
+//   std::cout << "myset contains:";
+//   for (std::set<int>::iterator it = myset.begin(); it!=myset.end(); ++it)
+//      std::cout << ' ' << *it;
+//
+//   std::cout << '\n';
 
 }
 

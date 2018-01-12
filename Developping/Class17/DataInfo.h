@@ -18,14 +18,16 @@ class DataInfo
 
     public:
         DataInfo(void){};
-        void load_DataInfo(int no, int type, vector<int> &dataSetColumn);
         ~DataInfo();
+        void load_DataInfo(int no, int type, vector<int> &dataSetColumn);
 
         int getVarNo();
-        int getType();
+        int getVarType();
         int getCutSize();
         bool nomContains(int x,int index);
         int getRange(int i){ return range[i];};
+        void printVarInfo();
+        void printSet(int i);
 
     private:
         vector<int> uniqueValues(vector<int> &vectorIn);

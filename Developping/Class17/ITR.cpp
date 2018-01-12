@@ -154,7 +154,9 @@ void ITR :: print_CutTable()
             <<"\tType: "<<var_Type[i]
             <<"\tCut Size: "<<cut_Size[i]
             <<endl;
-        cout<<"\t";
+        cout<<"\t ";
+
+
         for(int xi=0; xi<sample_Size; ++xi)
         {
             cout<<var_X[xi][i]<<' ';
@@ -162,7 +164,15 @@ void ITR :: print_CutTable()
         cout<<endl;
         for(int j=0; j<cut_Size[i]; ++j)
         {
-            cout<<info[i].getRange(j)<<":\t";
+            if(var_Type[i]==2)
+            {
+                cout<<info[i].getRange(j)<<":";
+                info[i].printSet(j);
+            }
+            else
+            {
+                cout<<info[i].getRange(j)<<":\t";
+            }
             for(int k=0; k<sample_Size; ++k)
             {
                 cout<<table_X[i][j][k]<<' ';
@@ -172,6 +182,21 @@ void ITR :: print_CutTable()
         cout<<endl;
     }
 }
+
+void ITR :: print_VarInfo(int i)
+{
+    info[i].printVarInfo();
+}
+
+void ITR :: print_VarInfo()
+{
+    for(int i=0; i<var_Size; ++i)
+    {
+        info[i].printVarInfo();
+        cout<<endl;
+    }
+}
+
 
 /// Load
 void ITR :: load_Range()
@@ -227,9 +252,7 @@ void ITR :: load_table_X(vector<vector<int>> x)
             {
                 if(var_Type[i] == 2)
                 {
-//                    if(info[i].nomContains(x[i][j],k)){
-                        table_X[i][k][j] = info[i].nomContains(x[i][j],k);
-//                    }
+                    table_X[i][k][j] = info[i].nomContains(x[i][j],k);
                 }
                 else
                 {
@@ -252,7 +275,6 @@ void ITR :: cleanAll()
     delete var_A;
     delete var_Y;
 
-
     for(int i=0; i<var_Size; ++i)
     {
         for(int j=0; j<cut_Size[i]; ++j)
@@ -264,7 +286,7 @@ void ITR :: cleanAll()
     }
     delete table_X;
     delete [] cut_Size;
-
+    delete [] info;
 }
 
 
@@ -354,73 +376,59 @@ void ITR :: threeDepthPrint()
 
 
 
-//
-////vector<Result *> ITR :: threeDepth()
-////{
-////    vector<Result *> solutions;
-////    solutions.reserve(20000000);
-////    double v[16];
-////
-////    bool** index_X1;
-////    bool** index_X2;
-////    bool** index_X3;
-////    bool*  index_X1_c;
-////    bool*  index_X2_c;
-////    bool*  index_X3_c;
-////
-////    int* row_A;
-////    double* row_Y;
-////
-////    for(int i=0; i<var_Size; ++i)   // loop1
-////    {
-////        index_X1 = table_X[i];
-////        for(int j=i+1; j<var_Size; ++j)    // loop2
-////        {
-////            index_X2 = table_X[j];
-////            for(int k=j+1; k<var_Size; ++k)    // loop3
-////            {
-////                index_X3 = table_X[k];
-////
-////                for(auto xi :
-////                        {
-////                            0,1,2,3,4,5,6,7,8,9
-////                        })            // loop4
-////                {
-////                    index_X1_c = index_X1[xi];
-////                    for(auto xj :
-////                            {
-////                                0,1,2,3,4,5,6,7,8,9
-//                            })        // loop5
-//                    {
-//                        index_X2_c = index_X2[xj];
-//                        for(auto xk :
-//                                {
-//                                    0,1,2,3,4,5,6,7,8,9
-//                                })    // loop6
-//                        {
-//                            index_X3_c = index_X3[xk];
-//
-//                            std::fill_n(v,16,0.0);
-//                            for(int p=0; p<sample_Size; ++p)
-//                            {
-//                                row_Y = var_Y[p];
-//                                row_A = var_A[p];
-//                                v[index_X1_c[p]*8+index_X2_c[p]*4+index_X3_c[p]*2 + *row_A] =  *row_Y;
-//                            }
-//
-//                            solutions.push_back(new Result(T0+v[0]-v[1],i,xi,0,j,xj,0,k,xk,0));
-//                            solutions.push_back(new Result(T0+v[2]-v[3],i,xi,0,j,xj,0,k,xk,1));
-//                            solutions.push_back(new Result(T0+v[4]-v[5],i,xi,0,j,xj,1,k,xk,0));
-//                            solutions.push_back(new Result(T0+v[6]-v[7],i,xi,0,j,xj,1,k,xk,1));
-//                            solutions.push_back(new Result(T0+v[8]-v[9],i,xi,1,j,xj,0,k,xk,0));
-//                            solutions.push_back(new Result(T0+v[10]-v[11],i,xi,1,j,xj,0,k,xk,1));
-//                            solutions.push_back(new Result(T0+v[12]-v[13],i,xi,1,j,xj,1,k,xk,0));
-//                            solutions.push_back(new Result(T0+v[14]-v[15],i,xi,1,j,xj,1,k,xk,1));
-//                        } // end loop 6
-//                    } // end loop 5
-//                } // end loop 4
-//            } // end loop 3
-//        } // end loop 2
-//    } // end loop 1
-//    return solutions;
-//}
+
+vector<Result *> ITR :: threeDepth()
+{
+    vector<Result *> solutions;
+    solutions.reserve(20000000);
+    double v[16];
+
+    bool*  x1c;
+    bool*  x2c;
+    bool*  x3c;
+
+    int* row_A;
+    double* row_Y;
+
+    for(int i=0; i<var_Size; ++i)   // loop1
+    {
+
+        for(int j=i+1; j<var_Size; ++j)    // loop2
+        {
+
+            for(int k=j+1; k<var_Size; ++k)    // loop3
+            {
+                for(int xi=0; xi<cut_Size[i]; ++xi)            // loop4
+                {
+                    x1c = table_X[i][xi];
+                    for(int xj=0; xj<cut_Size[j]; ++xj)        // loop5
+                    {
+                        x2c = table_X[j][xj];
+                        for(int xk=0; xk<cut_Size[k]; ++xk)    // loop6
+                        {
+                            x3c = table_X[k][xk];
+
+                            std::fill_n(v,16,0.0);
+                            for(int p=0; p<sample_Size; ++p)
+                            {
+                                row_Y = var_Y[p];
+                                row_A = var_A[p];
+                                v[x1c[p]*8+x2c[p]*4+x3c[p]*2 + *row_A] =  *row_Y;
+                            }
+
+                            solutions.push_back(new Result(T0+v[0]-v[1],i,xi,0,j,xj,0,k,xk,0));
+                            solutions.push_back(new Result(T0+v[2]-v[3],i,xi,0,j,xj,0,k,xk,1));
+                            solutions.push_back(new Result(T0+v[4]-v[5],i,xi,0,j,xj,1,k,xk,0));
+                            solutions.push_back(new Result(T0+v[6]-v[7],i,xi,0,j,xj,1,k,xk,1));
+                            solutions.push_back(new Result(T0+v[8]-v[9],i,xi,1,j,xj,0,k,xk,0));
+                            solutions.push_back(new Result(T0+v[10]-v[11],i,xi,1,j,xj,0,k,xk,1));
+                            solutions.push_back(new Result(T0+v[12]-v[13],i,xi,1,j,xj,1,k,xk,0));
+                            solutions.push_back(new Result(T0+v[14]-v[15],i,xi,1,j,xj,1,k,xk,1));
+                        } // end loop 6
+                    } // end loop 5
+                } // end loop 4
+            } // end loop 3
+        } // end loop 2
+    } // end loop 1
+    return solutions;
+}
