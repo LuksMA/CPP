@@ -250,14 +250,7 @@ void ITR :: load_table_X(vector<vector<int>> x)
         {
             for(int k=0; k<cut_Size[i]; ++k)
             {
-                if(var_Type[i] == 2)
-                {
-                    table_X[i][k][j] = info[i].nomContains(x[i][j],k);
-                }
-                else
-                {
-                    table_X[i][k][j] = x[i][j] < info[i].getRange(k);
-                }
+                table_X[i][k][j] = (var_Type[i] == 2)?info[i].nomContains(x[i][j],k):x[i][j] < info[i].getRange(k);
             }
         }
     }
@@ -280,7 +273,6 @@ void ITR :: cleanAll()
         for(int j=0; j<cut_Size[i]; ++j)
         {
             delete [] table_X[i][j];
-
         }
         delete [] table_X[i];
     }
