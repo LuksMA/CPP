@@ -63,7 +63,6 @@ private:
     void load_Action(vector<vector<int>> a);
     void load_Y(vector<vector<double>> y);
     void cleanAll();
-
 };
 
 #endif // ITR_H

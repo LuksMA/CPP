@@ -12,7 +12,7 @@ void DataInfo::load_DataInfo(int no, int type, vector<int> &dataSetColumn)
     }
     else if(type==1)
     {
-        range = uniqueValues(dataSetColumn);
+        range = createOrdRange(uniqueValues(dataSetColumn));
     }
     else if(type==0)
     {
@@ -51,9 +51,11 @@ int DataInfo:: getCutSize()
     return (varType == 2)?nomCuts.size():range.size();
 }
 
-void DataInfo:: printSet(int i){
+void DataInfo:: printSet(int i)
+{
     cout<<"< ";
-    for(set<int>::iterator it = nomCuts[i].begin(); it!=nomCuts[i].end(); ++it){
+    for(auto it = nomCuts[i].cbegin(); it!=nomCuts[i].cend(); ++it)
+    {
         cout<<*it<<' ';
     }
     cout<<">\t";
@@ -65,9 +67,11 @@ void DataInfo:: printVarInfo()
     cout<<"Available cuts:\n";
     if(varType==2)
     {
-        for(size_t i=0; i<nomCuts.size(); ++i){
+        for(size_t i=0; i<nomCuts.size(); ++i)
+        {
             cout<<i<<"::\t< ";
-            for(set<int>::iterator it = nomCuts[i].begin(); it!=nomCuts[i].end(); ++it){
+            for(set<int>::iterator it = nomCuts[i].begin(); it!=nomCuts[i].end(); ++it)
+            {
                 cout<<*it<<' ';
             }
             cout<<'>'<<endl;
@@ -142,3 +146,11 @@ vector<int> DataInfo :: createNomRange(int x)
 }
 
 
+vector<int> DataInfo :: createOrdRange(vector<int> v)
+{
+    for(auto x=begin(v); x!=end(v); ++x)
+    {
+        *x +=1;
+    }
+    return v;
+}

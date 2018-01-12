@@ -33,6 +33,7 @@ class DataInfo
         vector<int> uniqueValues(vector<int> &vectorIn);
         vector<set<int>> createSets(vector<int> vectorIn);
         vector<int> createNomRange(int i);
+        vector<int> createOrdRange(vector<int> x);
 };
 
 #endif // DATAINFO_H

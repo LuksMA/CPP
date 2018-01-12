@@ -23,8 +23,9 @@ int main()
     vector<int> rangesAction = {0,1};
 
     DataGeneration data(varType,rangesY,rangesAction,rangesCont,rangesOrd,rangesNom);
-    data.creatSamples(30);
+    data.creatSamples(3000);
     ITR ITR_CS(data);
+//    ITR_CS.print_VarInfo();
 //    ITR_CS.print_CutTable();
 
     ITR_CS.threeDepthPrint();

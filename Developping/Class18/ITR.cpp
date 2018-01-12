@@ -20,8 +20,7 @@ ITR::ITR(DataGeneration &data)
     load_Action(data.getActions());
     load_Y(data.getY());
 
-
-
+    init_TableX();
     load_table_X(data.getDataSet());
 }
 
@@ -167,7 +166,6 @@ void ITR :: print_CutTable()
             <<"\tCut Size: "<<cut_Size[i]
             <<endl;
         cout<<"\t ";
-
 
         for(int xi=0; xi<sample_Size; ++xi)
         {
