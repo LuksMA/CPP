@@ -9,38 +9,19 @@ ITR::ITR(DataGeneration &data)
     y_Size = data.getYSize();
     T0 = data.getSumT0();
 
-    var_X = new int*[sample_Size] {};
-    var_A = new int*[sample_Size] {};
-    var_Y = new double*[sample_Size];
-    table_X = new bool**[var_Size] {};
-    cut_Size = new int[var_Size] {};
+    init();
 
-    info = new DataInfo[var_Size];
     for(int i=0; i<var_Size; ++i)
     {
         info[i].load_DataInfo(i,var_Type[i],data.getDataSet()[i]);
     }
     load_CutSize();
-
-    for(int i=0; i<sample_Size; ++i)
-    {
-        var_X[i] = new int[var_Size] {};
-        var_A[i] = new int[action_Size] {};
-        var_Y[i] = new double[y_Size] {};
-    }
     load_X(data.getDataSet());
     load_Action(data.getActions());
     load_Y(data.getY());
 
 
-    for(int i=0; i<var_Size; ++i)
-    {
-        table_X[i] = new bool*[cut_Size[i]] {};
-        for(int j=0; j<cut_Size[i]; ++j)
-        {
-            table_X[i][j] = new bool[sample_Size] {};
-        }
-    }
+
     load_table_X(data.getDataSet());
 }
 
@@ -50,9 +31,35 @@ ITR::~ITR()
     cleanAll();
 }
 
-void ITR::init(){
+void ITR::init()
+{
+    var_X = new int*[sample_Size] {};
+    var_A = new int*[sample_Size] {};
+    var_Y = new double*[sample_Size];
+    table_X = new bool**[var_Size] {};
+    cut_Size = new int[var_Size] {};
+    info = new DataInfo[var_Size];
 
+    for(int i=0; i<sample_Size; ++i)
+    {
+        var_X[i] = new int[var_Size] {};
+        var_A[i] = new int[action_Size] {};
+        var_Y[i] = new double[y_Size] {};
+    }
 }
+
+void ITR::init_TableX()
+{
+    for(int i=0; i<var_Size; ++i)
+    {
+        table_X[i] = new bool*[cut_Size[i]] {};
+        for(int j=0; j<cut_Size[i]; ++j)
+        {
+            table_X[i][j] = new bool[sample_Size] {};
+        }
+    }
+}
+
 
 
 /// Get
@@ -249,6 +256,7 @@ void ITR :: load_Y(vector<vector<double>> y)
 
 void ITR :: load_table_X(vector<vector<int>> x)
 {
+    init_TableX();
     for(int i=0; i<var_Size; ++i)
     {
         for(int j=0; j<sample_Size; ++j)
@@ -289,13 +297,12 @@ void ITR :: cleanAll()
 
 void ITR :: threeDepthPrint()
 {
-    double v[16];
+    double v[16];   // 0000 to 1111
     double sum[8];
 
     bool*  x1c;
     bool*  x2c;
     bool*  x3c;
-
     int* row_A;
     double* row_Y;
 
@@ -321,7 +328,6 @@ void ITR :: threeDepthPrint()
                     x1c = table_X[i][xi];
                     for(int xj=0; xj<cut_Size[j]; ++xj)        // loop5
                     {
-
                         x2c = table_X[j][xj];
                         for(int xk=0; xk<cut_Size[k]; ++xk) // loop6
                         {
@@ -332,17 +338,17 @@ void ITR :: threeDepthPrint()
                             {
                                 row_Y = var_Y[p];
                                 row_A = var_A[p];
-                                v[x1c[p]*8+x2c[p]*4+x3c[p]*2 + *row_A] =  *row_Y;
+                                v[x1c[p]*8+x2c[p]*4+x3c[p]*2 + *row_A] +=  *row_Y;
                             }
 
-                            sum[0] = v[0]-v[1];
-                            sum[1] = v[2]-v[3];
-                            sum[2] = v[4]-v[5];
-                            sum[3] = v[6]-v[7];
-                            sum[4] = v[8]-v[9];
-                            sum[5] = v[10]-v[11];
-                            sum[6] = v[12]-v[13];
-                            sum[7] = v[14]-v[15];
+                            sum[0] = v[1]-v[0];   // 000 (0001-0000)
+                            sum[1] = v[3]-v[2];   // 001 (0011-0010)
+                            sum[2] = v[5]-v[4];   // 010 (0101-0100)
+                            sum[3] = v[7]-v[6];   // 011 (0111-0110)
+                            sum[4] = v[9]-v[8];   // 100 (1001-1000)
+                            sum[5] = v[11]-v[10]; // 101 (1011-1010)
+                            sum[6] = v[13]-v[12]; // 110 (1101-1100)
+                            sum[7] = v[15]-v[14]; // 111 (1111-1110)
 
                             const auto ptr = max_element(sum,sum+8);
                             double temp = *ptr + T0;
@@ -383,16 +389,13 @@ vector<Result *> ITR :: threeDepth()
     bool*  x1c;
     bool*  x2c;
     bool*  x3c;
-
     int* row_A;
     double* row_Y;
 
     for(int i=0; i<var_Size; ++i)   // loop1
     {
-
         for(int j=i+1; j<var_Size; ++j)    // loop2
         {
-
             for(int k=j+1; k<var_Size; ++k)    // loop3
             {
                 for(int xi=0; xi<cut_Size[i]; ++xi)            // loop4
@@ -410,17 +413,16 @@ vector<Result *> ITR :: threeDepth()
                             {
                                 row_Y = var_Y[p];
                                 row_A = var_A[p];
-                                v[x1c[p]*8+x2c[p]*4+x3c[p]*2 + *row_A] =  *row_Y;
+                                v[x1c[p]*8+x2c[p]*4+x3c[p]*2 + *row_A] +=  *row_Y;
                             }
-
-                            solutions.push_back(new Result(T0+v[0]-v[1],i,xi,0,j,xj,0,k,xk,0));
-                            solutions.push_back(new Result(T0+v[2]-v[3],i,xi,0,j,xj,0,k,xk,1));
-                            solutions.push_back(new Result(T0+v[4]-v[5],i,xi,0,j,xj,1,k,xk,0));
-                            solutions.push_back(new Result(T0+v[6]-v[7],i,xi,0,j,xj,1,k,xk,1));
-                            solutions.push_back(new Result(T0+v[8]-v[9],i,xi,1,j,xj,0,k,xk,0));
-                            solutions.push_back(new Result(T0+v[10]-v[11],i,xi,1,j,xj,0,k,xk,1));
-                            solutions.push_back(new Result(T0+v[12]-v[13],i,xi,1,j,xj,1,k,xk,0));
-                            solutions.push_back(new Result(T0+v[14]-v[15],i,xi,1,j,xj,1,k,xk,1));
+                            solutions.push_back(new Result(T0+v[1]-v[0],i,xi,0,j,xj,0,k,xk,0));   // 000
+                            solutions.push_back(new Result(T0+v[3]-v[2],i,xi,0,j,xj,0,k,xk,1));   // 001
+                            solutions.push_back(new Result(T0+v[5]-v[4],i,xi,0,j,xj,1,k,xk,0));   // 010
+                            solutions.push_back(new Result(T0+v[7]-v[6],i,xi,0,j,xj,1,k,xk,1));   // 011
+                            solutions.push_back(new Result(T0+v[9]-v[8],i,xi,1,j,xj,0,k,xk,0));   // 100
+                            solutions.push_back(new Result(T0+v[11]-v[10],i,xi,1,j,xj,0,k,xk,1)); // 101
+                            solutions.push_back(new Result(T0+v[13]-v[12],i,xi,1,j,xj,1,k,xk,0)); // 110
+                            solutions.push_back(new Result(T0+v[15]-v[14],i,xi,1,j,xj,1,k,xk,1)); // 111
                         } // end loop 6
                     } // end loop 5
                 } // end loop 4
@@ -428,4 +430,4 @@ vector<Result *> ITR :: threeDepth()
         } // end loop 2
     } // end loop 1
     return solutions;
-}
+} // end threeDepth()

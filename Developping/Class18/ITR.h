@@ -56,6 +56,7 @@ public:
 
 private:
     void init();
+    void init_TableX();
     void load_CutSize();
     void load_table_X(vector<vector<int>> x);
     void load_X(vector<vector<int>> x);
