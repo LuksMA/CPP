@@ -40,7 +40,24 @@ int main()
 }
 
 
-
+//1 C I
+//1 C II
+//1 C III
+//1 G I
+//1 G II
+//1 G III
+//1 A I
+//1 A II
+//1 A III
+//2 C I
+//2 C II
+//2 C III
+//2 G I
+//2 G II
+//2 G III
+//2 A I
+//2 A II
+//2 A III
 
 
 
