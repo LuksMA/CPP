@@ -312,73 +312,68 @@ void ITR :: DepthPrint()
 
     double* v = new double[v_size] {};
     double* sum = new double[sum_size] {};
-    int* var_No = new int[depth]{};
-    int* cut_No = new int[depth]{};
-//    bool** x = new bool*[depth]{};
-    bool** x = new bool*[3];
-    int* comb = new int[depth]{};
+    int* cut = new int[depth] {};
+    int* cut_No = new int[depth] {};
+    bool** f = new bool*[depth] {};
     int* row_A;
     double* row_Y;
-//    for(int i=0; i<depth; ++i){
-//        x[i] = new bool[sample_Size];
-//    }
+    double bestLocal;
 
-
-    double bestLocal = 0;
-    int bestIndexLocal = 0;
-    int max_comb;
-    int temp;
-    int index;
-    int comb_temp;
+    int max_comb, temp, index;   // index for cut number
+    int cuti, cutj, cutk;
+    double bestIndexLocal, temp_res;
 
     for(auto const &vec : lookup)   // loop over variable combinations
     {
+        max_comb = 1;
         for(int c=0; c<depth; ++c)
         {
-            comb[c] = cut_Size[vec[c]];
-            var_No[c] = vec[c];
+            cut[c] = cut_Size[vec[c]];
+            max_comb *= cut[c];
         }
+        bestLocal = 0.0;
+        bestIndexLocal = 0;
+        cuti = 0, cutj = 0, cutk = 0;
 
-        max_comb = 1;
-        for(int m=0; m<depth; ++m)   // maximum counting
-        {
-            max_comb *= comb[m];
-        }
-
-        for(int i=0; i<max_comb; ++i)  // Given variables, loop cuts combinations
+        for(int i=0; i<max_comb; ++i)   // Given variables, loop cuts combinations
         {
             temp = i;
             for(int j=0; j<depth; ++j)
             {
-                index = temp % comb[j];
-                temp /= comb[j];
-                x[j] = table_X[var_No[j]][index];
+                index = temp % cut[j];
+                temp /= cut[j];
                 cut_No[j] = index;
+                f[j] = table_X[vec[j]][index];
             }
+
             std::fill_n(v,v_size,0.0);
+            std::fill_n(sum,sum_size,0.0);
 
             for(int p=0; p<sample_Size; ++p)
             {
-                row_Y = var_Y[p];
-                row_A = var_A[p];
-                v[x[0][p]*8+x[1][p]*4+x[2][p]*2 + *row_A] +=  *row_Y;
+                v[f[0][p]*8+f[1][p]*4+f[2][p]*2 + *var_A[p]] +=  *var_Y[p];
             }
 
-            for(int k=0; k<sum_size; ++k){
+            for(int k=0; k<sum_size; ++k)
+            {
                 sum[k] = v[2*k+1] - v[2*k];
             }
 
             const auto ptr = max_element(sum,sum+sum_size);
             double temp_res = *ptr + T0;
-
-            bestLocal = temp_res;
-            bestIndexLocal = distance(sum, ptr);
-
+            if(temp_res > bestLocal)
+            {
+                bestLocal = temp_res;
+                bestIndexLocal = distance(sum, ptr);
+                cuti = cut_No[0];
+                cutj = cut_No[1];
+                cutk = cut_No[2];
+            }
         } // end cut loop
         cout<<bestLocal*2/sample_Size<<" Index: "
-            <<"["<<var_No[0]<<" "<<cut_No[0]<<" "
-            <<"] ["<<var_No[1]<<" "<<cut_No[1]<<" "
-            <<"] ["<<var_No[2]<<" "<<cut_No[2]<<" "
+            <<"["<<vec[0]<<" "<<cuti<<" "
+            <<"] ["<<vec[1]<<" "<<cutj<<" "
+            <<"] ["<<vec[2]<<" "<<cutk<<" "
             <<"]"<<bestIndexLocal<<endl;
     } // end lookup loop
 
@@ -386,7 +381,9 @@ void ITR :: DepthPrint()
 
     delete [] v;
     delete [] sum;
-    delete [] comb;
+    delete [] cut;
+    delete [] cut_No;
+    delete [] f;
 //    for(int i=0; i<depth; ++i){
 //        delete [] x[i];
 //    }
