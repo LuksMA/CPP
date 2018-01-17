@@ -314,26 +314,31 @@ void ITR :: DepthPrint()
     double* sum = new double[sum_size] {};
     int* cut = new int[depth] {};
     int* cut_No = new int[depth] {};
+    int* cut_best = new int[depth] {};
     bool** f = new bool*[depth] {};
-    int* row_A;
-    double* row_Y;
-    double bestLocal;
+    int* power = new int[depth]{};
 
     int max_comb, temp, index;   // index for cut number
-    int cuti, cutj, cutk;
-    double bestIndexLocal, temp_res;
+    int vt;
+    double bestLocal, bestIndexLocal, temp_res;
+
+    for(int i=0; i<depth; ++i){
+        power[i] = pow(2,depth-i);
+    }
 
     for(auto const &vec : lookup)   // loop over variable combinations
     {
+//        std::fill_n(cut,depth,0);
         max_comb = 1;
-        for(int c=0; c<depth; ++c)
+        for(int i=0; i<depth; ++i)
         {
-            cut[c] = cut_Size[vec[c]];
-            max_comb *= cut[c];
+            cut[i] = cut_Size[vec[i]];
+            max_comb *= cut[i];
         }
         bestLocal = 0.0;
-        bestIndexLocal = 0;
-        cuti = 0, cutj = 0, cutk = 0;
+        bestIndexLocal = 0.0;
+        temp_res = 0.0;
+//        std::fill_n(cut_best,depth,0);
 
         for(int i=0; i<max_comb; ++i)   // Given variables, loop cuts combinations
         {
@@ -351,7 +356,15 @@ void ITR :: DepthPrint()
 
             for(int p=0; p<sample_Size; ++p)
             {
-                v[f[0][p]*8+f[1][p]*4+f[2][p]*2 + *var_A[p]] +=  *var_Y[p];
+//                vt = *var_A[p];
+//                for(int r=0; r<depth; ++r){
+//                    vt += power[r]*f[r][p];
+//                }
+//                v[vt] +=  *var_Y[p];
+
+
+//                v[*var_A[p]+power[0]*f[0][p]+power[1]*f[1][p]+power[2]*f[2][p]] +=  *var_Y[p]; // 70s
+//                v[*var_A[p]+8*f[0][p]+4*f[1][p]+2*f[2][p]] +=  *var_Y[p]; // 60s
             }
 
             for(int k=0; k<sum_size; ++k)
@@ -360,34 +373,32 @@ void ITR :: DepthPrint()
             }
 
             const auto ptr = max_element(sum,sum+sum_size);
-            double temp_res = *ptr + T0;
+            temp_res = *ptr + T0;
             if(temp_res > bestLocal)
             {
                 bestLocal = temp_res;
                 bestIndexLocal = distance(sum, ptr);
-                cuti = cut_No[0];
-                cutj = cut_No[1];
-                cutk = cut_No[2];
+                for(int q=0; q<depth;++q){
+                    cut_best[q] = cut_No[q];
+                }
+
             }
         } // end cut loop
-        cout<<bestLocal*2/sample_Size<<" Index: "
-            <<"["<<vec[0]<<" "<<cuti<<" "
-            <<"] ["<<vec[1]<<" "<<cutj<<" "
-            <<"] ["<<vec[2]<<" "<<cutk<<" "
-            <<"]"<<bestIndexLocal<<endl;
+        cout<<bestLocal*2/sample_Size<<" Index: ";
+        for(int i=0;i<depth;++i){
+            cout<<" ["<<vec[i]<<" "<<cut_best[i]<<"]";
+        }
+        cout<<bestIndexLocal<<endl;
     } // end lookup loop
-
 
 
     delete [] v;
     delete [] sum;
     delete [] cut;
     delete [] cut_No;
+    delete [] cut_best;
     delete [] f;
-//    for(int i=0; i<depth; ++i){
-//        delete [] x[i];
-//    }
-//    delete [] x;
+    delete [] power;
 }
 
 void ITR :: threeDepthPrint()
