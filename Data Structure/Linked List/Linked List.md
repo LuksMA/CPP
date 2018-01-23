@@ -8,3 +8,7 @@ Drawbacks:
 
 https://www.geeksforgeeks.org/data-structures/linked-list/       
 https://www.codementor.io/codementorteam/a-comprehensive-guide-to-implementation-of-singly-linked-list-using-c_plus_plus-ondlm5azr
+
+* Singly Linked List
+* Circular Linked List
+* Doubly Linked List
