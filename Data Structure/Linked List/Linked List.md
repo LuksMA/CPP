@@ -5,6 +5,7 @@ Advantages over arrays
 Drawbacks:
 1) Random access is not allowed. We have to access elements sequentially starting from the first node. So we cannot do binary search with linked lists.
 2) Extra memory space for a pointer is required with each element of the list.
+3) Arrays have better cache locality that can make a pretty big difference in performance.
 
 https://www.geeksforgeeks.org/data-structures/linked-list/       
 https://www.codementor.io/codementorteam/a-comprehensive-guide-to-implementation-of-singly-linked-list-using-c_plus_plus-ondlm5azr
