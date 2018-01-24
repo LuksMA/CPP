@@ -4,14 +4,14 @@
 #include "Item.h"
 #include "Bottle.h"
 
-class ColdDrink
+class ColdDrink: public Item
 {
     public:
         ColdDrink();
         ~ColdDrink();
 
         Packing* packing();
-        float price();
+        virtual float price()=0;
 
 };
 

@@ -2,6 +2,7 @@
 #define CHICKENBURGER_H
 
 #include "Burger.h"
+
 class ChickenBurger: public Burger
 {
     public:

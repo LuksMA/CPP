@@ -2,6 +2,7 @@
 #define COKE_H
 
 #include "ColdDrink.h"
+
 class Coke : public ColdDrink
 {
     public:

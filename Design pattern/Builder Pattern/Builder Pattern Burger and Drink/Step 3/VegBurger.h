@@ -11,7 +11,6 @@ class VegBurger: public Burger
 
         float price();
         string name();
-
 };
 
 #endif // VEGBURGER_H

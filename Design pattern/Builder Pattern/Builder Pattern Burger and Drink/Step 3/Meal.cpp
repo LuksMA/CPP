@@ -26,5 +26,6 @@ void Meal::showItems(){
         cout<<"Item : "<<item->name();
         cout<<", Packing : "<<item->packing()->pack();
         cout<<", Price : "<<item->price();
+        cout<<endl;
     }
 }

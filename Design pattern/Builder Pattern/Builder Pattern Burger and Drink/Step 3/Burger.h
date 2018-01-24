@@ -4,14 +4,14 @@
 #include "Item.h"
 #include "Wrapper.h"
 
-class Burger
+class Burger: public Item
 {
     public:
         Burger();
         ~Burger();
 
         Packing* packing();
-        float price();
+        virtual float price()=0;
 };
 
 #endif // BURGER_H
