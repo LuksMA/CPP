@@ -9,6 +9,4 @@ Packing::~Packing()
 {
     //dtor
 }
-//string Packing::pack(){
-//
-//}
+
