@@ -6,3 +6,7 @@ http://www.sourcetricks.com/2013/04/builder-pattern.html#.Wmi2P66nGpo
 3. Create abstract classes "MealBuilder" implementing the "Meal.h" interface providing default functionalities.   
 4. Create concrete classes "MultiCuisineCook" implementing the "MealBuilder.h" interface. Makes sure the right sequence of food is prepared and served.
 5. Create concrete classes extending "MealBuilder", such as "IndianMealBuilder", "ChineeseMealBuilder" and "MexicanMealBuilder".
+
+
+"Meal": set meal and serve meal   
+"MealBuilder": buildStarter(), buildMainCourse(), buildDessert()
