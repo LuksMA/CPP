@@ -15,7 +15,7 @@ Builder Pattern
 **Disadvantages**:
 1. Requires creating a separate ConcreteBuilder for each different type of Product.
 2. Requires the builder classes to be mutable.
-3. Data members of class aren't guaranteed to be initialized.Provides control over steps of construction process.
+3. Data members of class aren't guaranteed to be initialized. Provides control over steps of construction process.
 4. Dependency injection may be less supported.
 
 #### Builder Pattern is uaually comprised of 4 parts:
