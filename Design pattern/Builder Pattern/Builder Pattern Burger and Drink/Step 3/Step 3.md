@@ -13,6 +13,6 @@ based on https://www.tutorialspoint.com/design_pattern/builder_pattern.htm
 **Item** 
 ==> Burger ==> VegBurger & ChickenBurger        
 ==> ColdDrink ==> Coke & Pepsi   
-Create **Meal** objects by **MealBuilder**:
+Create **Meal** objects by **MealBuilder**:     
 VegMeal(VegBurger + Coke), NonVegMeal(ChickenBurger + Pepsi)
 
