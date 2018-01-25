@@ -7,3 +7,8 @@
 5. Create concrete classes **MealBuilder**, the actual builder class responsible to create Meal objects.
 
 based on https://www.tutorialspoint.com/design_pattern/builder_pattern.htm
+
+
+**Item**: name, packing, price
+**Item** ==> Burger ==> VegBurger & ChickenBurger
+
