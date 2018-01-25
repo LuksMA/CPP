@@ -8,5 +8,9 @@ http://www.sourcetricks.com/2013/04/builder-pattern.html#.Wmi2P66nGpo
 5. Create concrete classes extending "MealBuilder", such as "IndianMealBuilder", "ChineeseMealBuilder" and "MexicanMealBuilder".
 
 
-"Meal": set meal and serve meal   
-"MealBuilder": buildStarter(), buildMainCourse(), buildDessert()
+* Product: **Meal** (queue, input info, output info)   
+* Builder: **MealBuilder**, include buildStarter(), buildMainCourse(), buildDessert()       
+* Director: **MultiCuisineCook**, control the sequence order (implement **MealBuilder**)   
+* ConcreteBuilder: IndianMealBuilder, ChineeseMealBuilder and MexicanMealBuilder (extend **MealBuilder**)  
+
+
