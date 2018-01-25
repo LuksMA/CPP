@@ -6,4 +6,4 @@
 4. Create concrete classes **meal** having the defined **Item** objects, vector<**Item***>, addItem(), getCost(), showItems()    
 5. Create concrete classes **MealBuilder**, the actual builder class responsible to create Meal objects.
 
-
+based on https://www.tutorialspoint.com/design_pattern/builder_pattern.htm
