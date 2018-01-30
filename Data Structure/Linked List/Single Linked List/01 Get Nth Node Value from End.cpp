@@ -25,21 +25,20 @@ void printNthFromLast(ListNode* head, int n){
     auto slow = head;
     auto fast = head;
     int i=0;
-    while( i<=n && fast){
-        fast = fast->next;
-        ++i;
-    }
-    if(fast == nullptr){
-        cout<<"Exceed range!"<<endl;
-        return;
-    }else{
-        while(fast){
+    while( i <= n){
+        if(fast == nullptr){
+            cout<<-1;
+            return;
+        }else{
+            ++i;
             fast = fast->next;
-            slow = slow->next;
         }
-        cout<<slow->val;
     }
-
+    while(fast){
+        slow = slow->next;
+        fast = fast->next;
+    }
+    cout<<slow->val;
 }
 
 
@@ -60,9 +59,12 @@ int main()
     printList(ls_0);cout<<endl;
     printNthFromLast(ls_0,0);cout<<endl;
     printNthFromLast(ls_0,1);cout<<endl;
+    printNthFromLast(ls_0,2);cout<<endl;
+    printNthFromLast(ls_0,3);cout<<endl;
+    printNthFromLast(ls_0,4);cout<<endl;
+    printNthFromLast(ls_0,5);cout<<endl;
+    printNthFromLast(ls_0,6);cout<<endl;
     printNthFromLast(ls_0,7);cout<<endl;
-
-
 }
 
 //10 15 12 13 20 14
