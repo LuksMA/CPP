@@ -6,5 +6,6 @@ This pattern creates a decorator class which wraps the original class and provid
 
 
 
-https://www.tutorialspoint.com/design_pattern/decorator_pattern.htm
+https://www.tutorialspoint.com/design_pattern/decorator_pattern.htm    
+https://sourcemaking.com/design_patterns/decorator/cpp/1    
 https://sourcemaking.com/design_patterns/decorator/cpp/2
