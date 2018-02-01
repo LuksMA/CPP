@@ -3,7 +3,7 @@ This type of design pattern comes under structural pattern as this pattern acts 
 
 This pattern creates a decorator class which wraps the original class and provides additional functionality keeping class methods signature intact
 
-
+Decorator pattern is one of the **structural patterns**.
 
 
 https://www.tutorialspoint.com/design_pattern/decorator_pattern.htm    
