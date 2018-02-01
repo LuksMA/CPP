@@ -55,3 +55,6 @@ Encapsulates an algorithm inside a class
 Defer the exact steps of an algorithm to a subclass
 * Visitor
 Defines a new operation to a class without change
+
+
+https://sourcemaking.com/design_patterns/behavioral_patterns
