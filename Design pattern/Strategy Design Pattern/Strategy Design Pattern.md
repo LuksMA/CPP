@@ -13,5 +13,9 @@ A Strategy defines a set of algorithms that can be used interchangeably. Modes o
 * Strategy objects often make good Flyweights.
 
 
-https://sourcemaking.com/design_patterns/strategy
-https://sourcemaking.com/design_patterns/strategy/cpp/1
+https://sourcemaking.com/design_patterns/strategy    
+https://sourcemaking.com/design_patterns/strategy/cpp/1    
+https://www.geeksforgeeks.org/strategy-pattern-set-1/   
+https://www.geeksforgeeks.org/strategy-pattern-set-2/   
+https://r3dux.org/2011/07/an-example-implementation-of-the-strategy-design-pattern-in-c/    
+https://www.codeproject.com/Articles/889/Applying-Strategy-Pattern-in-C-Applications    
