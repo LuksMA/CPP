@@ -11,3 +11,7 @@ A Strategy defines a set of algorithms that can be used interchangeably. Modes o
 * State, Strategy, Bridge (and to some degree Adapter) have similar solution structures. They all share elements of the 'handle/body' idiom. They differ in intent - that is, they solve different problems.
 * Strategy has 2 different implementations, the first is similar to State. The difference is in binding times (Strategy is a bind-once pattern, whereas State is more dynamic).
 * Strategy objects often make good Flyweights.
+
+
+https://sourcemaking.com/design_patterns/strategy
+https://sourcemaking.com/design_patterns/strategy/cpp/1
