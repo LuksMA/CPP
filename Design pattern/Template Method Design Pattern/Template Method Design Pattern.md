@@ -6,3 +6,7 @@
 * Template Method uses inheritance to vary part of an algorithm. Strategy uses delegation to vary the entire algorithm.
 * Strategy modifies the logic of individual objects. Template Method modifies the logic of an entire class.
 * Factory Method is a specialization of Template Method
+
+https://sourcemaking.com/design_patterns/template_method
+https://sourcemaking.com/design_patterns/template_method/cpp/1
+https://sourcemaking.com/design_patterns/template_method/cpp/2
