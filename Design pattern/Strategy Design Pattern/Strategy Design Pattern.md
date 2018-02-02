@@ -1,3 +1,5 @@
+In computer programming, the strategy pattern (also known as the policy pattern) is a software design pattern that enables an algorithm's behavior to be selected at runtime.
+
 * Define a family of algorithms, encapsulate each one, and make them interchangeable. Strategy lets the algorithm vary independently from the clients that use it.
 * Capture the abstraction in an interface, bury implementation details in derived classes.
 
@@ -12,6 +14,17 @@ A Strategy defines a set of algorithms that can be used interchangeably. Modes o
 * Strategy has 2 different implementations, the first is similar to State. The difference is in binding times (Strategy is a bind-once pattern, whereas State is more dynamic).
 * Strategy objects often make good Flyweights.
 
+### Advantages
+1. A family of algorithms can be defined as a class hierarchy and can be used interchangeably to alter application behavior without changing its architecture.
+2. By encapsulating the algorithm separately, new algorithms complying with the same interface can be easily introduced.
+3. The application can switch strategies at run-time.
+4. Strategy enables the clients to choose the required algorithm, without using a “switch” statement or a series of “if-else” statements.
+5. Data structures used for implementing the algorithm are completely encapsulated in Strategy classes. Therefore, the implementation of an algorithm can be changed without affecting the Context class.
+
+### Disadvantages:
+1. The application must be aware of all the strategies to select the right one for the right situation.
+2. Context and the Strategy classes normally communicate through the interface specified by the abstract Strategy base class. Strategy base class must expose interface for all the required behaviours, which some concrete Strategy classes might not implement.
+3. In most cases, the application configures the Context with the required Strategy object. Therefore, the application needs to create and maintain two objects in place of one.
 
 https://sourcemaking.com/design_patterns/strategy    
 https://sourcemaking.com/design_patterns/strategy/cpp/1    
