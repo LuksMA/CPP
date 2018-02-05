@@ -32,3 +32,4 @@ https://www.geeksforgeeks.org/strategy-pattern-set-1/
 https://www.geeksforgeeks.org/strategy-pattern-set-2/   
 https://r3dux.org/2011/07/an-example-implementation-of-the-strategy-design-pattern-in-c/    
 https://www.codeproject.com/Articles/889/Applying-Strategy-Pattern-in-C-Applications    
+http://thispointer.com/strategy-design-pattern/   
