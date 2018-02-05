@@ -17,5 +17,19 @@ The State pattern does not specify where the state transitions will be defined. 
 
 A table-driven approach to designing finite state machines does a good job of specifying state transitions, but it is difficult to add actions to accompany the state transitions. The pattern-based approach uses code (instead of data structures) to specify state transitions, but it does a good job of accommodating state transition actions.
 
+### Advantages of State Design Pattern
+
+* With State pattern, the benefits of implementing polymorphic behavior are evident, and it is also easier to add states to support additional behavior.
+* In the State design pattern, an object’s behavior is the result of the function of its state, and the behavior gets changed at runtime depending on the state. This removes the dependency on the if/else or switch/case conditional logic. For example, in the TV remote scenario, we could have also implemented the behavior by simply writing one class and method that will ask for a parameter and perform an action (switch the TV on/off) with an if/else block.
+* The State design pattern also improves Cohesion since state-specific behaviors are aggregated into the ConcreteState classes, which are placed in one location in the code.
+
+### Disadvantages of State Design Pattern
+
+* The State design pattern can be used when we need to change state of object at runtime by inputting in it different subclasses of some State base class. This circumstance is advantage and disadvantage in the same time, because we have a clear separate State classes with some logic and from the other hand the number of classes grows up.
 
 
+
+https://sourcemaking.com/design_patterns/state   
+https://www.tutorialspoint.com/design_pattern/state_pattern.htm   
+https://www.codeproject.com/Articles/509234/The-State-Design-Pattern-vs-State-Machine   
+https://www.geeksforgeeks.org/state-design-pattern/
