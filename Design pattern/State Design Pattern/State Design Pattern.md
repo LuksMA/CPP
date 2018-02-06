@@ -35,3 +35,4 @@ https://www.codeproject.com/Articles/509234/The-State-Design-Pattern-vs-State-Ma
 https://www.geeksforgeeks.org/state-design-pattern/    
 http://thispointer.com/state-design-pattern/     
 http://gameprogrammingpatterns.com/state.html    
+http://www.drdobbs.com/cpp/state-patterns-c/184404132?pgno=1
