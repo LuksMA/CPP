@@ -32,6 +32,6 @@ A table-driven approach to designing finite state machines does a good job of sp
 https://sourcemaking.com/design_patterns/state   
 https://www.tutorialspoint.com/design_pattern/state_pattern.htm   
 https://www.codeproject.com/Articles/509234/The-State-Design-Pattern-vs-State-Machine   
-https://www.geeksforgeeks.org/state-design-pattern/
-http://thispointer.com/state-design-pattern/   
-http://gameprogrammingpatterns.com/state.html  
+https://www.geeksforgeeks.org/state-design-pattern/    
+http://thispointer.com/state-design-pattern/     
+http://gameprogrammingpatterns.com/state.html    
