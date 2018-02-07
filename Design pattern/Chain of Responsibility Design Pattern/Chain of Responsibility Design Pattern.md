@@ -15,3 +15,5 @@ This pattern is recommended when multiple objects can handle a request and the h
 
 
 https://www.geeksforgeeks.org/chain-responsibility-design-pattern/   
+https://sourcemaking.com/design_patterns/chain_of_responsibility/cpp/1    
+https://sourcemaking.com/design_patterns/chain_of_responsibility/cpp/2   
