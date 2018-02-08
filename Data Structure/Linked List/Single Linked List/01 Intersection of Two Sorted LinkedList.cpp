@@ -19,8 +19,8 @@ void printList(ListNode *n){
 }
 
 ListNode* sortedIntersect(ListNode* a, ListNode* b){
-    if(a == nullptr) return b;
-    if(b == nullptr) return a;
+    if(a == nullptr) return nullptr;
+    if(b == nullptr) return nullptr;
     ListNode* dummy = new ListNode(0);
     auto cur = dummy;
     while(a != nullptr && b != nullptr){
