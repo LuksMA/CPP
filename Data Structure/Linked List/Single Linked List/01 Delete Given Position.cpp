@@ -18,21 +18,22 @@ void printList(struct ListNode *n){
 
 
 void delete_key(ListNode** head, int p){
+    ListNode* dummy = new ListNode(0);
+    dummy->next = *head;
+    auto prev = dummy;
+    auto cur = *head;
     int count = 0;
-    ListNode* prev = new ListNode(0);
-    prev->next = *head;
-    auto hold = prev;
-    auto *cur = *head;
     while(cur){
         if(count == p){
             prev->next = cur->next;
+            break;
         }else{
             prev = prev->next;
+            cur = cur ->next;
+            ++count;
         }
-        ++count;
-        cur = cur ->next;
     }
-    *head = hold->next;
+    *head = dummy->next;
 }
 
 
@@ -76,5 +77,3 @@ int main(){
 //3 10
 //After Deletion position of 3:
 //3 10
-
-
