@@ -1,7 +1,6 @@
 // https://www.geeksforgeeks.org/function-to-check-if-a-singly-linked-list-is-palindrome/
 
 #include <iostream>
-#include <stack>
 
 using namespace std;
 
