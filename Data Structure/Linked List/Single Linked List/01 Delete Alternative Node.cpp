@@ -1,7 +1,7 @@
 //https://www.geeksforgeeks.org/intersection-of-two-sorted-linked-lists/
 
 #include <iostream>
-
+#include<stdlib.h>
 using namespace std;
 
 struct ListNode{
@@ -19,16 +19,11 @@ void printList(ListNode *n){
 }
 
 void deleteAlt(ListNode *head){
-    int count = 0;
     auto prev = head;
-    auto cur = head;
-    while(cur!= nullptr){
-        ++count;
-        if(count%2 == 0){
-            prev->next = cur->next;
-        }else{
-            prev = cur;
-        }
+    auto cur = head->next;
+    while(cur != nullptr && prev != nullptr){
+        prev->next = cur->next;
+        prev = cur;
         cur = cur->next;
     }
 }
