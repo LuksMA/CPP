@@ -9,7 +9,7 @@ class ThreeDepthSearch : public ITR
         ThreeDepthSearch(DataGeneration &data, int d):ITR(data,d){};
         virtual ~ThreeDepthSearch(){};
         void searchPrint();
-        vector<Result *> searchOutput();
+        vector<Res *> searchOutput();
 };
 
 #endif // THREEDEPTHSEARCH_H

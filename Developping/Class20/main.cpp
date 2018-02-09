@@ -30,7 +30,8 @@ int main()
 //    ITR_CS->searchPrint();
 //    ITR_CS->searchOutput();
     ITR_CS = new FlexDepthSearch(data,3);
-    ITR_CS->searchPrint();
+//    ITR_CS->searchPrint();
+    ITR_CS->searchOutput();
 }
 
 

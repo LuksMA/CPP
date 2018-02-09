@@ -82,8 +82,8 @@ void ThreeDepthSearch :: searchPrint(){
 } // end searchPrint()
 
 
-vector<Result *> ThreeDepthSearch :: searchOutput(){
-    vector<Result *> solutions;
+vector<Res *> ThreeDepthSearch :: searchOutput(){
+    vector<Res *> solutions;
     solutions.reserve(20000000);
     double v[16];
 
@@ -116,14 +116,14 @@ vector<Result *> ThreeDepthSearch :: searchOutput(){
                                 row_A = var_A[p];
                                 v[x1c[p]*8+x2c[p]*4+x3c[p]*2 + *row_A] +=  *row_Y;
                             }
-                            solutions.push_back(new Result(T0+v[1]-v[0],i,xi,0,j,xj,0,k,xk,0));   // 000
-                            solutions.push_back(new Result(T0+v[3]-v[2],i,xi,0,j,xj,0,k,xk,1));   // 001
-                            solutions.push_back(new Result(T0+v[5]-v[4],i,xi,0,j,xj,1,k,xk,0));   // 010
-                            solutions.push_back(new Result(T0+v[7]-v[6],i,xi,0,j,xj,1,k,xk,1));   // 011
-                            solutions.push_back(new Result(T0+v[9]-v[8],i,xi,1,j,xj,0,k,xk,0));   // 100
-                            solutions.push_back(new Result(T0+v[11]-v[10],i,xi,1,j,xj,0,k,xk,1)); // 101
-                            solutions.push_back(new Result(T0+v[13]-v[12],i,xi,1,j,xj,1,k,xk,0)); // 110
-                            solutions.push_back(new Result(T0+v[15]-v[14],i,xi,1,j,xj,1,k,xk,1)); // 111
+                            solutions.push_back(new Res(T0+v[1]-v[0],{i,j,k},0));   // 000
+                            solutions.push_back(new Res(T0+v[3]-v[2],{i,j,k},1));   // 001
+                            solutions.push_back(new Res(T0+v[5]-v[4],{i,j,k},2));   // 010
+                            solutions.push_back(new Res(T0+v[7]-v[6],{i,j,k},3));   // 011
+                            solutions.push_back(new Res(T0+v[9]-v[8],{i,j,k},4));   // 100
+                            solutions.push_back(new Res(T0+v[11]-v[10],{i,j,k},5)); // 101
+                            solutions.push_back(new Res(T0+v[13]-v[12],{i,j,k},6)); // 110
+                            solutions.push_back(new Res(T0+v[15]-v[14],{i,j,k},7)); // 111
                         } // end loop 6
                     } // end loop 5
                 } // end loop 4

@@ -88,7 +88,14 @@ void FlexDepthSearch :: searchPrint(){
 
 
 
-vector<Result *> FlexDepthSearch :: searchOutput(){
+
+
+
+
+
+vector<Res *> FlexDepthSearch :: searchOutput(){
+    vector<Res *> solutions;
+    solutions.reserve(20000000);
     int v_size = pow(2,depth+1);
     int sum_size = pow(2,depth);
 
@@ -144,24 +151,9 @@ vector<Result *> FlexDepthSearch :: searchOutput(){
 
             for(int k=0; k<sum_size; ++k)
             {
-                sum[k] = v[2*k+1] - v[2*k];
-            }
-
-            const auto ptr = max_element(sum,sum+sum_size);
-            temp_res = *ptr + T0;
-            if(temp_res > bestLocal){
-                bestLocal = temp_res;
-                bestIndexLocal = distance(sum, ptr);
-                for(int q=0; q<depth;++q){
-                    cut_best[q] = cut_No[q];
-                }
+                solutions.push_back(new Res(v[2*k+1] - v[2*k],vec,k));
             }
         } // end cut loop
-        cout<<bestLocal*2/sample_Size<<" Index: ";
-        for(int i=0;i<depth;++i){
-            cout<<" ["<<vec[i]<<" "<<cut_best[i]<<"]";
-        }
-        cout<<bestIndexLocal<<endl;
     } // end lookup loop
 
     delete [] v;
@@ -172,4 +164,5 @@ vector<Result *> FlexDepthSearch :: searchOutput(){
     delete [] f;
     delete [] power;
     delete [] cur;
+    return solutions;
 }

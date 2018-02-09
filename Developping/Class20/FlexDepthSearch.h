@@ -2,6 +2,7 @@
 #define FLEXDEPTHSEARCH_H
 
 #include "ITR.h"
+#include "Res.h"
 
 class FlexDepthSearch : public ITR
 {
@@ -9,7 +10,7 @@ class FlexDepthSearch : public ITR
         FlexDepthSearch(DataGeneration &data, int d):ITR(data,d){};
         virtual ~FlexDepthSearch(){};
         void searchPrint();
-        vector<Result *> searchOutput(){};
+        vector<Res *> searchOutput();
 };
 
 #endif // FLEXDEPTHSEARCH_H

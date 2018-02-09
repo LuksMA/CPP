@@ -2,7 +2,7 @@
 #define ITR_H
 
 #include "DataGeneration.h"
-#include "Result.h"
+#include "Res.h"
 #include "DataInfo.h"
 #include <iostream>
 #include <cmath>
@@ -55,11 +55,8 @@ public:
     void print_VarInfo();
     void print_Combinations();
 
-//    vector<Result *> threeDepth();
-
-    void DepthPrint();
     virtual void searchPrint() = 0;
-    virtual vector<Result *> searchOutput() = 0;
+    virtual vector<Res *> searchOutput() = 0;
 
 private:
     void init();
