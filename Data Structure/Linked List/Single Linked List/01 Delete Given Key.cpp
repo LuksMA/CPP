@@ -18,21 +18,21 @@ void printList(struct ListNode *n){
 
 
 void delete_key(int x, ListNode** head){
-    ListNode *prev = new ListNode(0);
-    prev->next = *head;
-
-    auto hold = prev;
-    auto *cur = *head;
-
-    while(cur){
+    ListNode *dummy = new ListNode(0);
+    dummy->next = *head;
+    auto prev = dummy;
+    auto cur = prev->next;
+    while(cur != nullptr && prev->next != nullptr){
         if(cur->val == x){
             prev->next = cur->next;
+            free(cur);
         }else{
-            prev = prev->next;
+            prev = cur;
         }
-        cur = cur->next;
+        cur = prev->next;
     }
-    *head = hold->next;
+
+    *head = dummy->next;
 }
 
 
@@ -59,13 +59,3 @@ int main(){
     delete_key(20,&ls_0);
     printList(ls_0);cout<<endl;
 }
-
-//Created Linked List:
-//1 2 3 10 20
-//After Deletion head of 1:
-//2 3 10 20
-//After Deletion middle of 10:
-//2 3 20
-//After Deletion end of 20:
-//2 3
-
