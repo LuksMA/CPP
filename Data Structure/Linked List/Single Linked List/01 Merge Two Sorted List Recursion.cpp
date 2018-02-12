@@ -13,7 +13,7 @@ struct ListNode
 
 void printList(ListNode *n)
 {
-    while (n != NULL)
+    while (n != nullptr)
     {
         cout<<n->val<<' ';
         n = n->next;
