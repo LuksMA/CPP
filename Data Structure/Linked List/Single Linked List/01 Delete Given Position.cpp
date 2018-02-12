@@ -1,3 +1,4 @@
+//https://github.com/vectormars/CPP/blob/master/Data%20Structure/Linked%20List/Single%20Linked%20List/01%20Delete%20Given%20Position.cpp
 #include <iostream>
 
 using namespace std;
@@ -21,17 +22,17 @@ void delete_key(ListNode** head, int p){
     ListNode* dummy = new ListNode(0);
     dummy->next = *head;
     auto prev = dummy;
-    auto cur = *head;
-    int count = 0;
-    while(cur){
-        if(count == p){
+    auto cur = prev->next;
+    while(cur != nullptr){
+        if(p == 0){
             prev->next = cur->next;
+            free(cur);
             break;
         }else{
-            prev = prev->next;
-            cur = cur ->next;
-            ++count;
+            prev = cur;
         }
+        cur = prev->next;
+        --p;
     }
     *head = dummy->next;
 }
