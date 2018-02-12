@@ -1,6 +1,5 @@
 //https://www.geeksforgeeks.org/reverse-a-list-in-groups-of-given-size/
 
-//https://www.geeksforgeeks.org/merge-sort-for-linked-list/
 #include <iostream>
 
 using namespace std;
