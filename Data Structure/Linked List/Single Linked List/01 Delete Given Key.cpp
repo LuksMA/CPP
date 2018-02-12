@@ -25,7 +25,7 @@ void delete_key(int x, ListNode** head){
     while(cur != nullptr && prev->next != nullptr){
         if(cur->val == x){
             prev->next = cur->next;
-            free(cur);
+            delete cur;
         }else{
             prev = cur;
         }
@@ -59,3 +59,13 @@ int main(){
     delete_key(20,&ls_0);
     printList(ls_0);cout<<endl;
 }
+
+
+//1 2 3 10 20//Created Linked List:
+
+//After Deletion head of 1:
+//2 3 10 20
+//After Deletion middle of 10:
+//2 3 20
+//After Deletion end of 20:
+//2 3

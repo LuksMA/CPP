@@ -26,7 +26,7 @@ void delete_key(ListNode** head, int p){
     while(cur != nullptr){
         if(p == 0){
             prev->next = cur->next;
-            free(cur);
+            delete cur;
             break;
         }else{
             prev = cur;
