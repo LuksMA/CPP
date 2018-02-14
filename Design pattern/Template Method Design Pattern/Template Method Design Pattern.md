@@ -10,6 +10,15 @@ The Template pattern is used in scenarios where we want to create **extendable**
 * Strategy modifies the logic of individual objects. Template Method modifies the logic of an entire class.
 * Factory Method is a specialization of Template Method
 
+### Real world example
+* Scenario 1: Flexible extendable generalized specialized user interfaces
+  * InitializeComponent: This will create the UI objects needed for the form.
+  * LoadCustomer: This function will load data and bind to the grid.
+  * LoadGrid: This function will define the look and feel of the grid.
+
+
+
+
 https://sourcemaking.com/design_patterns/template_method
 https://sourcemaking.com/design_patterns/template_method/cpp/1
 https://sourcemaking.com/design_patterns/template_method/cpp/2     
