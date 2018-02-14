@@ -15,7 +15,7 @@ The Template pattern is used in scenarios where we want to create **extendable**
   * InitializeComponent: This will create the UI objects needed for the form.
   * LoadCustomer: This function will load data and bind to the grid.
   * LoadGrid: This function will define the look and feel of the grid.
-
+![alt text](https://github.com/vectormars/CPP/blob/master/Design%20pattern/Template%20Method%20Design%20Pattern/S1.JPG)
 
 
 
