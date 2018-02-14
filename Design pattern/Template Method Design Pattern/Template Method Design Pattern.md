@@ -12,4 +12,5 @@ The Template pattern is used in scenarios where we want to create **extendable**
 
 https://sourcemaking.com/design_patterns/template_method
 https://sourcemaking.com/design_patterns/template_method/cpp/1
-https://sourcemaking.com/design_patterns/template_method/cpp/2
+https://sourcemaking.com/design_patterns/template_method/cpp/2     
+https://www.codeproject.com/Articles/307452/common-use-of-Template-Design-pattern-Design-pat
