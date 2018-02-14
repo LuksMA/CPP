@@ -1,5 +1,8 @@
 ![alt text](https://github.com/vectormars/CPP/blob/master/Algorithm/Sort/Sort.JPG)
 
+### Quick Sort
+ ![alt text](https://github.com/vectormars/CPP/blob/master/Algorithm/Sort/QuickSort2.png)
+
 ### Merge Sort
 MergeSort(arr[], l,  r)   
 If r > l   
@@ -13,5 +16,5 @@ If r > l
              Call merge(arr, l, m, r)   
  ![alt text](https://github.com/vectormars/CPP/blob/master/Algorithm/Sort/Merge-Sort-Tutorial.png)
 
-### Quick Sort
- ![alt text](https://github.com/vectormars/CPP/blob/master/Algorithm/Sort/QuickSort2.png)
+### Insertion Sort
+ ![alt text](https://github.com/vectormars/CPP/blob/master/Algorithm/Sort/insertionsort.png)
