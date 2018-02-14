@@ -17,6 +17,16 @@ The Template pattern is used in scenarios where we want to create **extendable**
   * LoadGrid: This function will define the look and feel of the grid.
 ![alt text](https://github.com/vectormars/CPP/blob/master/Design%20pattern/Template%20Method%20Design%20Pattern/S1.JPG)
 
+* Scenario 2: ASP.NET page life cycle        
+![alt text](https://github.com/vectormars/CPP/blob/master/Design%20pattern/Template%20Method%20Design%20Pattern/S2.JPG)
+
+* Scenario 3: Code generators         
+![alt text](https://github.com/vectormars/CPP/blob/master/Design%20pattern/Template%20Method%20Design%20Pattern/S3.JPG)
+
+* Scenario 4: XML parser
+* Scenario 5: Validation in business components
+* Scenario 6: Customizable logging utility         
+![alt text](https://github.com/vectormars/CPP/blob/master/Design%20pattern/Template%20Method%20Design%20Pattern/S6.JPG)
 
 
 https://sourcemaking.com/design_patterns/template_method
