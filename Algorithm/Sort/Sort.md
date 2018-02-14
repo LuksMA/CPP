@@ -12,3 +12,6 @@ If r > l
   4. Merge the two halves sorted in step 2 and 3:   
              Call merge(arr, l, m, r)   
  ![alt text](https://github.com/vectormars/CPP/blob/master/Algorithm/Sort/Merge-Sort-Tutorial.png)
+
+### Quick Sort
+ ![alt text](https://github.com/vectormars/CPP/blob/master/Algorithm/Sort/QuickSort2.png)
