@@ -6,6 +6,10 @@ The object which is being watched is called the **subject**. The objects which a
 Observer pattern uses three actor classes. **Subject**, **Observer** and **Client**. 
 
 
+### Class inheritance vs type inheritance
+* Class inheritance defines an object's implementation in terms of another object's implementation.    
+* Type inheritance describes when an object can be used in place of another.
+
 
 https://sourcemaking.com/design_patterns/observer/cpp/1              
 https://sourcemaking.com/design_patterns/observer/cpp/2     
