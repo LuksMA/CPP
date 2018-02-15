@@ -1,3 +1,4 @@
+![alt text](https://github.com/vectormars/CPP/blob/master/Design%20pattern/Design%20Patterns.jpg)
 ### Creational patterns
 * Abstract Factory    
 Creates an instance of several families of classes
