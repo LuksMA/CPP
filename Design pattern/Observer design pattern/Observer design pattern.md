@@ -28,7 +28,7 @@ Observer pattern uses three actor classes. **Subject**, **Observer** and **Event
 1. When you subscribe to any website.   
 You are on observer in this case who has subscribed to a website (Subject) for getting notified about its post.    
 ![alt text](https://github.com/vectormars/CPP/blob/master/Design%20pattern/Observer%20design%20pattern/image/Observer%20Design%20Pattern.jpg)
-
+![alt text](https://github.com/vectormars/CPP/blob/master/Design%20pattern/Observer%20design%20pattern/image/ObserverDesignPattern.jpg)
 2. Follow feature on Quora.       
 As I can see right now, there are 18 followers of this question. As soon as I click on Submit after writing my answer, Quora (Subject) will send a notification to all 18 followers (observers).
 
