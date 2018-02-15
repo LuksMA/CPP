@@ -4,6 +4,8 @@ The Template pattern is used in scenarios where we want to create **extendable**
 * Define the skeleton of an algorithm in an operation, deferring some steps to client subclasses. Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm's structure.
 * Base class declares algorithm 'placeholders', and derived classes implement the placeholders.
 
+![alt text](https://github.com/vectormars/CPP/blob/master/Design%20pattern/Template%20Method%20Design%20Pattern/template_method.jpg)
+
 ### Rules of thumb
 * Strategy is like Template Method except in its granularity.
 * Template Method uses inheritance to vary part of an algorithm. Strategy uses delegation to vary the entire algorithm.
