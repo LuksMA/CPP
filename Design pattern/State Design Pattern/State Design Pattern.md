@@ -3,6 +3,17 @@
 * An object-oriented state machine
 * wrapper + polymorphic wrappee + collaboration
 
+### Structure
+* Context: 环境类
+* State: 抽象状态类
+* ConcreteState: 具体状态类
+
+### UML
+![alt text](https://github.com/vectormars/CPP/blob/master/Design%20pattern/State%20Design%20Pattern/image/State.jpg)
+
+### Sequence Diagram
+![alt text](https://github.com/vectormars/CPP/blob/master/Design%20pattern/State%20Design%20Pattern/image/seq_State.jpg)
+
 ### Discussion
 The State pattern is a solution to the problem of how to make behavior depend on state.
 
@@ -17,7 +28,7 @@ The State pattern does not specify where the state transitions will be defined. 
 
 A table-driven approach to designing finite state machines does a good job of specifying state transitions, but it is difficult to add actions to accompany the state transitions. The pattern-based approach uses code (instead of data structures) to specify state transitions, but it does a good job of accommodating state transition actions.
 
-![alt text](https://github.com/vectormars/CPP/blob/master/Design%20pattern/State%20Design%20Pattern/state_dp.jpeg)
+
 
 ### Advantages of State Design Pattern
 
@@ -29,7 +40,10 @@ A table-driven approach to designing finite state machines does a good job of sp
 
 * The State design pattern can be used when we need to change state of object at runtime by inputting in it different subclasses of some State base class. This circumstance is advantage and disadvantage in the same time, because we have a clear separate State classes with some logic and from the other hand the number of classes grows up.
 
-
+### Real world example TCOConnection
+TCP连接的状态有多种可能，状态之间的转换有相应的逻辑前提       
+![alt text](https://github.com/vectormars/CPP/blob/master/Design%20pattern/State%20Design%20Pattern/image/State_eg.jpg)
+![alt text](https://github.com/vectormars/CPP/blob/master/Design%20pattern/State%20Design%20Pattern/image/seq_State_eg.jpg)
 
 https://sourcemaking.com/design_patterns/state   
 https://www.tutorialspoint.com/design_pattern/state_pattern.htm   
