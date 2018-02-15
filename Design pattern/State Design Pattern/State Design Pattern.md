@@ -17,6 +17,8 @@ The State pattern does not specify where the state transitions will be defined. 
 
 A table-driven approach to designing finite state machines does a good job of specifying state transitions, but it is difficult to add actions to accompany the state transitions. The pattern-based approach uses code (instead of data structures) to specify state transitions, but it does a good job of accommodating state transition actions.
 
+![alt text](https://github.com/vectormars/CPP/blob/master/Design%20pattern/State%20Design%20Pattern/state_dp.jpeg)
+
 ### Advantages of State Design Pattern
 
 * With State pattern, the benefits of implementing polymorphic behavior are evident, and it is also easier to add states to support additional behavior.
