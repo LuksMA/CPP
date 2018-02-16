@@ -43,7 +43,7 @@ This is a message that destroys an object. It can be shown by an arrow with an x
 A message sent from an unknown recipient, shown by an arrow from an endpoint to a lifeline.     
 ![alt text](https://github.com/vectormars/CPP/blob/master/Design%20pattern/UML%20Sequence/image/found-message.gif)
 * **Lost Message**
-A message sent to an unknown recipient. It's shown by an arrow going from a lifeline to an endpoint, a filled circle or an x
+A message sent to an unknown recipient. It's shown by an arrow going from a lifeline to an endpoint, a filled circle or an x      
 ![alt text](https://github.com/vectormars/CPP/blob/master/Design%20pattern/UML%20Sequence/image/lost-message.gif)
 
 
