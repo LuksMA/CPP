@@ -17,6 +17,12 @@ A fully initialized instance to be copied or cloned
 * Singleton    
 A class of which only a single instance can exist
 
+#### More about factory pattern
+There are three variations of the factory pattern:
+1. **Simple Factory Pattern**. This allows interfaces for creating objects without exposing the object creation logic to the client.
+2. **Factory Method Pattern**. This allows interfaces for creating objects, but allow subclasses to determine which class to instantiate.
+3. **Abstract Factory Pattern**. Unlike the above two patterns, an abstract factory is an interface to create of related objects without specifying/exposing their classes. We can also say that it provides an object of another factory that is responsible for creating required objects.
+
 ### Structural patterns
 结构型模式(Structural Pattern)描述如何将类或者对 象结合在一起形成更大的结构，就像搭积木，可以通过 简单积木的组合形成复杂的、功能更为强大的结构。
 
