@@ -58,4 +58,5 @@ Defer the exact steps of an algorithm to a subclass
 Defines a new operation to a class without change
 
 
-https://sourcemaking.com/design_patterns/behavioral_patterns
+https://sourcemaking.com/design_patterns/behavioral_patterns     
+http://design-patterns.readthedocs.io/zh_CN/latest/index.html
