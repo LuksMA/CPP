@@ -18,9 +18,9 @@ There are three variations of the factory pattern:
 具体产品角色是创建目标，所有创建的对象都充当这个角色的某个具体类的实例。
 
 ### UML
-
+![alt text](https://github.com/vectormars/CPP/blob/master/Design%20pattern/Simple%20Factory%20Pattern/image/SimpleFactory.jpg)
 ### Sequence diagram
-
+![alt text](https://github.com/vectormars/CPP/blob/master/Design%20pattern/Simple%20Factory%20Pattern/image/seq_SimpleFactory.jpg)
 
 https://code.tutsplus.com/tutorials/design-patterns-the-simple-factory-pattern--cms-22345   
 https://www.codeproject.com/Articles/1131770/Factory-Patterns-Simple-Factory-Pattern    
