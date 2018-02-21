@@ -13,5 +13,7 @@
 
 http://design-patterns.readthedocs.io/zh_CN/latest/creational_patterns/factory_method.html    
 https://sourcemaking.com/design_patterns/factory_method     
+https://sourcemaking.com/design_patterns/factory_method/cpp/1   
+https://sourcemaking.com/design_patterns/factory_method/cpp/2   
 https://www.geeksforgeeks.org/design-patterns-set-2-factory-method/    
 https://www.tutorialspoint.com/design_pattern/factory_pattern.htm   
