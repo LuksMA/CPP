@@ -7,8 +7,9 @@
 * ConcreteFactory：具体工厂
 
 ### UML
-
+![alt text](https://github.com/vectormars/CPP/blob/master/Design%20pattern/Factory%20Method%20Pattern/image/FactoryMethod.jpg)
 ### Sequence diagram
+![alt text](https://github.com/vectormars/CPP/blob/master/Design%20pattern/Factory%20Method%20Pattern/image/seq_FactoryMethod.jpg)
 
 http://design-patterns.readthedocs.io/zh_CN/latest/creational_patterns/factory_method.html    
 https://sourcemaking.com/design_patterns/factory_method     
