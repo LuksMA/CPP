@@ -77,7 +77,19 @@ test case. Both names must be valid C++ identifiers, and they should not contain
 individual name. Tests from different test cases can have the same individual
 name.
 
-Reference:   
+### Examples:
+* Sample #1 shows the basic steps of using Google Test to test C++ functions.
+* Sample #2 shows a more complex unit test for a class with multiple member functions.
+* Sample #3 uses a test fixture.
+* Sample #4 is another basic example of using Google Test.
+* Sample #5 teaches how to reuse a test fixture in multiple test cases by deriving sub-fixtures from it.
+* Sample #6 demonstrates type-parameterized tests.
+* Sample #7 teaches the basics of value-parameterized tests.
+* Sample #8 shows using Combine() in value-parameterized tests.
+* Sample #9 shows use of the listener API to modify Google Test's console output and the use of its reflection API to inspect test results.
+* Sample #10 shows use of the listener API to implement a primitive memory leak checker.
+
+### Reference:   
 https://github.com/google/googletest   
 https://www.ibm.com/developerworks/aix/library/au-googletestingframework.html  
 https://github.com/google/googletest/blob/master/googletest/docs/Primer.md   
