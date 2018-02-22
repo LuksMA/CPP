@@ -1,35 +1,5 @@
 #include "pch.h"
-#include "gtest/gtest.h"
 #include "sample1.h"
-
-//TEST(TestCaseName, TestName) {
-//  EXPECT_EQ(1, 1);
-//  EXPECT_TRUE(true);
-//}
-//double square(const double x) {
-//	return x * x;
-//};
-
-
-
-//TEST(SquareTest, PositiveNos) {
-//	EXPECT_DOUBLE_EQ(324.0, square(18.0));
-//	EXPECT_DOUBLE_EQ(645.16, square(25.4));
-//	EXPECT_DOUBLE_EQ(2533.32029041, square(50.3321));
-//}
-
-//TEST(SquareTest, ZeroAndNegativeNos) {
-//	ASSERT_EQ(0.0, square(0.0));
-//	ASSERT_EQ(484.0, square(-22.0));
-//}
-
-
-
-
-//int main(int argc, char **argv) {
-//	::testing::InitGoogleTest(&argc, argv);
-//	return RUN_ALL_TESTS();
-//}
 
 namespace {
 	// Tests Factorial().
