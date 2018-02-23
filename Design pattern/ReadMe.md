@@ -75,6 +75,7 @@ Defer the exact steps of an algorithm to a subclass
 * Visitor    
 Defines a new operation to a class without change
 
-
+Reference:    
 https://sourcemaking.com/design_patterns/behavioral_patterns     
+http://design-patterns.readthedocs.io/zh_CN/latest/index.html
 http://design-patterns.readthedocs.io/zh_CN/latest/index.html
