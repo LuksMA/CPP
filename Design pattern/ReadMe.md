@@ -4,7 +4,7 @@
 
 创建型模式在创建什么(What)，由谁创建(Who)，何时创建(When)等方面都为软件设计者提供了尽可能大的灵活性。创建型模式隐藏了类的实例的创建细节，通过隐藏对象如何被创建和组合在一起达到使整个系统独立的目的。
 
-* Abstract Factory    
+* [Abstract Factory](../Design pattern/Abstract Factory Pattern)     
 Creates an instance of several families of classes
 * Builder    
 Separates object construction from its representation
