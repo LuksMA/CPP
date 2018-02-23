@@ -3,6 +3,7 @@
 * A hierarchy that encapsulates: many possible "platforms", and the construction of a suite of "products".
 * The new operator considered harmful.
 
+### Component
 * AbstractFactory：抽象工厂
 * ConcreteFactory：具体工厂
 * AbstractProduct：抽象产品
