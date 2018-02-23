@@ -78,7 +78,7 @@ individual name. Tests from different test cases can have the same individual
 name.
 
 ### Examples:
-* Sample #1 shows the basic steps of using Google Test to test C++ functions.
+* [Sample #1](../SampleCase1) shows the basic steps of using Google Test to test C++ functions.
 * Sample #2 shows a more complex unit test for a class with multiple member functions.
 * Sample #3 uses a test fixture.
 * Sample #4 is another basic example of using Google Test.
