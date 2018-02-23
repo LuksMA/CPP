@@ -32,7 +32,7 @@ Match interfaces of different classes
 Separates an object's interface from its implementation
 * Composite   
 A tree structure of simple and composite objects
-* Decorator   
+* [Decorator](https://github.com/vectormars/CPP/tree/master/Design%20pattern/Decorator%20Pattern)   
 Add responsibilities to objects dynamically
 * Facade    
 A single class that represents an entire subsystem
@@ -50,27 +50,27 @@ An object representing another object
 
 通过行为型模式，可以更加清晰地划分类与对象的职责，并研究系统在运行时实例对象 之间的交互。在系统运行时，对象并不是孤立的，它们可以通过相互通信与协作完成某些复杂功能，一个对象在运行时也将影响到其他对象的运行.
 
-* Chain of responsibility    
+* [Chain of responsibility](https://github.com/vectormars/CPP/tree/master/Design%20pattern/Chain%20of%20Responsibility%20Design%20Pattern)    
 A way of passing a request between a chain of objects
-* Command    
+* [Command](https://github.com/vectormars/CPP/tree/master/Design%20pattern/Command%20Pattern)    
 Encapsulate a command request as an object
-* Interpreter    
+* [Interpreter](https://github.com/vectormars/CPP/tree/master/Design%20pattern/Iterator%20Design%20Pattern)    
 A way to include language elements in a program
-* Iterator   
+* [Iterator](https://github.com/vectormars/CPP/tree/master/Design%20pattern/Iterator%20Design%20Pattern)   
 Sequentially access the elements of a collection
-* Mediator    
+* [Mediator](https://github.com/vectormars/CPP/tree/master/Design%20pattern/Mediator%20Pattern)    
 Defines simplified communication between classes
 * Memento    
 Capture and restore an object's internal state
 * Null Object    
 Designed to act as a default value of an object
-* Observer    
+* [Observer](https://github.com/vectormars/CPP/tree/master/Design%20pattern/Observer%20design%20pattern)    
 A way of notifying change to a number of classes
-* State    
+* [State](https://github.com/vectormars/CPP/tree/master/Design%20pattern/State%20Design%20Pattern)    
 Alter an object's behavior when its state changes
-* Strategy    
+* [Strategy](https://github.com/vectormars/CPP/tree/master/Design%20pattern/Strategy%20Design%20Pattern)    
 Encapsulates an algorithm inside a class
-* Template method    
+* [Template method](https://github.com/vectormars/CPP/tree/master/Design%20pattern/Template%20Method%20Design%20Pattern)    
 Defer the exact steps of an algorithm to a subclass
 * Visitor    
 Defines a new operation to a class without change
