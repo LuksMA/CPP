@@ -75,6 +75,20 @@ Defer the exact steps of an algorithm to a subclass
 * Visitor    
 Defines a new operation to a class without change
 
+
+## Abstraction VS. Implementation 
+**What is an abstraction?**   
+It's a generalized way of looking at something that makes it so you don’t have to know the details of how that thing is implemented.
+
+Eg: A car steering wheel is an abstraction on top of a car. The car steering wheel abstracts away what is really going on to make a car change direction. We don’t really care how it does it. 
+
+An **implementation** is just a realization of that abstraction. It’s what’s going on under the hood. It’s taking an abstraction and making it real.
+
+Normally an abstraction and its implementation are coupled.
+![alt text](https://github.com/vectormars/CPP/blob/master/Design%20pattern/image/diagram1.png)
+
+
 Reference:    
 https://sourcemaking.com/design_patterns/behavioral_patterns      
-http://design-patterns.readthedocs.io/zh_CN/latest/index.html
+http://design-patterns.readthedocs.io/zh_CN/latest/index.html    
+https://simpleprogrammer.com/design-patterns-simplified-the-bridge-pattern/
