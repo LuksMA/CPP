@@ -26,9 +26,9 @@ There are three variations of the factory pattern:
 ### Structural patterns
 结构型模式(Structural Pattern)描述如何将类或者对 象结合在一起形成更大的结构，就像搭积木，可以通过 简单积木的组合形成复杂的、功能更为强大的结构。
 
-* Adapter   
+* [Adapter](https://github.com/vectormars/CPP/tree/master/Design%20pattern/Adapter%20Pattern)   
 Match interfaces of different classes
-* Bridge   
+* [Bridge](https://github.com/vectormars/CPP/tree/master/Design%20pattern/Bridge%20Pattern)   
 Separates an object's interface from its implementation
 * Composite   
 A tree structure of simple and composite objects
