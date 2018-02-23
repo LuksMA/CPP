@@ -15,8 +15,9 @@
 * ConcreteImplementor：具体实现类
 
 ### UML
-
+![alt text](https://github.com/vectormars/CPP/blob/master/Design%20pattern/Bridge%20Pattern/image/Bridge.jpg)
 ### Sequence diagram
+![alt text](https://github.com/vectormars/CPP/blob/master/Design%20pattern/Bridge%20Pattern/image/seq_Bridge.jpg)
 
 ### Advantage
 * 分离抽象接口及其实现部分。
