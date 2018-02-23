@@ -16,14 +16,14 @@
 
 ### UML
 Note: 适配器模式有对象适配器和类适配器两种实现：    
-对象适配器：
-![alt text]()
+对象适配器：   
+![alt text](https://github.com/vectormars/CPP/blob/master/Design%20pattern/Adapter%20Pattern/image/Adapter.jpg)
 
-类适配器：
-![alt text]()
+类适配器：   
+![alt text](https://github.com/vectormars/CPP/blob/master/Design%20pattern/Adapter%20Pattern/image/Adapter_classModel.jpg)
 
-### Sequence
-![alt text]()
+### Sequence   
+![alt text](https://github.com/vectormars/CPP/blob/master/Design%20pattern/Adapter%20Pattern/image/seq_Adapter.jpg)
 
 
 
