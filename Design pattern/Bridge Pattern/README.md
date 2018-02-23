@@ -30,3 +30,6 @@
 行设计与编程。 
 
 桥接模式要求正确识别出系统中两个独立变化的维度，因此其使用范围具有一定的局限性
+
+Reference:     
+https://simpleprogrammer.com/design-patterns-simplified-the-bridge-pattern/     
