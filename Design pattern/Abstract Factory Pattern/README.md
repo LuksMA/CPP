@@ -9,6 +9,12 @@
 * AbstractProduct：抽象产品
 * Product：具体产品
 
+### UML
+![alt text](https://github.com/vectormars/CPP/blob/master/Design%20pattern/Abstract%20Factory%20Pattern/image/AbatractFactory.jpg)
+
+### Sequence Diagram
+![alt text](https://github.com/vectormars/CPP/blob/master/Design%20pattern/Abstract%20Factory%20Pattern/image/seq_AbatractFactory.jpg)
+
 
 http://design-patterns.readthedocs.io/zh_CN/latest/creational_patterns/abstract_factory.html   
 https://sourcemaking.com/design_patterns/abstract_factory    
