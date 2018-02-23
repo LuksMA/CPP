@@ -8,20 +8,20 @@
 Creates an instance of several families of classes
 * Builder    
 Separates object construction from its representation
-* Factory Method    
+* [Factory Method](https://github.com/vectormars/CPP/tree/master/Design%20pattern/Factory%20Method%20Pattern)    
 Creates an instance of several derived classes
 * Object Pool    
 Avoid expensive acquisition and release of resources by recycling objects that are no longer in use
 * Prototype    
 A fully initialized instance to be copied or cloned
-* Singleton    
+* [Singleton](https://github.com/vectormars/CPP/blob/master/Design%20pattern/Singleton%20Pattern/README.md)    
 A class of which only a single instance can exist
 
 #### More about factory pattern
 There are three variations of the factory pattern:
-1. **Simple Factory Pattern**. This allows interfaces for creating objects without exposing the object creation logic to the client.
-2. **Factory Method Pattern**. This allows interfaces for creating objects, but allow subclasses to determine which class to instantiate.
-3. **Abstract Factory Pattern**. Unlike the above two patterns, an abstract factory is an interface to create of related objects without specifying/exposing their classes. We can also say that it provides an object of another factory that is responsible for creating required objects.
+1. [**Simple Factory Pattern**.](https://github.com/vectormars/CPP/tree/master/Design%20pattern/Simple%20Factory%20Pattern) This allows interfaces for creating objects without exposing the object creation logic to the client.
+2. [**Factory Method Pattern**.](https://github.com/vectormars/CPP/tree/master/Design%20pattern/Factory%20Method%20Pattern) This allows interfaces for creating objects, but allow subclasses to determine which class to instantiate.
+3. [**Abstract Factory Pattern**.](https://github.com/vectormars/CPP/tree/master/Design%20pattern/Abstract%20Factory%20Pattern) Unlike the above two patterns, an abstract factory is an interface to create of related objects without specifying/exposing their classes. We can also say that it provides an object of another factory that is responsible for creating required objects.
 
 ### Structural patterns
 结构型模式(Structural Pattern)描述如何将类或者对 象结合在一起形成更大的结构，就像搭积木，可以通过 简单积木的组合形成复杂的、功能更为强大的结构。
