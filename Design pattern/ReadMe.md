@@ -6,7 +6,7 @@
 
 * [Abstract Factory](https://github.com/vectormars/CPP/tree/master/Design%20pattern/Abstract%20Factory%20Pattern)     
 Creates an instance of several families of classes
-* Builder    
+* [Builder](https://github.com/vectormars/CPP/tree/master/Design%20pattern/Builder%20Pattern)    
 Separates object construction from its representation
 * [Factory Method](https://github.com/vectormars/CPP/tree/master/Design%20pattern/Factory%20Method%20Pattern)    
 Creates an instance of several derived classes
@@ -14,7 +14,7 @@ Creates an instance of several derived classes
 Avoid expensive acquisition and release of resources by recycling objects that are no longer in use
 * Prototype    
 A fully initialized instance to be copied or cloned
-* [Singleton](https://github.com/vectormars/CPP/blob/master/Design%20pattern/Singleton%20Pattern/README.md)    
+* [Singleton](https://github.com/vectormars/CPP/tree/master/Design%20pattern/Singleton%20Pattern)    
 A class of which only a single instance can exist
 
 #### More about factory pattern
