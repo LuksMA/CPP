@@ -27,5 +27,5 @@ Note: 适配器模式有对象适配器和类适配器两种实现：
 
 
 
-Reference:
+Reference:    
 http://design-patterns.readthedocs.io/zh_CN/latest/structural_patterns/adapter.html
