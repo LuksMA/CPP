@@ -5,7 +5,9 @@ This pattern creates a decorator class which wraps the original class and provid
 
 Decorator pattern is one of the **structural patterns**.
 
+![alt text](https://github.com/vectormars/CPP/blob/master/Design%20pattern/Decorator%20Pattern/image/Decorator_example-2x.png)
 
+### Reference
 https://www.tutorialspoint.com/design_pattern/decorator_pattern.htm    
 https://sourcemaking.com/design_patterns/decorator/cpp/1    
 https://sourcemaking.com/design_patterns/decorator/cpp/2
