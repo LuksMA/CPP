@@ -1,3 +1,5 @@
+![alt text](https://github.com/vectormars/CPP/blob/master/Design%20pattern/Decorator%20Pattern/image/Widget%20Decorator.png)
+
 Based on: https://sourcemaking.com/design_patterns/decorator/cpp/2
 
 1. Create a "lowest common denominator" that makes classes interchangeable
