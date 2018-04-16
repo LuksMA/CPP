@@ -174,6 +174,13 @@ What happens when each of the constants is increased
 | Ki       | decrease     | increase  | increase      | decrease           | degrade                   |
 | Kd       | minor change | decrease  | decrease      | No effect          | Improve (if small enough) |
 
+
+#### Common tunning methods
+* Manual Tuning Method
+* Ziegler-Nichols Tuning Method
+* Cohen-Coon Tuning Method
+* PID Tuning Software Methods (ex. MATLAB)
+
 Suggested way to tune constants is as follows:
 1. Set Kp, Ki, and Kd to 0. This will disable them for now.
 2. Increase Kp until the error is fairly small, but it still gets from the beginning to nearly
