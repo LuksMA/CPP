@@ -3,6 +3,13 @@
 PID stands for **P**roportional **I**ntegral **D**erivative
 3 separate parts joined together, though sometimes you don't need all three.
 
+##### PID controller in system
+![Alt Text](images/PIDforDummies_pid_controller1.png)
+
+##### Under The Hood Of The PID Controller
+![Alt Text](images/PIDforDummies_pid_simplified.png)
+
+
 Imagine a robot that travels at full speed, and we want to stop it.
 ### P
 P controller controls the speed smoothly, allowing it to slow down as it approaches it's targettarget, to shrink the overshoot.
