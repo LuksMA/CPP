@@ -192,3 +192,10 @@ To tune a PID use the following steps:
 4. Repeat steps 2 and 3 until increasing the D gain does not stop the oscillations.
 5. Set P and D to the last stable values.
 6. Increase the I gain until it brings you to the setpoint with the number of oscillations desired (normally zero but a quicker response can be had if you don't mind a couple oscillations of overshoot)
+
+
+
+Reference:
+1. http://ctms.engin.umich.edu/CTMS/index.php?example=Introduction&section=ControlPID
+2. https://www.csimn.com/CSI_pages/PIDforDummies.html
+
