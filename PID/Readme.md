@@ -166,6 +166,8 @@ while (condition){
 * **Steady-state error** – the error at the equilibrium
 * **Stability** – the “smoothness” of the speed
 
+![Alt Text](images/time_domain_analysis.png)
+
 What happens when each of the constants is increased
 
 | Constant | Rise time    | Overshoot | Settling time | Steady-state error | Stability                 |
